@@ -115,9 +115,20 @@ export const siteData = {
       title: 'Kişiye Özel Güvenli Belge Deposu',
       category: l('Güvenli Belge Merkezi', 'Secure Document Center', 'Sicheres Dokumentenzentrum'),
       description: l(
-        'CV, diploma ve önemli belgeleri yetkili kişilere güvenli biçimde sunmak; görüntüleme ve indirme hareketlerini denetlenebilir kayıtlarla izlemek için tasarlanan çok dilli belge merkezi.',
-        'A multilingual document center designed to share CVs, diplomas and important files with authorized viewers while auditing views and downloads.',
-        'Ein mehrsprachiges Dokumentenzentrum für die sichere Freigabe von Lebensläufen, Diplomen und wichtigen Dateien mit protokollierten Ansichten und Downloads.'
+        'CV, diploma ve önemli belgeleri yalnızca yetkili kişilerle paylaşmak için tasarlanan; çok dilli arayüz, kontrollü erişim ve düzenli belge yönetimi sunan kişisel belge merkezi.',
+        'A personal document center for sharing CVs, diplomas and important files only with authorized viewers, with multilingual access and organized document management.',
+        'Ein persönliches Dokumentenzentrum zum Teilen von Lebenslauf, Diplomen und wichtigen Dateien ausschließlich mit berechtigten Personen, inklusive mehrsprachigem Zugang und geordneter Dokumentverwaltung.'
+      ),
+    },
+    {
+      id: 'privacy-cv-builder',
+      image: '/images/projects/privacy-cv-builder.svg',
+      title: 'Privacy CV Builder',
+      category: l('CV Teknolojisi', 'CV Technology', 'CV-Technologie'),
+      description: l(
+        'Gizlilik odaklı, çok dilli CV ve Alman standardına uygun Anschreiben oluşturucu; verileri tarayıcıda işler, PDF/DOCX ve yerel proje çıktıları üretir.',
+        'A privacy-focused multilingual CV and German-standard cover-letter builder that processes data in the browser and exports PDF, DOCX and local project files.',
+        'Ein datenschutzorientierter, mehrsprachiger CV- und DIN-orientierter Anschreiben-Builder, der Daten im Browser verarbeitet und PDF-, DOCX- sowie lokale Projektdateien exportiert.'
       ),
     },
   ],
