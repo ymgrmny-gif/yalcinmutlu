@@ -7,7 +7,6 @@ import {
   faArrowRight,
   faBars,
   faBriefcase,
-  faCalendarDays,
   faCode,
   faDownload,
   faEnvelope,
@@ -101,10 +100,6 @@ export default function PortfolioPage() {
           className="object-cover object-[52%_18%]"
         />
         <div className="portrait-shade" />
-        <button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Menüyü aç">
-          <FontAwesomeIcon icon={faBars} />
-          <span>MENÜ</span>
-        </button>
         <div className="portrait-caption hidden lg:block">
           <p>{siteData.tagline}</p>
           <span>— Yalçın Mutlu</span>
@@ -147,8 +142,8 @@ export default function PortfolioPage() {
               <FontAwesomeIcon icon={faDownload} /> CV İndir
             </button>
           )}
-          <button className="icon-button" onClick={() => scrollToSection('contact')} aria-label="İletişime git">
-            <FontAwesomeIcon icon={faEnvelope} />
+          <button className="icon-button" onClick={() => setMenuOpen(true)} aria-label="Menüyü aç">
+            <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
 
@@ -188,6 +183,10 @@ export default function PortfolioPage() {
                 </div>
               ))}
             </div>
+            <button className="profile-access-button" type="button" onClick={() => scrollToSection('contact')} data-aos="fade-up">
+              Diğer bilgiler için erişim isteyin
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
           </Section>
 
           <Section id="education" title="Eğitim" icon={sectionIcons.education} index={1} activeIndex={activeIndex}>
@@ -221,11 +220,27 @@ export default function PortfolioPage() {
           </Section>
 
           <Section id="skills" title="Yetkinlikler" icon={sectionIcons.skills} index={3} activeIndex={activeIndex}>
-            <div className="grid gap-x-12 gap-y-5 md:grid-cols-2" data-aos="fade-up">
-              {siteData.skills.map((skill) => (
-                <div key={skill.name} className="skill-row">
-                  <div><span>{skill.name}</span><span>{skill.level}%</span></div>
-                  <div className="skill-track"><span style={{ width: `${skill.level}%` }} /></div>
+            <div className="skill-groups">
+              {siteData.skillGroups.map((group, groupIndex) => (
+                <div className="skill-group" key={group.title} data-aos="fade-up" data-aos-delay={groupIndex * 80}>
+                  <h3>{group.title}</h3>
+                  <div className="skill-list">
+                    {group.skills.map((skill, skillIndex) => (
+                      <div
+                        key={skill.name}
+                        className="skill-row"
+                        data-aos="fade-right"
+                        data-aos-delay={skillIndex * 55}
+                      >
+                        <div className="skill-bar">
+                          <div className={`skill-fill tone-${skill.tone}`} style={{ width: `${skill.level}%` }}>
+                            <span className="skill-name">{skill.name}</span>
+                          </div>
+                          <span className="skill-value">{skill.level}%</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
