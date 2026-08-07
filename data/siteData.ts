@@ -89,7 +89,7 @@ export const siteData = {
   projects: [
     {
       id: 'ase',
-      image: '/images/projects/ase.jpg',
+      image: '/images/projects/ase.webp',
       title: 'Academic Style Engine (ASE)',
       category: l('Akademik Yazım Teknolojisi', 'Academic Writing Technology', 'Technologie für akademisches Schreiben'),
       description: l(
@@ -100,7 +100,7 @@ export const siteData = {
     },
     {
       id: 'kariyer-avcisi',
-      image: '/images/projects/kariyer-avcisi.jpg',
+      image: '/images/projects/kariyer-avcisi.webp',
       title: 'Kariyer Avcısı',
       category: l('Kariyer Teknolojisi', 'Career Technology', 'Karriere-Technologie'),
       description: l(
@@ -111,7 +111,7 @@ export const siteData = {
     },
     {
       id: 'secure-docs',
-      image: '/images/projects/guvenli-belge-deposu.jpg',
+      image: '/images/projects/guvenli-belge-deposu.webp',
       title: 'Kişiye Özel Güvenli Belge Deposu',
       category: l('Güvenli Belge Merkezi', 'Secure Document Center', 'Sicheres Dokumentenzentrum'),
       description: l(
