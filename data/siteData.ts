@@ -11,11 +11,7 @@ export const siteData = {
   profileImage: '/images/yalcin-mutlu-profile.webp',
   details: [
     { label: 'Ad Soyad', value: 'Yalçın Mutlu', icon: 'user' },
-    { label: 'Konum', value: 'Bilgi eklenecek', icon: 'location' },
-    { label: 'E-posta', value: 'email@alanadi.com', icon: 'email' },
-    { label: 'Telefon', value: 'Bilgi eklenecek', icon: 'phone' },
-    { label: 'Web', value: 'alanadi.com', icon: 'web' },
-    { label: 'Durum', value: 'Yeni fırsatlara açık', icon: 'briefcase' },
+    { label: 'Doğum Yeri', value: 'İstanbul', icon: 'location' },
   ],
   education: [
     {
@@ -45,13 +41,23 @@ export const siteData = {
       description: 'Önceki deneyim için ikinci kayıt alanı.',
     },
   ],
-  skills: [
-    { name: 'İletişim', level: 88 },
-    { name: 'Araştırma', level: 92 },
-    { name: 'Proje Yönetimi', level: 84 },
-    { name: 'Dijital Araçlar', level: 80 },
-    { name: 'İçerik Üretimi', level: 86 },
-    { name: 'Problem Çözme', level: 90 },
+  skillGroups: [
+    {
+      title: 'Profesyonel Yetkinlikler',
+      skills: [
+        { name: 'İletişim', level: 88, tone: 'aqua' },
+        { name: 'Proje Yönetimi', level: 84, tone: 'navy' },
+        { name: 'Problem Çözme', level: 90, tone: 'red' },
+      ],
+    },
+    {
+      title: 'Dijital Yetkinlikler',
+      skills: [
+        { name: 'Araştırma', level: 92, tone: 'aqua' },
+        { name: 'Dijital Araçlar', level: 80, tone: 'navy' },
+        { name: 'İçerik Üretimi', level: 86, tone: 'green' },
+      ],
+    },
   ],
   projects: [
     { number: '01', title: 'Proje Başlığı', category: 'Kişisel Proje', description: 'Kısa proje açıklaması ve kullanılan yaklaşım.' },
