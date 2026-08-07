@@ -1,0 +1,41 @@
+/* Small visual refinements kept separate so the static portfolio remains easy to tune. */
+
+/* Keep section headings clear of the timeline connector/dot, including the active scale state. */
+.timeline-section {
+  padding-left: calc(var(--timeline-x) + 96px);
+}
+
+/* Four projects are presented as a balanced 2x2 grid on desktop. */
+.project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Use direct browser image rendering for static-export reliability on Cloudflare Pages. */
+.project-image-wrap {
+  aspect-ratio: 16 / 10;
+}
+.project-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-card:hover .project-image {
+  transform: scale(1.035);
+}
+
+@media (max-width: 800px) {
+  .timeline-section {
+    padding-left: 136px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .timeline-section {
+    padding-left: 124px;
+  }
+}
