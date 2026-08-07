@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import 'aos/dist/aos.css';
 import './globals.css';
+import './refinements.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import AOSProvider from '@/components/AOSProvider';
 
