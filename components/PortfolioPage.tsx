@@ -110,6 +110,7 @@ export default function PortfolioPage() {
   const [secureModalOpen, setSecureModalOpen] = useState(false);
   const [language, setLanguage] = useState<Language>('tr');
   const [activeSection, setActiveSection] = useState<SectionId>('profile');
+  const [progressIndex, setProgressIndex] = useState(-1);
   const [fillHeight, setFillHeight] = useState(0);
   const timelineRef = useRef<HTMLDivElement>(null);
   const labels = ui[language];
@@ -129,16 +130,25 @@ export default function PortfolioPage() {
     if (!line) return;
 
     const triggerY = window.innerHeight * 0.45;
-    const rect = line.getBoundingClientRect();
-    const nextHeight = Math.max(0, Math.min(rect.height, triggerY - rect.top));
+    const lineRect = line.getBoundingClientRect();
+    const nextHeight = Math.max(0, Math.min(lineRect.height, triggerY - lineRect.top));
     setFillHeight(nextHeight);
 
     const markers = Array.from(document.querySelectorAll<HTMLElement>('[data-timeline-marker]'));
+    let nextProgressIndex = -1;
     let current: SectionId = 'profile';
-    for (const marker of markers) {
-      if (marker.getBoundingClientRect().top <= triggerY + 2) current = marker.dataset.section as SectionId;
-    }
-    setActiveSection(current);
+
+    markers.forEach((marker, index) => {
+      const markerRect = marker.getBoundingClientRect();
+      const markerCenter = markerRect.top + markerRect.height / 2;
+      if (markerCenter <= triggerY) {
+        nextProgressIndex = index;
+        current = marker.dataset.section as SectionId;
+      }
+    });
+
+    setProgressIndex(nextProgressIndex);
+    if (nextProgressIndex >= 0) setActiveSection(current);
   }, []);
 
   useEffect(() => {
@@ -157,7 +167,6 @@ export default function PortfolioPage() {
     };
   }, [updateTimeline]);
 
-  const activeIndex = navItems.findIndex((item) => item.id === activeSection);
   const activeLabel = useMemo(() => navItems.find((item) => item.id === activeSection)?.label, [activeSection]);
 
   return (
@@ -250,7 +259,7 @@ export default function PortfolioPage() {
             <div className="timeline-fill" style={{ height: `${fillHeight}px` }} />
           </div>
 
-          <Section id="profile" title={text(navItems[0].label, language)} icon={sectionIcons.profile} index={0} activeIndex={activeIndex}>
+          <Section id="profile" title={text(navItems[0].label, language)} icon={sectionIcons.profile} index={0} progressIndex={progressIndex}>
             <div className="profile-details" data-aos="fade-up">
               {siteData.details.map((detail) => (
                 <div key={detail.value} className="detail-item profile-detail-item">
@@ -269,7 +278,7 @@ export default function PortfolioPage() {
             </div>
           </Section>
 
-          <Section id="education" title={text(navItems[1].label, language)} icon={sectionIcons.education} index={1} activeIndex={activeIndex}>
+          <Section id="education" title={text(navItems[1].label, language)} icon={sectionIcons.education} index={1} progressIndex={progressIndex}>
             <div className="entry-list">
               {siteData.education.map((entry, index) => (
                 <article key={`${entry.period}-${index}`} className="entry" data-aos="fade-up">
@@ -284,7 +293,7 @@ export default function PortfolioPage() {
             </div>
           </Section>
 
-          <Section id="experience" title={text(navItems[2].label, language)} icon={sectionIcons.experience} index={2} activeIndex={activeIndex}>
+          <Section id="experience" title={text(navItems[2].label, language)} icon={sectionIcons.experience} index={2} progressIndex={progressIndex}>
             <div className="entry-list">
               {siteData.experience.map((entry, index) => (
                 <article key={`${entry.period}-${index}`} className="entry" data-aos="fade-up">
@@ -299,7 +308,7 @@ export default function PortfolioPage() {
             </div>
           </Section>
 
-          <Section id="skills" title={text(navItems[3].label, language)} icon={sectionIcons.skills} index={3} activeIndex={activeIndex}>
+          <Section id="skills" title={text(navItems[3].label, language)} icon={sectionIcons.skills} index={3} progressIndex={progressIndex}>
             <div className="skill-groups">
               {siteData.skillGroups.map((group, groupIndex) => (
                 <div className="skill-group" key={text(group.title, language)} data-aos="fade-up" data-aos-delay={groupIndex * 80}>
@@ -321,12 +330,18 @@ export default function PortfolioPage() {
             </div>
           </Section>
 
-          <Section id="projects" title={text(navItems[4].label, language)} icon={sectionIcons.projects} index={4} activeIndex={activeIndex}>
+          <Section id="projects" title={text(navItems[4].label, language)} icon={sectionIcons.projects} index={4} progressIndex={progressIndex}>
             <div className="project-grid">
               {siteData.projects.map((project, index) => (
                 <article key={project.id} className="project-card" data-aos="fade-up" data-aos-delay={index * 70}>
                   <div className="project-image-wrap">
-                    <Image src={project.image} alt={`${project.title} proje görseli`} fill sizes="(max-width: 800px) 100vw, 33vw" className="object-cover" />
+                    <img
+                      src={project.image}
+                      alt={`${project.title} proje görseli`}
+                      className="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <div className="p-4">
                     <p className="project-category">{text(project.category, language)}</p>
@@ -341,7 +356,7 @@ export default function PortfolioPage() {
             </div>
           </Section>
 
-          <Section id="contact" title={text(navItems[5].label, language)} icon={sectionIcons.contact} index={5} activeIndex={activeIndex}>
+          <Section id="contact" title={text(navItems[5].label, language)} icon={sectionIcons.contact} index={5} progressIndex={progressIndex}>
             <div className="grid gap-10 xl:grid-cols-[.75fr_1.25fr]">
               <div className="contact-list" data-aos="fade-right">
                 <ContactLine icon={faLocationDot} text={siteData.contact.location} />
@@ -420,16 +435,16 @@ function SecureDocumentsModal({ open, language, onClose }: { open: boolean; lang
   );
 }
 
-function Section({ id, title, icon, index, activeIndex, children }: {
+function Section({ id, title, icon, index, progressIndex, children }: {
   id: SectionId;
   title: string;
   icon: typeof faUser;
   index: number;
-  activeIndex: number;
+  progressIndex: number;
   children: React.ReactNode;
 }) {
-  const passed = index <= activeIndex;
-  const active = index === activeIndex;
+  const passed = index <= progressIndex;
+  const active = index === progressIndex;
   return (
     <section id={id} className="timeline-section scroll-mt-10" aria-labelledby={`${id}-title`}>
       <div className={`timeline-marker ${passed ? 'is-passed' : ''} ${active ? 'is-active' : ''}`} data-timeline-marker data-section={id} aria-hidden="true">
