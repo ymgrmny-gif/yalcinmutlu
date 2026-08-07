@@ -4,12 +4,32 @@ import { FormEvent, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import type { Language } from '@/data/siteData';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error' | 'unconfigured';
 
-export default function ContactForm() {
+const copy = {
+  tr: {
+    aria: 'İletişim formu', name: 'Adınız', email: 'E-posta', subject: 'Konu', message: 'Mesajınız',
+    send: 'Mesaj Gönder', sending: 'Gönderiliyor', sent: 'Mesaj gönderildi.', error: 'Mesaj gönderilemedi. Lütfen tekrar deneyin.',
+    unconfigured: 'EmailJS ayarları henüz eklenmedi (.env.local).',
+  },
+  en: {
+    aria: 'Contact form', name: 'Your name', email: 'Email', subject: 'Subject', message: 'Your message',
+    send: 'Send Message', sending: 'Sending', sent: 'Message sent.', error: 'Message could not be sent. Please try again.',
+    unconfigured: 'EmailJS settings have not been configured yet (.env.local).',
+  },
+  de: {
+    aria: 'Kontaktformular', name: 'Ihr Name', email: 'E-Mail', subject: 'Betreff', message: 'Ihre Nachricht',
+    send: 'Nachricht senden', sending: 'Wird gesendet', sent: 'Nachricht gesendet.', error: 'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
+    unconfigured: 'EmailJS ist noch nicht konfiguriert (.env.local).',
+  },
+} as const;
+
+export default function ContactForm({ language = 'tr' }: { language?: Language }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>('idle');
+  const t = copy[language];
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,22 +55,22 @@ export default function ContactForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="grid gap-3" aria-label="İletişim formu">
+    <form ref={formRef} onSubmit={handleSubmit} className="grid gap-3" aria-label={t.aria}>
       <div className="grid gap-3 sm:grid-cols-2">
-        <input className="form-field" name="from_name" placeholder="Adınız" required />
-        <input className="form-field" type="email" name="reply_to" placeholder="E-posta" required />
+        <input className="form-field" name="from_name" placeholder={t.name} required />
+        <input className="form-field" type="email" name="reply_to" placeholder={t.email} required />
       </div>
-      <input className="form-field" name="subject" placeholder="Konu" required />
-      <textarea className="form-field min-h-32 resize-y" name="message" placeholder="Mesajınız" required />
+      <input className="form-field" name="subject" placeholder={t.subject} required />
+      <textarea className="form-field min-h-32 resize-y" name="message" placeholder={t.message} required />
       <div className="flex flex-wrap items-center gap-3">
         <button className="action-primary" type="submit" disabled={status === 'sending'}>
           <FontAwesomeIcon icon={status === 'sending' ? faSpinner : faPaperPlane} spin={status === 'sending'} />
-          {status === 'sending' ? 'Gönderiliyor' : 'Mesaj Gönder'}
+          {status === 'sending' ? t.sending : t.send}
         </button>
         <p className="text-xs text-slate-500" aria-live="polite">
-          {status === 'sent' && 'Mesaj gönderildi.'}
-          {status === 'error' && 'Mesaj gönderilemedi. Lütfen tekrar deneyin.'}
-          {status === 'unconfigured' && 'EmailJS ayarları henüz eklenmedi (.env.local).'}
+          {status === 'sent' && t.sent}
+          {status === 'error' && t.error}
+          {status === 'unconfigured' && t.unconfigured}
         </p>
       </div>
     </form>
