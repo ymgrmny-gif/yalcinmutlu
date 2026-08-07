@@ -64,7 +64,7 @@ Kişisel metinlerin büyük kısmı tek dosyadan yönetilir:
 
 Profil fotoğrafı:
 
-`public/images/yalcin-mutlu-profile.png`
+`public/images/yalcin-mutlu-profile.webp`
 
 ## CV butonu
 
