@@ -5,6 +5,37 @@
   padding-left: calc(var(--timeline-x) + 110px);
 }
 
+/*
+ * AOS section motion: make the vertical travel unmistakable.
+ * The hero/profile area stays static; the following timeline sections rise as one block.
+ */
+.timeline-section[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translate3d(0, 125px, 0);
+  transition-property: opacity, transform;
+  transition-duration: 1100ms;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity, transform;
+}
+.timeline-section[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Profile / introductory copy should appear normally, without a reveal animation. */
+.hero-block[data-aos="fade-up"],
+#profile[data-aos="fade-up"] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+.hero-block[data-aos="fade-up"].aos-animate,
+#profile[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: none;
+}
+
 /* React still marks timeline items for navigation state, but visual progress follows the painted line precisely. */
 .timeline-marker.is-passed:not(.flow-passed) {
   --marker-accent: #d7dce1;
@@ -163,6 +194,15 @@
 /* Keep the closing thank-you, but remove the extra opportunities prompt underneath it. */
 .footer-quote p {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-section[data-aos="fade-up"],
+  .timeline-section[data-aos="fade-up"].aos-animate {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 800px) {
