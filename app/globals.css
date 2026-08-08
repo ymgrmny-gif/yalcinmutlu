@@ -223,21 +223,6 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .entry p { margin:5px 0 0; color:#64748b; font-size:.86rem; line-height:1.65; }
 .entry .entry-place { color:var(--aqua-dark); font-weight:750; }
 
-.skill-groups { display:grid; gap:36px; }
-.skill-group h3 { margin:0 0 16px; padding-bottom:9px; border-bottom:1px solid #cfd5da; color:var(--ink); font-size:1.05rem; font-weight:900; letter-spacing:.015em; text-transform:uppercase; }
-.skill-list { display:grid; gap:13px; }
-.skill-row { width:100%; }
-.skill-bar { position:relative; height:29px; overflow:hidden; border:1px solid #dfe3e6; border-radius:6px; background:#f3f4f5; box-shadow:inset 0 1px 3px rgba(15,23,42,.06); }
-.skill-fill { position:relative; z-index:1; height:100%; display:flex; align-items:center; transform:scaleX(0); transform-origin:left center; transition:transform 1s cubic-bezier(.22,.61,.36,1); }
-.skill-row.aos-animate .skill-fill { transform:scaleX(1); }
-.skill-fill::before { content:""; position:absolute; z-index:0; inset:0 auto 0 0; width:38%; background:rgba(3,14,29,.12); }
-.skill-name { position:relative; z-index:2; padding-left:12px; color:white; font-size:.76rem; font-weight:750; white-space:nowrap; }
-.skill-value { position:absolute; z-index:3; top:50%; right:10px; transform:translateY(-50%); padding-left:8px; color:#5f6368; font-size:.78rem; font-weight:900; text-shadow:0 1px 0 rgba(255,255,255,.85); }
-.tone-aqua { background:#13b8ba; }
-.tone-navy { background:#061d42; }
-.tone-red { background:#e52231; }
-.tone-green { background:#20a52b; }
-
 .project-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
 .project-card { overflow:hidden; border:1px solid rgba(148,163,184,.36); background:white; border-radius:8px; transition:transform .25s ease,box-shadow .25s ease; }
 .project-card:hover { transform:translateY(-5px); box-shadow:0 14px 30px rgba(15,23,42,.10); }
@@ -287,7 +272,6 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .secure-modal-form input:focus { border-color:var(--aqua); box-shadow:0 0 0 3px rgba(18,184,189,.12); }
 .secure-modal-submit { width:100%; margin-top:4px; }
 .secure-modal-cancel { min-height:40px; border:0; background:transparent; color:#64748b; font-weight:800; cursor:pointer; }
-.secure-modal small { display:block; margin-top:16px; color:#94a3b8; font-size:.68rem; line-height:1.5; }
 
 .documents-loading { min-height:100vh; display:grid; place-items:center; background:#f8fafc; color:#64748b; }
 .documents-page { min-height:100vh; padding:30px clamp(20px,6vw,90px) 70px; background:linear-gradient(180deg,#f8fbfc,#eef4f6); color:var(--ink); }
@@ -303,7 +287,6 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .document-placeholder > svg { color:var(--aqua-dark); font-size:2.1rem; margin-bottom:auto; }
 .document-placeholder h2 { margin:24px 0 6px; font-size:1.05rem; }
 .document-placeholder p { margin:0; color:#94a3b8; font-size:.78rem; }
-.documents-security-note { max-width:1160px; margin:24px auto 0; padding:16px 18px; border-left:3px solid var(--aqua); background:rgba(255,255,255,.72); color:#64748b; font-size:.76rem; line-height:1.6; }
 
 @keyframes markerPulse {
   0%,100% { box-shadow:0 4px 10px rgba(7,20,38,.08),0 0 0 0 rgba(18,184,189,.28); }
@@ -359,9 +342,6 @@ button,a { -webkit-tap-highlight-color:transparent; }
   .timeline-marker::before { left:calc(100% + 32px); width:7px; height:7px; }
   .section-title { min-height:44px; font-size:1.35rem; }
   .entry { grid-template-columns:1fr; gap:8px; }
-  .skill-bar { height:30px; }
-  .skill-name { font-size:.75rem; padding-left:10px; }
-  .skill-value { right:9px; font-size:.76rem; }
   .footer-quote { padding-left:76px; padding-right:24px; }
   .footer-bar { flex-direction:column; }
 
@@ -391,10 +371,6 @@ button,a { -webkit-tap-highlight-color:transparent; }
   .section-title { font-size:1.2rem; }
   .profile-actions { flex-direction:column; }
   .profile-access-button,.secure-doc-button { width:100%; padding:0 12px; font-size:.74rem; }
-  .skill-group h3 { font-size:.93rem; }
-  .skill-bar { height:29px; }
-  .skill-name { font-size:.7rem; }
-  .skill-value { font-size:.72rem; }
   .footer-quote { padding-left:24px; }
   .secure-modal { padding:28px 22px; }
   .documents-page { padding:18px 16px 50px; }
