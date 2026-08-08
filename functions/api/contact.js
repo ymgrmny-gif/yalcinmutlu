@@ -1,4 +1,5 @@
 const LANGUAGES = new Set(['tr', 'en', 'de']);
+const CONTACT_TABLE = 'yalcinmutlu_contact_messages';
 
 function json(status, body) {
   return new Response(JSON.stringify(body), {
@@ -77,7 +78,7 @@ async function sendNotification(env, record) {
 async function markNotification(env, id) {
   if (!id) return;
   const baseUrl = env.SUPABASE_URL.replace(/\/$/u, '');
-  await fetch(`${baseUrl}/rest/v1/contact_messages?id=eq.${encodeURIComponent(id)}`, {
+  await fetch(`${baseUrl}/rest/v1/${CONTACT_TABLE}?id=eq.${encodeURIComponent(id)}`, {
     method: 'PATCH',
     headers: {
       apikey: env.SUPABASE_SERVICE_ROLE_KEY,
@@ -141,7 +142,7 @@ export async function onRequestPost(context) {
   const baseUrl = env.SUPABASE_URL.replace(/\/$/u, '');
   const record = { name, email, subject, message, language, status: 'new', email_notified: false };
 
-  const insertResponse = await fetch(`${baseUrl}/rest/v1/contact_messages?select=id`, {
+  const insertResponse = await fetch(`${baseUrl}/rest/v1/${CONTACT_TABLE}?select=id`, {
     method: 'POST',
     headers: {
       apikey: env.SUPABASE_SERVICE_ROLE_KEY,
