@@ -72,6 +72,21 @@ export const siteData = {
         'Planned sound-insulation and room-acoustics projects for new and existing buildings; coordinated the production and application of custom acoustic products; managed a seven-person technical team and subcontractors when required; handled site surveys, quotation preparation, purchasing, logistics and payment tracking; remained actively involved in installation and on-site implementation.',
         'Planung von Schalldämmungs- und Raumakustikprojekten in Neu- und Bestandsgebäuden; Koordination der Herstellung und Anwendung spezieller Akustikprodukte; Führung eines siebenköpfigen technischen Teams sowie bei Bedarf von Nachunternehmern; technische Bestandsaufnahme, Angebotserstellung, Einkauf, Logistik und Zahlungsnachverfolgung; aktive Mitarbeit bei Montage und Vor-Ort-Ausführung.'
       ),
+      experienceLabel: l('Uygulamalı Saha Deneyimi', 'Hands-on Field Experience', 'Praktische Baustellenerfahrung'),
+      experienceTags: [
+        l('Metal Konstrüksiyon', 'Metal Construction', 'Metallkonstruktion'),
+        l('Hafif Metal Konstrüksiyon', 'Light-Gauge Metal Framing', 'Leichtmetallkonstruktion'),
+        l('Alçı & Alçıpan Uygulamaları', 'Plaster & Drywall Applications', 'Gips- & Trockenbauarbeiten'),
+        l('Giydirme Duvar & Asma Tavan', 'Wall Lining & Suspended Ceilings', 'Vorsatzschalen & abgehängte Decken'),
+        l('Elektrot Kaynağı (MMA)', 'MMA / Stick Welding', 'E-Hand-Schweißen'),
+        l('Metal Kesme & Birleştirme', 'Metal Cutting & Joining', 'Metallzuschnitt & Verbindung'),
+        l('Dübel & Ankraj Uygulamaları', 'Anchoring & Fixing', 'Dübel- & Verankerungsarbeiten'),
+        l('Mineral / Taş Yünü Uygulamaları', 'Mineral / Rock Wool Installation', 'Mineral- / Steinwolle-Verarbeitung'),
+        l('Ses Yalıtımı Uygulamaları', 'Sound Insulation Installation', 'Schalldämmungsarbeiten'),
+        l('Akustik Panel Montajı', 'Acoustic Panel Installation', 'Montage von Akustikpaneelen'),
+        l('Ölçülendirme & Karkas Kurulumu', 'Measurement & Framing', 'Aufmaß & Unterkonstruktion'),
+        l('El & Elektrikli Alet Kullanımı', 'Hand & Power Tools', 'Hand- & Elektrowerkzeuge'),
+      ],
     },
     {
       period: '2010 — 2018',
@@ -86,6 +101,19 @@ export const siteData = {
         'Provided on-site and remote IT, web-hosting and technical support to approximately 400–500 business and institutional clients; supported Windows and Linux systems and managed hosting, domains, DNS, SSL and business email services; installed, commissioned and maintained CCTV, intrusion-alarm and fire-detection/alarm systems; diagnosed and resolved hardware, network and electronic-system faults; managed and coordinated an average five-person technical and digital project team.',
         'Vor-Ort- und Remote-IT-Support, Webhosting und technischer Service für rund 400–500 gewerbliche und institutionelle Kunden; Betreuung von Windows- und Linux-Systemen sowie Verwaltung von Hosting, Domains, DNS, SSL und geschäftlichen E-Mail-Diensten; Installation, Inbetriebnahme und Wartung von CCTV-, Einbruchmelde- und Brandmeldeanlagen; Fehlerdiagnose und Störungsbehebung an Hardware-, Netzwerk- und elektronischen Systemen; Führung und Koordination eines durchschnittlich fünfköpfigen technischen und digitalen Projektteams.'
       ),
+      experienceLabel: l('Uygulamalı Teknik Deneyim', 'Hands-on Technical Experience', 'Praktische technische Erfahrung'),
+      experienceTags: [
+        l('Yerinde & Uzaktan IT Destek', 'On-site & Remote IT Support', 'IT-Support vor Ort & per Fernzugriff'),
+        l('Windows & Linux Sistemleri', 'Windows & Linux Systems', 'Windows- & Linux-Systeme'),
+        l('Donanım & Ağ Sorun Giderme', 'Hardware & Network Troubleshooting', 'Hardware- & Netzwerk-Fehlerbehebung'),
+        l('Web Hosting • DNS • SSL', 'Web Hosting • DNS • SSL', 'Webhosting • DNS • SSL'),
+        l('CCTV Sistemleri', 'CCTV Systems', 'CCTV-Systeme'),
+        l('Hırsız Alarm Sistemleri', 'Intrusion Alarm Systems', 'Einbruchmeldeanlagen'),
+        l('Yangın Algılama & Alarm', 'Fire Detection & Alarm', 'Brandmelde- & Alarmtechnik'),
+        l('Kurulum & Devreye Alma', 'Installation & Commissioning', 'Installation & Inbetriebnahme'),
+        l('Elektronik Arıza Giderme', 'Electronic Troubleshooting', 'Fehlerbehebung an Elektroniksystemen'),
+        l('Teknik Ekip Koordinasyonu', 'Technical Team Coordination', 'Koordination technischer Teams'),
+      ],
     },
     {
       period: '2008 — 2009',
@@ -96,6 +124,14 @@ export const siteData = {
         'Participated in technical installation, maintenance and troubleshooting of local television and radio stations; supported on-site installation, testing and fault resolution for broadcast systems.',
         'Mitarbeit bei technischer Installation, Wartung und Störungsbehebung von lokalen Fernseh- und Radiosendern; Unterstützung bei Vor-Ort-Installation, Prüfung und Fehlerbehebung von Rundfunksystemen.'
       ),
+      experienceLabel: l('Uygulamalı Teknik Deneyim', 'Hands-on Technical Experience', 'Praktische technische Erfahrung'),
+      experienceTags: [
+        l('Yayın Sistemleri Kurulumu', 'Broadcast System Installation', 'Installation von Rundfunksystemen'),
+        l('Saha Montajı', 'Field Installation', 'Vor-Ort-Montage'),
+        l('Sistem Testleri', 'System Testing', 'Systemprüfung'),
+        l('Bakım', 'Maintenance', 'Wartung'),
+        l('Arıza Tespiti & Giderme', 'Fault Diagnosis & Troubleshooting', 'Fehlerdiagnose & Störungsbehebung'),
+      ],
     },
     {
       period: '2006 — 2007',
@@ -110,6 +146,16 @@ export const siteData = {
         'After a three-month internship, worked for approximately nine months as a technician performing maintenance, repair and fault diagnosis on computers and IT hardware; Windows installation and reinstallation, software troubleshooting and component-level technical service; CCTV and electronic-security fault diagnosis and repair; testing and recommissioning of electronic devices.',
         'Nach einem dreimonatigen Praktikum rund neun Monate als Techniker tätig: Wartung, Reparatur und Fehlerdiagnose an Computern und IT-Hardware; Windows-Installation und Neuinstallation sowie Behebung von Softwareproblemen; technischer Service an Computerkomponenten; Fehlerdiagnose und Reparatur an CCTV- und elektronischen Sicherheitssystemen; Prüfung und Wiederinbetriebnahme elektronischer Geräte.'
       ),
+      experienceLabel: l('Uygulamalı Teknik Deneyim', 'Hands-on Technical Experience', 'Praktische technische Erfahrung'),
+      experienceTags: [
+        l('Bilgisayar Donanımı', 'Computer Hardware', 'Computerhardware'),
+        l('Windows Kurulum & Yeniden Kurulum', 'Windows Installation & Reinstallation', 'Windows-Installation & Neuinstallation'),
+        l('Teknik Servis', 'Technical Service', 'Technischer Service'),
+        l('Elektronik Arıza Tespiti', 'Electronic Fault Diagnosis', 'Elektronische Fehlerdiagnose'),
+        l('CCTV & Güvenlik Sistemleri', 'CCTV & Security Systems', 'CCTV- & Sicherheitssysteme'),
+        l('Elektronik Cihaz Testi', 'Electronic Device Testing', 'Prüfung elektronischer Geräte'),
+        l('Bakım & Onarım', 'Maintenance & Repair', 'Wartung & Reparatur'),
+      ],
     },
   ],
   skillGroups: [
