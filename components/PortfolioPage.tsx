@@ -50,10 +50,6 @@ const ui = {
     requestAccess: 'Diğer bilgiler için erişim isteyin',
     secureDocs: 'Güvenli Belge Girişi',
     projectDetail: 'Detay',
-    projectPendingTitle: 'Proje bağlantısı daha sonra eklenecek',
-    skillsPreviewEyebrow: 'Alternatif görünüm',
-    skillsPreviewTitle: 'Yetkinlikler — Kart Görünümü',
-    skillsPreviewText: 'Mevcut yetkinlik çubukları korunmuştur. Bu bölüm yalnızca kart ve etiket düzenini karşılaştırmak için eklenmiştir.',
     contactIntro: 'Belgelerime erişim talebinde bulunmak veya benimle iletişime geçmek için aşağıdaki formu kullanabilirsiniz. Yeni projeler ve fırsatlar için iletişime geçebilirsiniz.',
     thanks: 'Buraya kadar geldiğiniz için teşekkür ederim.',
     footerText: 'Yeni projeler ve fırsatlar için iletişime geçebilirsiniz.',
@@ -62,7 +58,6 @@ const ui = {
     password: 'Erişim şifresi',
     continue: 'Belgelere devam et',
     cancel: 'Vazgeç',
-    previewNote: 'Statik önizleme: gerçek parola doğrulaması ve erişim kayıtları Supabase bağlantısında etkinleştirilecek.',
   },
   en: {
     pageTitle: 'Yalçın Mutlu | Personal Portfolio',
@@ -77,10 +72,6 @@ const ui = {
     requestAccess: 'Request access for additional information',
     secureDocs: 'Secure Document Access',
     projectDetail: 'Details',
-    projectPendingTitle: 'Project link will be added later',
-    skillsPreviewEyebrow: 'Alternative view',
-    skillsPreviewTitle: 'Skills — Card View',
-    skillsPreviewText: 'The existing skill bars are kept unchanged. This section was added only to compare the card and tag layout.',
     contactIntro: 'You can use the form below to request access to my documents or contact me directly. Feel free to get in touch about new projects and opportunities.',
     thanks: 'Thank you for visiting my portfolio.',
     footerText: 'Feel free to get in touch about new projects and opportunities.',
@@ -89,7 +80,6 @@ const ui = {
     password: 'Access password',
     continue: 'Continue to documents',
     cancel: 'Cancel',
-    previewNote: 'Static preview: real password validation and access logging will be enabled with the Supabase integration.',
   },
   de: {
     pageTitle: 'Yalçın Mutlu | Persönliches Portfolio',
@@ -104,10 +94,6 @@ const ui = {
     requestAccess: 'Zugriff auf weitere Informationen anfragen',
     secureDocs: 'Sicherer Dokumentenzugang',
     projectDetail: 'Details',
-    projectPendingTitle: 'Projektlink wird später hinzugefügt',
-    skillsPreviewEyebrow: 'Alternative Ansicht',
-    skillsPreviewTitle: 'Kompetenzen — Kartenansicht',
-    skillsPreviewText: 'Die bestehenden Kompetenzbalken bleiben unverändert. Dieser Bereich dient nur zum Vergleich mit der Karten- und Tag-Darstellung.',
     contactIntro: 'Über das folgende Formular können Sie den Zugang zu meinen Dokumenten anfragen oder direkt mit mir Kontakt aufnehmen. Für neue Projekte und Möglichkeiten können Sie mich gerne kontaktieren.',
     thanks: 'Vielen Dank für Ihren Besuch.',
     footerText: 'Für neue Projekte und Möglichkeiten können Sie mich gerne kontaktieren.',
@@ -116,7 +102,6 @@ const ui = {
     password: 'Zugangspasswort',
     continue: 'Zu den Dokumenten',
     cancel: 'Abbrechen',
-    previewNote: 'Statische Vorschau: echte Passwortprüfung und Zugriffsprotokolle werden mit der Supabase-Integration aktiviert.',
   },
 } as const;
 
@@ -155,7 +140,12 @@ export default function PortfolioPage() {
 
     const triggerY = window.innerHeight * 0.45;
     const lineRect = line.getBoundingClientRect();
-    const nextHeight = Math.max(0, Math.min(lineRect.height, triggerY - lineRect.top));
+    const pageBottom = window.scrollY + window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const atPageBottom = pageBottom >= documentHeight - 48;
+    const nextHeight = atPageBottom
+      ? lineRect.height
+      : Math.max(0, Math.min(lineRect.height, triggerY - lineRect.top));
     setFillHeight(nextHeight);
 
     const markers = Array.from(document.querySelectorAll<HTMLElement>('[data-timeline-marker]'));
@@ -170,6 +160,11 @@ export default function PortfolioPage() {
         current = marker.dataset.section as SectionId;
       }
     });
+
+    if (atPageBottom && markers.length > 0) {
+      nextProgressIndex = markers.length - 1;
+      current = markers[markers.length - 1].dataset.section as SectionId;
+    }
 
     setProgressIndex(nextProgressIndex);
     if (nextProgressIndex >= 0) setActiveSection(current);
@@ -366,12 +361,7 @@ export default function PortfolioPage() {
             </div>
           </Section>
 
-          <section className="skills-card-preview" aria-labelledby="skills-card-preview-title" data-aos="fade-up" data-aos-duration="920" data-aos-offset="110">
-            <div className="skills-card-preview-heading">
-              <p>{labels.skillsPreviewEyebrow}</p>
-              <h2 id="skills-card-preview-title">{labels.skillsPreviewTitle}</h2>
-              <span>{labels.skillsPreviewText}</span>
-            </div>
+          <section className="skills-card-preview" aria-label={text(navItems[3].label, language)} data-aos="fade-up" data-aos-duration="920" data-aos-offset="110">
             <div className="skills-card-groups">
               {siteData.skillGroups.map((group) => (
                 <article className="skills-card-group" key={`card-${text(group.title, language)}`}>
@@ -397,7 +387,7 @@ export default function PortfolioPage() {
                     <p className="project-category">{text(project.category, language)}</p>
                     <h3>{'titleLocalized' in project ? text(project.titleLocalized, language) : project.title}</h3>
                     <p>{text(project.description, language)}</p>
-                    <button type="button" className="project-link" title={labels.projectPendingTitle}>
+                    <button type="button" className="project-link" title={labels.projectDetail}>
                       {labels.projectDetail} <FontAwesomeIcon icon={faArrowRight} />
                     </button>
                   </div>
@@ -469,7 +459,6 @@ function SecureDocumentsModal({ open, language, onClose }: { open: boolean; lang
           <button type="submit" className="action-primary secure-modal-submit"><FontAwesomeIcon icon={faLock} /> {labels.continue}</button>
           <button type="button" className="secure-modal-cancel" onClick={onClose}>{labels.cancel}</button>
         </form>
-        <small>{labels.previewNote}</small>
       </section>
     </div>
   );
