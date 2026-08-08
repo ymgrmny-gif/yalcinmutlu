@@ -68,23 +68,23 @@ export const siteData = {
       ),
       place: l('Mutlu Akustik — Ankara, Türkiye', 'Mutlu Akustik — Ankara, Türkiye', 'Mutlu Akustik — Ankara, Türkei'),
       description: l(
-        'Ses yalıtımı ve hacim akustiği projelerinin planlanması; yedi kişilik teknik ekip ve gerektiğinde taşeron ekiplerin yönetimi; teknik keşif, teklif, satın alma, lojistik, ödeme takibi ve saha uygulamalarına aktif katılım.',
-        'Planned sound-insulation and room-acoustics projects; managed a seven-person technical team and subcontractors when needed; handled site surveys, quotations, purchasing, logistics, payment tracking and hands-on field installation.',
-        'Planung von Schalldämmungs- und Raumakustikprojekten; Führung eines siebenköpfigen technischen Teams sowie bei Bedarf von Nachunternehmern; technische Bestandsaufnahme, Angebotserstellung, Einkauf, Logistik, Zahlungsnachverfolgung und aktive Mitarbeit bei Montagearbeiten.'
+        'Yeni ve mevcut binalarda ses yalıtımı ve hacim akustiği projelerinin planlanması; özel akustik ürünlerin üretim ve uygulama süreçlerinin koordinasyonu; yedi kişilik teknik ekip ve gerektiğinde alt yüklenici ekiplerin yönetimi; teknik keşif, teklif hazırlama, satın alma, lojistik ve ödeme süreçlerinin takibi; montaj ve yerinde uygulamalara aktif katılım.',
+        'Planned sound-insulation and room-acoustics projects for new and existing buildings; coordinated the production and application of custom acoustic products; managed a seven-person technical team and subcontractors when required; handled site surveys, quotation preparation, purchasing, logistics and payment tracking; remained actively involved in installation and on-site implementation.',
+        'Planung von Schalldämmungs- und Raumakustikprojekten in Neu- und Bestandsgebäuden; Koordination der Herstellung und Anwendung spezieller Akustikprodukte; Führung eines siebenköpfigen technischen Teams sowie bei Bedarf von Nachunternehmern; technische Bestandsaufnahme, Angebotserstellung, Einkauf, Logistik und Zahlungsnachverfolgung; aktive Mitarbeit bei Montage und Vor-Ort-Ausführung.'
       ),
     },
     {
       period: '2010 — 2018',
       title: l(
-        'Şirket Sahibi • IT Destek & Teknik Proje Koordinasyonu',
-        'Company Owner • IT Support & Technical Project Coordination',
-        'Unternehmensinhaber • IT-Support & Technische Projektkoordination'
+        'Şirket Sahibi • Teknik Proje Yöneticisi • Elektronik Teknisyeni',
+        'Company Owner • Technical Project Manager • Electronics Technician',
+        'Unternehmensinhaber • Technischer Projektmanager • Elektroniktechniker'
       ),
       place: l('Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkei'),
       description: l(
-        'Yaklaşık 400–500 kurumsal ve ticari müşteriye yerinde ve uzaktan IT, web hosting ve teknik servis desteği; Windows ve Linux sistemlerinin, hosting, domain, DNS, SSL ve iş e-posta hizmetlerinin yönetimi; CCTV ve alarm sistemleri ile ortalama beş kişilik teknik ve dijital proje ekibinin koordinasyonu.',
-        'Provided on-site and remote IT, web-hosting and technical support to approximately 400–500 business and institutional clients; supported Windows and Linux systems and managed hosting, domains, DNS, SSL and business email services; coordinated an average five-person technical and digital project team alongside CCTV and alarm-system work.',
-        'Vor-Ort- und Remote-IT-Support, Webhosting und technischer Service für rund 400–500 gewerbliche und institutionelle Kunden; Betreuung von Windows- und Linux-Systemen sowie Verwaltung von Hosting, Domains, DNS, SSL und geschäftlichen E-Mail-Diensten; Koordination eines durchschnittlich fünfköpfigen technischen und digitalen Projektteams sowie Arbeiten an CCTV- und Alarmanlagen.'
+        'Yaklaşık 400–500 kurumsal ve ticari müşteriye yerinde ve uzaktan IT, web hosting ve teknik servis desteği; Windows ve Linux sistemleri ile hosting, domain, DNS, SSL ve iş e-posta hizmetlerinin yönetimi; CCTV, hırsız alarmı ve yangın algılama/alarm sistemlerinin kurulumu, devreye alınması ve bakımı; donanım, ağ ve elektronik sistem arızalarının tespiti ve giderilmesi; ortalama beş kişilik teknik ve dijital proje ekibinin yönetimi ve koordinasyonu.',
+        'Provided on-site and remote IT, web-hosting and technical support to approximately 400–500 business and institutional clients; supported Windows and Linux systems and managed hosting, domains, DNS, SSL and business email services; installed, commissioned and maintained CCTV, intrusion-alarm and fire-detection/alarm systems; diagnosed and resolved hardware, network and electronic-system faults; managed and coordinated an average five-person technical and digital project team.',
+        'Vor-Ort- und Remote-IT-Support, Webhosting und technischer Service für rund 400–500 gewerbliche und institutionelle Kunden; Betreuung von Windows- und Linux-Systemen sowie Verwaltung von Hosting, Domains, DNS, SSL und geschäftlichen E-Mail-Diensten; Installation, Inbetriebnahme und Wartung von CCTV-, Einbruchmelde- und Brandmeldeanlagen; Fehlerdiagnose und Störungsbehebung an Hardware-, Netzwerk- und elektronischen Systemen; Führung und Koordination eines durchschnittlich fünfköpfigen technischen und digitalen Projektteams.'
       ),
     },
     {
@@ -92,9 +92,23 @@ export const siteData = {
       title: l('Yayın Sistemleri Teknikeri', 'Broadcast Systems Technician', 'Techniker für Rundfunksysteme'),
       place: l('İdil Prodüksiyon — Türkiye geneli', 'İdil Prodüksiyon — Türkiye-wide', 'İdil Prodüksiyon — Türkeiweit'),
       description: l(
-        'Yerel televizyon ve radyo istasyonlarının teknik kurulum, bakım ve arıza giderme çalışmalarına katılım.',
-        'Participated in technical installation, maintenance and troubleshooting of local television and radio stations.',
-        'Mitarbeit bei technischer Installation, Wartung und Störungsbehebung von lokalen Fernseh- und Radiosendern.'
+        'Yerel televizyon ve radyo istasyonlarının teknik kurulum, bakım ve arıza giderme çalışmalarına katılım; yayın sistemlerinin sahada kurulumu, test edilmesi ve teknik sorunlarının giderilmesine destek.',
+        'Participated in technical installation, maintenance and troubleshooting of local television and radio stations; supported on-site installation, testing and fault resolution for broadcast systems.',
+        'Mitarbeit bei technischer Installation, Wartung und Störungsbehebung von lokalen Fernseh- und Radiosendern; Unterstützung bei Vor-Ort-Installation, Prüfung und Fehlerbehebung von Rundfunksystemen.'
+      ),
+    },
+    {
+      period: '2006 — 2007',
+      title: l(
+        'Stajyer, ardından IT & Elektronik Servis Teknisyeni',
+        'Intern, then IT & Electronics Service Technician',
+        'Praktikant, anschließend Techniker im IT- und Elektronikservice'
+      ),
+      place: l('Koyuncu Holding — İstanbul, Türkiye', 'Koyuncu Holding — İstanbul, Türkiye', 'Koyuncu Holding — İstanbul, Türkei'),
+      description: l(
+        'Üç aylık stajın ardından yaklaşık dokuz ay teknisyen olarak bilgisayar ve IT donanımlarında bakım, onarım ve arıza tespiti; Windows kurulum ve yeniden kurulumları ile yazılım sorunlarının giderilmesi; bilgisayar bileşenleri üzerinde teknik servis; CCTV ve elektronik güvenlik sistemlerinde arıza tespiti ve onarım; elektronik cihazların test edilmesi ve yeniden devreye alınması.',
+        'After a three-month internship, worked for approximately nine months as a technician performing maintenance, repair and fault diagnosis on computers and IT hardware; Windows installation and reinstallation, software troubleshooting and component-level technical service; CCTV and electronic-security fault diagnosis and repair; testing and recommissioning of electronic devices.',
+        'Nach einem dreimonatigen Praktikum rund neun Monate als Techniker tätig: Wartung, Reparatur und Fehlerdiagnose an Computern und IT-Hardware; Windows-Installation und Neuinstallation sowie Behebung von Softwareproblemen; technischer Service an Computerkomponenten; Fehlerdiagnose und Reparatur an CCTV- und elektronischen Sicherheitssystemen; Prüfung und Wiederinbetriebnahme elektronischer Geräte.'
       ),
     },
   ],
