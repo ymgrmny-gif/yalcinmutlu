@@ -156,6 +156,11 @@
   line-height: 1.75;
 }
 
+/* Keep the closing thank-you, but remove the extra opportunities prompt underneath it. */
+.footer-quote p {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .timeline-section {
     padding-left: 148px;
