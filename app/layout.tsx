@@ -7,6 +7,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import AOSProvider from '@/components/AOSProvider';
 import TimelinePrecisionController from '@/components/TimelinePrecisionController';
 import ProjectLinksController from '@/components/ProjectLinksController';
+import SecureDocumentsAuthController from '@/components/SecureDocumentsAuthController';
 
 config.autoAddCss = false;
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <AOSProvider>{children}</AOSProvider>
         <TimelinePrecisionController />
         <ProjectLinksController />
+        <SecureDocumentsAuthController />
       </body>
     </html>
   );
