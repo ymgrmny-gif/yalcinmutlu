@@ -8,14 +8,14 @@ export const siteData = {
   name: 'Yalçın Mutlu',
   eyebrow: l('Kişisel Portföy', 'Personal Portfolio', 'Persönliches Portfolio'),
   role: l(
-    'Elektronik • Teknik Proje Yönetimi • IT & Dijital Ürünler',
-    'Electronics • Technical Project Management • IT & Digital Products',
-    'Elektronik • Technisches Projektmanagement • IT & Digitale Produkte'
+    'Teknik Proje Yönetimi • Elektronik • Yapı & Akustik • IT & Dijital Çözümler',
+    'Technical Project Management • Electronics • Construction & Acoustics • IT & Digital Solutions',
+    'Technisches Projektmanagement • Elektronik • Bau & Akustik • IT & Digitale Lösungen'
   ),
   intro: l(
-    'Elektronik sistemler, güvenlik teknolojileri ve teknik proje yönetimindeki saha deneyimimi IT sistemleri ve yapay zekâ destekli dijital ürün geliştirme ile birleştiriyorum. Ağırlığım; teknik problem çözme, ekip ve proje koordinasyonu, sistem kurulumu ve desteği ile dijital çözümlerin hayata geçirilmesidir.',
-    'I combine hands-on experience in electronic systems, security technology and technical project management with IT systems and AI-assisted digital product development. My focus is on technical problem solving, team and project coordination, system setup and support, and turning digital ideas into practical solutions.',
-    'Ich verbinde praktische Erfahrung in Elektronik, Sicherheitstechnik und technischem Projektmanagement mit IT-Systemen und KI-gestützter digitaler Produktentwicklung. Mein Schwerpunkt liegt auf technischer Problemlösung, Team- und Projektkoordination, Systemeinrichtung und -betreuung sowie der praktischen Umsetzung digitaler Lösungen.'
+    'Elektronik ve güvenlik sistemlerinden ses yalıtımı, oda akustiği ve yapı uygulamalarına kadar farklı teknik alanlarda saha ve proje yönetimi deneyimine sahibim. Teknik keşif, teklif, satın alma, ekip ve taşeron koordinasyonu ile uygulama süreçlerini yönetirken sahada da aktif rol aldım. Bugün bu birikimi IT sistemleri ve yapay zekâ destekli dijital çözümlerle birleştirerek, gerçek ihtiyaçları uygulanabilir teknik ve dijital çözümlere dönüştürmeye odaklanıyorum.',
+    'I have field and project management experience across technical disciplines ranging from electronic and security systems to sound insulation, room acoustics and construction applications. I have managed site surveys, quotations, purchasing, team and subcontractor coordination and implementation processes while remaining actively involved on site. Today, I combine this background with IT systems and AI-assisted digital solutions to turn real needs into practical technical and digital solutions.',
+    'Ich verfüge über praktische Erfahrung im Feld- und Projektmanagement in unterschiedlichen technischen Bereichen – von Elektronik- und Sicherheitssystemen bis zu Schallschutz, Raumakustik und Bauanwendungen. Dabei habe ich technische Bestandsaufnahmen, Angebote, Einkauf, Team- und Nachunternehmerkoordination sowie Umsetzungsprozesse gesteuert und zugleich aktiv vor Ort mitgearbeitet. Heute verbinde ich diese Erfahrung mit IT-Systemen und KI-gestützten digitalen Lösungen, um reale Anforderungen in praktikable technische und digitale Lösungen zu überführen.'
   ),
   tagline: l(
     'Teknik deneyim, sistem düşüncesi ve dijital üretimi aynı projede buluşturmak.',
