@@ -69,6 +69,48 @@
   height: 7px;
 }
 
+/* Compact practical-experience tags make hands-on work scannable without becoming another timeline. */
+.experience-tags-block {
+  margin-top: 18px;
+}
+.experience-tags-label {
+  margin: 0 0 8px !important;
+  color: #64748b !important;
+  font-size: .67rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .075em;
+  line-height: 1.35 !important;
+  text-transform: uppercase;
+}
+.experience-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.experience-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 9px;
+  border: 1px solid #dfe4e8;
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  color: #425166;
+  font-size: .68rem;
+  font-weight: 720;
+  line-height: 1.25;
+  box-shadow: 0 1px 3px rgba(15,23,42,.025);
+}
+.experience-tag::before {
+  content: "";
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  border-radius: 999px;
+  background: var(--aqua);
+}
+
 /* The old coloured skill bars are no longer part of the visible layout. */
 #skills .skill-groups {
   display: none;
@@ -349,6 +391,14 @@
   .timeline-section,
   .skills-card-preview {
     padding-left: 112px;
+  }
+  .experience-tags {
+    gap: 5px;
+  }
+  .experience-tag {
+    min-height: 26px;
+    padding: 4px 8px;
+    font-size: .64rem;
   }
   .skills-card-preview {
     padding-top: 0;
