@@ -246,8 +246,8 @@ export default function PortfolioPage() {
           </button>
         </div>
 
-        <section className="hero-block" aria-labelledby="hero-title">
-          <div className="hero-avatar" data-aos="zoom-in" data-aos-duration="920">
+        <section className="hero-block" aria-labelledby="hero-title" data-aos="fade-up" data-aos-duration="900" data-aos-offset="24">
+          <div className="hero-avatar">
             <Image
               src={siteData.profileImage}
               alt="Yalçın Mutlu profil fotoğrafı"
@@ -257,7 +257,7 @@ export default function PortfolioPage() {
               priority
             />
           </div>
-          <div className="hero-copy" data-aos="fade-left" data-aos-delay="120" data-aos-duration="960">
+          <div className="hero-copy">
             <p className="eyebrow">{text(siteData.eyebrow, language)}</p>
             <h1 id="hero-title">{labels.greeting} <strong>Yalçın Mutlu.</strong></h1>
             <p className="hero-role">{text(siteData.role, language)}</p>
@@ -271,7 +271,7 @@ export default function PortfolioPage() {
           </div>
 
           <Section id="profile" title={text(navItems[0].label, language)} icon={sectionIcons.profile} index={0} progressIndex={progressIndex}>
-            <div className="profile-details" data-aos="fade-right" data-aos-duration="860">
+            <div className="profile-details">
               {siteData.details.map((detail) => (
                 <div key={detail.value} className="detail-item profile-detail-item">
                   <FontAwesomeIcon icon={iconMap[detail.icon as keyof typeof iconMap]} />
@@ -279,7 +279,7 @@ export default function PortfolioPage() {
                 </div>
               ))}
             </div>
-            <div className="profile-actions" data-aos="fade-up" data-aos-delay="130" data-aos-duration="820">
+            <div className="profile-actions">
               <button className="profile-access-button" type="button" onClick={() => scrollToSection('contact')}>
                 {labels.requestAccess}<FontAwesomeIcon icon={faArrowRight} />
               </button>
@@ -289,13 +289,7 @@ export default function PortfolioPage() {
           <Section id="education" title={text(navItems[1].label, language)} icon={sectionIcons.education} index={1} progressIndex={progressIndex}>
             <div className="entry-list">
               {siteData.education.map((entry, index) => (
-                <article
-                  key={`${entry.period}-${index}`}
-                  className="entry"
-                  data-aos="fade-left"
-                  data-aos-delay={index * 120}
-                  data-aos-duration="880"
-                >
+                <article key={`${entry.period}-${index}`} className="entry">
                   <time>{entry.period}</time>
                   <div>
                     <h3>{text(entry.title, language)}</h3>
@@ -310,13 +304,7 @@ export default function PortfolioPage() {
           <Section id="experience" title={text(navItems[2].label, language)} icon={sectionIcons.experience} index={2} progressIndex={progressIndex}>
             <div className="entry-list">
               {siteData.experience.map((entry, index) => (
-                <article
-                  key={`${entry.period}-${index}`}
-                  className="entry"
-                  data-aos="fade-right"
-                  data-aos-delay={index * 110}
-                  data-aos-duration="900"
-                >
+                <article key={`${entry.period}-${index}`} className="entry">
                   <time>{entry.period}</time>
                   <div>
                     <h3>{text(entry.title, language)}</h3>
@@ -330,24 +318,12 @@ export default function PortfolioPage() {
 
           <Section id="skills" title={text(navItems[3].label, language)} icon={sectionIcons.skills} index={3} progressIndex={progressIndex}>
             <div className="skill-groups">
-              {siteData.skillGroups.map((group, groupIndex) => (
-                <div
-                  className="skill-group"
-                  key={text(group.title, language)}
-                  data-aos="zoom-in-up"
-                  data-aos-delay={groupIndex * 95}
-                  data-aos-duration="840"
-                >
+              {siteData.skillGroups.map((group) => (
+                <div className="skill-group" key={text(group.title, language)}>
                   <h3>{text(group.title, language)}</h3>
                   <div className="skill-list">
-                    {group.skills.map((skill, skillIndex) => (
-                      <div
-                        key={text(skill.name, language)}
-                        className="skill-row"
-                        data-aos="fade-right"
-                        data-aos-delay={skillIndex * 45}
-                        data-aos-duration="720"
-                      >
+                    {group.skills.map((skill) => (
+                      <div key={text(skill.name, language)} className="skill-row">
                         <div className="skill-bar">
                           <div className={`skill-fill tone-${skill.tone}`} style={{ width: `${skill.level}%` }}>
                             <span className="skill-name">{text(skill.name, language)}</span>
@@ -364,14 +340,8 @@ export default function PortfolioPage() {
 
           <Section id="projects" title={text(navItems[4].label, language)} icon={sectionIcons.projects} index={4} progressIndex={progressIndex}>
             <div className="project-grid">
-              {siteData.projects.map((project, index) => (
-                <article
-                  key={project.id}
-                  className="project-card"
-                  data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
-                  data-aos-delay={(index % 2) * 90}
-                  data-aos-duration="900"
-                >
+              {siteData.projects.map((project) => (
+                <article key={project.id} className="project-card">
                   <div className="p-4">
                     <p className="project-category">{text(project.category, language)}</p>
                     <h3>{project.title}</h3>
@@ -387,14 +357,14 @@ export default function PortfolioPage() {
 
           <Section id="contact" title={text(navItems[5].label, language)} icon={sectionIcons.contact} index={5} progressIndex={progressIndex}>
             <div className="contact-content">
-              <p className="contact-message" data-aos="fade-right" data-aos-duration="860">{labels.contactIntro}</p>
-              <div data-aos="fade-left" data-aos-delay="120" data-aos-duration="920"><ContactForm language={language} /></div>
+              <p className="contact-message">{labels.contactIntro}</p>
+              <div><ContactForm language={language} /></div>
             </div>
           </Section>
         </div>
 
         <footer className="site-footer">
-          <div className="footer-quote" data-aos="zoom-in-up" data-aos-duration="820">
+          <div className="footer-quote" data-aos="fade-up" data-aos-duration="850" data-aos-offset="80">
             <span>“</span>
             <div><strong>{labels.thanks}</strong><p>{labels.footerText}</p></div>
           </div>
@@ -464,22 +434,21 @@ function Section({ id, title, icon, index, progressIndex, children }: {
 }) {
   const passed = index <= progressIndex;
   const active = index === progressIndex;
-  const titleAnimation = index % 2 === 0 ? 'fade-right' : 'fade-left';
 
   return (
-    <section id={id} className="timeline-section scroll-mt-10" aria-labelledby={`${id}-title`}>
+    <section
+      id={id}
+      className="timeline-section scroll-mt-10"
+      aria-labelledby={`${id}-title`}
+      data-aos="fade-up"
+      data-aos-duration="920"
+      data-aos-offset="125"
+      data-aos-anchor-placement="top-bottom"
+    >
       <div className={`timeline-marker ${passed ? 'is-passed' : ''} ${active ? 'is-active' : ''}`} data-timeline-marker data-section={id} aria-hidden="true">
         <FontAwesomeIcon icon={icon} />
       </div>
-      <h2
-        id={`${id}-title`}
-        className="section-title"
-        data-aos={titleAnimation}
-        data-aos-duration="760"
-        data-aos-offset="100"
-      >
-        {title}
-      </h2>
+      <h2 id={`${id}-title`} className="section-title">{title}</h2>
       <div className="section-body">{children}</div>
     </section>
   );
