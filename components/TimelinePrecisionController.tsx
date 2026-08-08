@@ -10,6 +10,7 @@ export default function TimelinePrecisionController() {
     if (!fill || markers.length === 0) return;
 
     let frame = 0;
+    let settleUntil = 0;
     const activationOffset = 10;
 
     const sync = () => {
@@ -27,11 +28,31 @@ export default function TimelinePrecisionController() {
       });
 
       if (activeIndex >= 0) markers[activeIndex]?.classList.add('flow-active');
+
+      if (performance.now() < settleUntil) {
+        frame = window.requestAnimationFrame(sync);
+      }
+    };
+
+    const schedule = () => {
+      settleUntil = performance.now() + 180;
+      window.cancelAnimationFrame(frame);
       frame = window.requestAnimationFrame(sync);
     };
 
-    frame = window.requestAnimationFrame(sync);
-    return () => window.cancelAnimationFrame(frame);
+    const observer = new MutationObserver(schedule);
+    observer.observe(fill, { attributes: true, attributeFilter: ['style'] });
+
+    schedule();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+
+    return () => {
+      observer.disconnect();
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
   }, []);
 
   return null;
