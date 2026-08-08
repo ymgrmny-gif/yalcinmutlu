@@ -2,9 +2,9 @@
 
 ## Aktif mimari
 
-Kullanıcı formu → Cloudflare Pages Function `/api/contact` → Supabase → isteğe bağlı Resend bildirimi
+Kullanıcı formu → Cloudflare Pages Function `/api/contact` → Supabase Edge Function `yalcinmutlu-contact` → Supabase veritabanı
 
-Mesajların ana kayıt yeri Supabase veritabanıdır. E-posta bildirimi yardımcı kanaldır; bildirim servisi geçici olarak hata verse bile başarılı veritabanı kaydı kaybolmaz.
+Mesajların ana kayıt yeri Supabase veritabanıdır. Cloudflare Pages Function yalnızca aynı alan adındaki form isteğini Supabase Edge Function'a proxy eder; Cloudflare tarafında Supabase service key tutulmaz.
 
 ## Supabase
 
@@ -14,7 +14,7 @@ Portföy iletişimi, mevcut `neslihan-yuce-mutlu` Supabase projesinde diğer ver
 
 `public.yalcinmutlu_contact_messages`
 
-Kod, migration, Cloudflare Function ve gelecekteki admin paneli bu tablo adını kullanmalıdır. Eski/genel `contact_messages` adı bu portföy için kullanılmaz.
+Kod, migration, Edge Function ve gelecekteki admin paneli bu tablo adını kullanmalıdır. Eski/genel `contact_messages` adı bu portföy için kullanılmaz.
 
 Alanlar:
 - `id`
@@ -28,31 +28,33 @@ Alanlar:
 - `created_at`
 - `updated_at`
 
-RLS açıktır. `anon` ve `authenticated` rolleri için doğrudan tablo erişimi verilmez. Yazma işlemi yalnız Cloudflare Pages Function içindeki server-side Supabase service-role secret ile yapılır.
+RLS açıktır. `anon` ve `authenticated` rolleri için doğrudan tablo erişimi verilmez. Yazma işlemi yalnız Supabase Edge Function içindeki server-side secret ile yapılır.
+
+## Supabase Edge Function
+
+Aktif fonksiyon:
+
+`yalcinmutlu-contact`
+
+Fonksiyon public form endpoint'i olduğu için JWT doğrulaması kapalıdır; bunun yerine izin verilen site origin'i, JSON content type, payload boyutu, honeypot, minimum form süresi ve alan doğrulamaları fonksiyon içinde kontrol edilir.
+
+Supabase secret/service-role anahtarı tarayıcıya veya Cloudflare'a verilmez. Supabase'in kendi Edge Function runtime'ındaki server-side environment üzerinden kullanılır.
 
 ## İletişim formu
 
 1. Kullanıcı ad, e-posta, konu ve mesaj alanlarını doldurur.
 2. Form aynı alan adındaki `/api/contact` endpoint'ine JSON gönderir.
-3. Endpoint same-origin, content type, payload boyutu, honeypot, minimum form süresi ve alan doğrulamalarını kontrol eder.
-4. Mesaj `yalcinmutlu_contact_messages` tablosuna kaydedilir.
-5. Resend ayarlanmışsa bildirim e-postası gönderilir.
-6. Bildirim başarılı olduğunda `email_notified=true` olarak işaretlenir.
+3. Cloudflare Pages Function isteğin same-origin ve temel HTTP kontrollerini yapıp Supabase Edge Function'a iletir.
+4. Supabase Edge Function bot ve alan doğrulamalarını uygular.
+5. Mesaj `public.yalcinmutlu_contact_messages` tablosuna kaydedilir.
 
 ## Cloudflare runtime değişkenleri
 
-Zorunlu:
+Aktif iletişim akışı için Cloudflare'da Supabase secret veya service-role değişkeni gerekmez.
 
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
+## E-posta bildirimi
 
-E-posta bildirimi için isteğe bağlı:
-
-- `RESEND_API_KEY`
-- `CONTACT_TO_EMAIL`
-- `CONTACT_FROM_EMAIL`
-
-Service-role ve mail API anahtarları hiçbir zaman GitHub'a veya istemci tarafı JavaScript'e yazılmaz.
+Veritabanı kaydı aktif akıştır. E-posta bildirimi daha sonra Resend veya EmailJS gibi bir kanal üzerinden eklenebilir. Bildirim eklendiğinde alıcı adresi ve API anahtarı GitHub'a ya da istemci tarafına yazılmamalıdır.
 
 ## Gizlilik
 
@@ -60,7 +62,7 @@ Service-role ve mail API anahtarları hiçbir zaman GitHub'a veya istemci taraf�
 
 ## Spam koruması
 
-Mevcut endpoint temel bot kontrolleri içerir. Cloudflare Turnstile sonraki sertleştirme adımı olarak eklenebilir. Turnstile secret istemci tarafına verilmez.
+Mevcut Edge Function temel bot kontrolleri içerir. Cloudflare Turnstile sonraki sertleştirme adımı olarak eklenebilir.
 
 ## EmailJS
 
