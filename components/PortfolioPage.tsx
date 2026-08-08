@@ -45,6 +45,9 @@ const ui = {
     requestAccess: 'Diğer bilgiler için erişim isteyin',
     secureDocs: 'Güvenli Belge Girişi',
     projectDetail: 'Detay',
+    skillsPreviewEyebrow: 'Alternatif görünüm',
+    skillsPreviewTitle: 'Yetkinlikler — Kart Görünümü',
+    skillsPreviewText: 'Mevcut yetkinlik çubukları korunmuştur. Bu bölüm yalnızca kart ve etiket düzenini karşılaştırmak için eklenmiştir.',
     contactIntro: 'Belgelerime erişim talebinde bulunmak veya benimle iletişime geçmek için aşağıdaki formu kullanabilirsiniz. Yeni projeler ve fırsatlar için iletişime geçebilirsiniz.',
     thanks: 'Buraya kadar geldiğiniz için teşekkür ederim.',
     footerText: 'Yeni projeler ve fırsatlar için iletişime geçebilirsiniz.',
@@ -63,6 +66,9 @@ const ui = {
     requestAccess: 'Request access for additional information',
     secureDocs: 'Secure Document Access',
     projectDetail: 'Details',
+    skillsPreviewEyebrow: 'Alternative view',
+    skillsPreviewTitle: 'Skills — Card View',
+    skillsPreviewText: 'The existing skill bars are kept unchanged. This section was added only to compare the card and tag layout.',
     contactIntro: 'You can use the form below to request access to my documents or contact me directly. Feel free to get in touch about new projects and opportunities.',
     thanks: 'Thank you for visiting my portfolio.',
     footerText: 'Feel free to get in touch about new projects and opportunities.',
@@ -81,6 +87,9 @@ const ui = {
     requestAccess: 'Zugriff auf weitere Informationen anfragen',
     secureDocs: 'Sicherer Dokumentenzugang',
     projectDetail: 'Details',
+    skillsPreviewEyebrow: 'Alternative Ansicht',
+    skillsPreviewTitle: 'Kompetenzen — Kartenansicht',
+    skillsPreviewText: 'Die bestehenden Kompetenzbalken bleiben unverändert. Dieser Bereich dient nur zum Vergleich mit der Karten- und Tag-Darstellung.',
     contactIntro: 'Über das folgende Formular können Sie den Zugang zu meinen Dokumenten anfragen oder direkt mit mir Kontakt aufnehmen. Für neue Projekte und Möglichkeiten können Sie mich gerne kontaktieren.',
     thanks: 'Vielen Dank für Ihren Besuch.',
     footerText: 'Für neue Projekte und Möglichkeiten können Sie mich gerne kontaktieren.',
@@ -337,6 +346,29 @@ export default function PortfolioPage() {
               ))}
             </div>
           </Section>
+
+          <section className="skills-card-preview" aria-labelledby="skills-card-preview-title" data-aos="fade-up" data-aos-duration="920" data-aos-offset="110">
+            <div className="skills-card-preview-heading">
+              <p>{labels.skillsPreviewEyebrow}</p>
+              <h2 id="skills-card-preview-title">{labels.skillsPreviewTitle}</h2>
+              <span>{labels.skillsPreviewText}</span>
+            </div>
+            <div className="skills-card-groups">
+              {siteData.skillGroups.map((group) => (
+                <article className="skills-card-group" key={`card-${text(group.title, language)}`}>
+                  <h3>{text(group.title, language)}</h3>
+                  <div className="skills-chip-grid">
+                    {group.skills.map((skill) => (
+                      <div className="skills-chip" key={`chip-${text(skill.name, language)}`}>
+                        <span className="skills-chip-dot" aria-hidden="true" />
+                        <span>{text(skill.name, language)}</span>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
 
           <Section id="projects" title={text(navItems[4].label, language)} icon={sectionIcons.projects} index={4} progressIndex={progressIndex}>
             <div className="project-grid">
