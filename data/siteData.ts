@@ -8,14 +8,14 @@ export const siteData = {
   name: 'Yalçın Mutlu',
   eyebrow: l('Kişisel Portföy', 'Personal Portfolio', 'Persönliches Portfolio'),
   role: l(
-    'Elektronik • Teknik Proje Yönetimi • Dijital Ürünler',
-    'Electronics • Technical Project Management • Digital Products',
-    'Elektronik • Technisches Projektmanagement • Digitale Produkte'
+    'Elektronik • Teknik Proje Yönetimi • IT & Dijital Ürünler',
+    'Electronics • Technical Project Management • IT & Digital Products',
+    'Elektronik • Technisches Projektmanagement • IT & Digitale Produkte'
   ),
   intro: l(
-    'Elektronik sistemler, güvenlik teknolojileri ve teknik proje yönetimindeki saha deneyimimi modern yazılım geliştirme ile birleştiriyorum. Teknik problemleri analiz etmekten ekip ve uygulama süreçlerini yönetmeye, dijital ürünler geliştirmekten sistemleri sahada devreye almaya kadar çok disiplinli çalışıyorum.',
-    'I combine hands-on experience in electronic systems, security technology and technical project management with modern software development. My work spans technical problem analysis, team and field coordination, digital product development and system commissioning.',
-    'Ich verbinde praktische Erfahrung in elektronischen Systemen, Sicherheitstechnik und technischem Projektmanagement mit moderner Softwareentwicklung. Mein Arbeitsfeld reicht von technischer Fehleranalyse, Team- und Montagekoordination bis zur Entwicklung digitaler Produkte und Inbetriebnahme von Systemen.'
+    'Elektronik sistemler, güvenlik teknolojileri ve teknik proje yönetimindeki saha deneyimimi IT sistemleri ve yapay zekâ destekli dijital ürün geliştirme ile birleştiriyorum. Ağırlığım; teknik problem çözme, ekip ve proje koordinasyonu, sistem kurulumu ve desteği ile dijital çözümlerin hayata geçirilmesidir.',
+    'I combine hands-on experience in electronic systems, security technology and technical project management with IT systems and AI-assisted digital product development. My focus is on technical problem solving, team and project coordination, system setup and support, and turning digital ideas into practical solutions.',
+    'Ich verbinde praktische Erfahrung in Elektronik, Sicherheitstechnik und technischem Projektmanagement mit IT-Systemen und KI-gestützter digitaler Produktentwicklung. Mein Schwerpunkt liegt auf technischer Problemlösung, Team- und Projektkoordination, Systemeinrichtung und -betreuung sowie der praktischen Umsetzung digitaler Lösungen.'
   ),
   tagline: l(
     'Teknik deneyim, sistem düşüncesi ve dijital üretimi aynı projede buluşturmak.',
@@ -76,15 +76,15 @@ export const siteData = {
     {
       period: '2010 — 2018',
       title: l(
-        'Şirket Sahibi, Teknik Proje Yöneticisi & Elektronik Teknisyeni',
-        'Company Owner, Technical Project Manager & Electronics Technician',
-        'Unternehmensinhaber, Technischer Projektmanager & Elektroniktechniker'
+        'Şirket Sahibi • IT Destek & Teknik Proje Koordinasyonu',
+        'Company Owner • IT Support & Technical Project Coordination',
+        'Unternehmensinhaber • IT-Support & Technische Projektkoordination'
       ),
       place: l('Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkei'),
       description: l(
-        'Ortalama beş kişilik teknik ve dijital proje ekibinin yönetimi; CCTV, hırsız ve yangın alarm sistemlerinin kurulumu, devreye alınması ve bakımı; donanım, ağ ve elektronik sistemlerde arıza tespiti ve giderme.',
-        'Managed an average five-person technical and digital project team; installed, commissioned and maintained CCTV, intrusion and fire-alarm systems; diagnosed and resolved hardware, network and electronic system faults.',
-        'Führung eines durchschnittlich fünfköpfigen technischen und digitalen Projektteams; Installation, Inbetriebnahme und Wartung von CCTV-, Einbruch- und Brandmeldeanlagen sowie Fehlerdiagnose und Störungsbehebung an Hardware-, Netzwerk- und Elektroniksystemen.'
+        'Yaklaşık 400–500 kurumsal ve ticari müşteriye yerinde ve uzaktan IT, web hosting ve teknik servis desteği; Windows ve Linux sistemlerinin, hosting, domain, DNS, SSL ve iş e-posta hizmetlerinin yönetimi; CCTV ve alarm sistemleri ile ortalama beş kişilik teknik ve dijital proje ekibinin koordinasyonu.',
+        'Provided on-site and remote IT, web-hosting and technical support to approximately 400–500 business and institutional clients; supported Windows and Linux systems and managed hosting, domains, DNS, SSL and business email services; coordinated an average five-person technical and digital project team alongside CCTV and alarm-system work.',
+        'Vor-Ort- und Remote-IT-Support, Webhosting und technischer Service für rund 400–500 gewerbliche und institutionelle Kunden; Betreuung von Windows- und Linux-Systemen sowie Verwaltung von Hosting, Domains, DNS, SSL und geschäftlichen E-Mail-Diensten; Koordination eines durchschnittlich fünfköpfigen technischen und digitalen Projektteams sowie Arbeiten an CCTV- und Alarmanlagen.'
       ),
     },
     {
@@ -105,8 +105,7 @@ export const siteData = {
         { name: l('Elektronik Arıza Tespiti', 'Electronic Fault Diagnosis', 'Elektronische Fehlerdiagnose'), level: 92, levelLabel: l('İleri', 'Advanced', 'Fortgeschritten'), tone: 'aqua' },
         { name: l('CCTV & Güvenlik Sistemleri', 'CCTV & Security Systems', 'CCTV- & Sicherheitssysteme'), level: 90, levelLabel: l('İleri', 'Advanced', 'Fortgeschritten'), tone: 'navy' },
         { name: l('Yangın Alarm Sistemleri', 'Fire Alarm Systems', 'Brandmeldeanlagen'), level: 90, levelLabel: l('İleri', 'Advanced', 'Fortgeschritten'), tone: 'red' },
-        { name: l('Devre Geliştirme', 'Circuit Development', 'Schaltungsentwicklung'), level: 88, levelLabel: l('İleri', 'Advanced', 'Fortgeschritten'), tone: 'green' },
-        { name: l('Donanım & Ağ Arıza Tespiti', 'Hardware & Network Diagnostics', 'Hardware- & Netzwerkdiagnose'), level: 78, levelLabel: l('Uygulamalı', 'Hands-on', 'Praxiserfahrung'), tone: 'navy' },
+        { name: l('Elektronik Sistem Kurulum & Devreye Alma', 'Electronic System Installation & Commissioning', 'Installation & Inbetriebnahme elektronischer Systeme'), level: 88, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'green' },
       ],
     },
     {
@@ -127,13 +126,16 @@ export const siteData = {
       ],
     },
     {
-      title: l('Yazılım & Dijital Sistemler', 'Software & Digital Systems', 'Software & Digitale Systeme'),
+      title: l('IT & Yapay Zekâ Destekli Dijital Sistemler', 'IT & AI-Assisted Digital Systems', 'IT & KI-gestützte Digitale Systeme'),
       skills: [
-        { name: l('React & TypeScript', 'React & TypeScript', 'React & TypeScript'), level: 76, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'aqua' },
-        { name: l('Zustand State Yönetimi', 'Zustand State Management', 'Zustand State Management'), level: 72, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'navy' },
-        { name: l('REST API Entegrasyonları', 'REST API Integrations', 'REST-API-Integrationen'), level: 74, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'red' },
-        { name: l('Node.js Script Geliştirme', 'Node.js Script Development', 'Node.js-Skriptentwicklung'), level: 72, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'green' },
-        { name: l('E2E Test Otomasyonu', 'E2E Test Automation', 'E2E-Testautomatisierung'), level: 74, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'aqua' },
+        { name: l('Yerinde & Uzaktan IT Desteği', 'On-site & Remote IT Support', 'IT-Support vor Ort & per Fernzugriff'), level: 92, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'aqua' },
+        { name: l('Windows Kurulum, Bakım & Sorun Giderme', 'Windows Setup, Maintenance & Troubleshooting', 'Windows-Installation, Wartung & Fehlerbehebung'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'navy' },
+        { name: l('Web Hosting, Domain, DNS & SSL', 'Web Hosting, Domains, DNS & SSL', 'Webhosting, Domains, DNS & SSL'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'red' },
+        { name: l('Donanım & Ağ Arıza Tespiti', 'Hardware & Network Diagnostics', 'Hardware- & Netzwerkfehlerdiagnose'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'green' },
+        { name: l('Windows & Linux Sunucu Desteği', 'Windows & Linux Server Support', 'Betreuung von Windows- & Linux-Servern'), level: 82, levelLabel: l('İyi', 'Good', 'Gut'), tone: 'aqua' },
+        { name: l('WordPress & Joomla CMS', 'WordPress & Joomla CMS', 'WordPress & Joomla CMS'), level: 80, levelLabel: l('İyi', 'Good', 'Gut'), tone: 'navy' },
+        { name: l('Yapay Zekâ Destekli Dijital Ürün Geliştirme', 'AI-Assisted Digital Product Development', 'KI-gestützte Digitale Produktentwicklung'), level: 78, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'red' },
+        { name: l('API, Otomasyon & Teknik Testlerle Çalışma', 'Working with APIs, Automation & Technical Testing', 'Arbeit mit APIs, Automatisierung & technischen Tests'), level: 68, levelLabel: l('Temel / Proje Deneyimi', 'Basic / Project Experience', 'Grundkenntnisse / Projekterfahrung'), tone: 'green' },
       ],
     },
   ],
