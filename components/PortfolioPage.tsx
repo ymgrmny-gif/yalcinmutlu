@@ -348,36 +348,14 @@ export default function PortfolioPage() {
           </Section>
 
           <Section id="skills" title={text(navItems[3].label, language)} icon={sectionIcons.skills} index={3} progressIndex={progressIndex}>
-            <div className="skill-groups">
+            <div className="skills-groups">
               {siteData.skillGroups.map((group) => (
-                <div className="skill-group" key={text(group.title, language)}>
+                <article className="skills-group" key={text(group.title, language)}>
                   <h3>{text(group.title, language)}</h3>
-                  <div className="skill-list">
+                  <div className="skills-grid">
                     {group.skills.map((skill) => (
-                      <div key={text(skill.name, language)} className="skill-row">
-                        <div className="skill-bar">
-                          <div className={`skill-fill tone-${skill.tone}`} style={{ width: `${skill.level}%` }}>
-                            <span className="skill-name">{text(skill.name, language)}</span>
-                          </div>
-                          <span className="skill-value">{skill.level}%</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Section>
-
-          <section className="skills-card-preview" aria-label={text(navItems[3].label, language)} data-aos="fade-up" data-aos-duration="920" data-aos-offset="110">
-            <div className="skills-card-groups">
-              {siteData.skillGroups.map((group) => (
-                <article className="skills-card-group" key={`card-${text(group.title, language)}`}>
-                  <h3>{text(group.title, language)}</h3>
-                  <div className="skills-chip-grid">
-                    {group.skills.map((skill) => (
-                      <div className="skills-chip" key={`chip-${text(skill.name, language)}`}>
-                        <span className="skills-chip-dot" aria-hidden="true" />
+                      <div className="skill-chip" key={text(skill.name, language)}>
+                        <span className="skill-chip-dot" aria-hidden="true" />
                         <span>{text(skill.name, language)}</span>
                       </div>
                     ))}
@@ -385,7 +363,7 @@ export default function PortfolioPage() {
                 </article>
               ))}
             </div>
-          </section>
+          </Section>
 
           <Section id="projects" title={text(navItems[4].label, language)} icon={sectionIcons.projects} index={4} progressIndex={progressIndex}>
             <div className="project-grid">
