@@ -1,7 +1,6 @@
 'use client';
 
 import { FormEvent, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import type { Language } from '@/data/siteData';
@@ -28,26 +27,42 @@ const copy = {
 
 export default function ContactForm({ language = 'tr' }: { language?: Language }) {
   const formRef = useRef<HTMLFormElement>(null);
+  const startedAtRef = useRef(Date.now());
   const [status, setStatus] = useState<Status>('idle');
   const t = copy[language];
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!formRef.current) return;
+    if (!formRef.current || status === 'sending') return;
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setStatus('unconfigured');
-      return;
-    }
+    const data = new FormData(formRef.current);
+    const payload = {
+      name: String(data.get('name') || ''),
+      email: String(data.get('email') || ''),
+      subject: String(data.get('subject') || ''),
+      message: String(data.get('message') || ''),
+      language,
+      companyWebsite: String(data.get('company_website') || ''),
+      startedAt: startedAtRef.current,
+    };
 
     setStatus('sending');
+
     try {
-      await emailjs.sendForm(serviceId, templateId, formRef.current, { publicKey });
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const result = await response.json().catch(() => null) as { code?: string } | null;
+        setStatus(result?.code === 'CONFIGURATION_ERROR' ? 'unconfigured' : 'error');
+        return;
+      }
+
       formRef.current.reset();
+      startedAtRef.current = Date.now();
       setStatus('sent');
     } catch {
       setStatus('error');
@@ -56,12 +71,16 @@ export default function ContactForm({ language = 'tr' }: { language?: Language }
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="grid gap-3" aria-label={t.aria}>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <input className="form-field" name="from_name" placeholder={t.name} required />
-        <input className="form-field" type="email" name="reply_to" placeholder={t.email} required />
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="company_website">Company website</label>
+        <input id="company_website" name="company_website" tabIndex={-1} autoComplete="off" />
       </div>
-      <input className="form-field" name="subject" placeholder={t.subject} required />
-      <textarea className="form-field min-h-32 resize-y" name="message" placeholder={t.message} required />
+      <div className="grid gap-3 sm:grid-cols-2">
+        <input className="form-field" name="name" placeholder={t.name} minLength={2} maxLength={120} autoComplete="name" required />
+        <input className="form-field" type="email" name="email" placeholder={t.email} maxLength={254} autoComplete="email" required />
+      </div>
+      <input className="form-field" name="subject" placeholder={t.subject} minLength={2} maxLength={180} required />
+      <textarea className="form-field min-h-32 resize-y" name="message" placeholder={t.message} minLength={10} maxLength={5000} required />
       <div className="flex flex-wrap items-center gap-3">
         <button className="action-primary" type="submit" disabled={status === 'sending'}>
           <FontAwesomeIcon icon={status === 'sending' ? faSpinner : faPaperPlane} spin={status === 'sending'} />
