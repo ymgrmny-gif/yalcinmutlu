@@ -92,12 +92,12 @@ export default function ProjectsPage() {
   const t = copy[language];
 
   return (
-    <main className="projects-detail-page">
-      <header className="projects-detail-topbar">
-        <Link href="/#projects" className="projects-detail-back">
+    <main className="min-h-screen bg-[#f8fbfc] px-4 py-5 text-ink sm:px-6 sm:py-8 lg:px-10">
+      <header className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+        <Link href="/#projects" className="inline-flex items-center gap-2 text-sm font-extrabold text-slate-700 transition hover:text-[#08969b]">
           <FontAwesomeIcon icon={faArrowLeft} /> {t.back}
         </Link>
-        <div className="language-switcher projects-detail-languages" aria-label={t.languageSelector}>
+        <div className="language-switcher bg-white" aria-label={t.languageSelector}>
           {(['de', 'en', 'tr'] as Language[]).map((item) => (
             <button key={item} type="button" className={language === item ? 'active' : ''} onClick={() => setLanguage(item)}>
               {item.toUpperCase()}
@@ -106,37 +106,41 @@ export default function ProjectsPage() {
         </div>
       </header>
 
-      <section className="projects-detail-hero">
-        <div className="projects-detail-icon"><FontAwesomeIcon icon={faLayerGroup} /></div>
+      <section className="mx-auto mt-12 grid max-w-6xl gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:grid-cols-[72px_1fr] sm:items-center sm:p-8">
+        <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#071426] text-2xl text-[#12b8bd]">
+          <FontAwesomeIcon icon={faLayerGroup} />
+        </div>
         <div>
           <p className="eyebrow">{t.eyebrow}</p>
-          <h1>{t.title}</h1>
-          <p>{t.intro}</p>
+          <h1 className="m-0 text-3xl font-black tracking-tight sm:text-4xl">{t.title}</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-500 sm:text-base">{t.intro}</p>
         </div>
       </section>
 
-      <section className="projects-detail-list" aria-label={t.title}>
+      <section className="mx-auto mt-6 grid max-w-6xl gap-5" aria-label={t.title}>
         {siteData.projects.map((project) => {
           const extra = projectExtras[project.id];
           const title = 'titleLocalized' in project ? text(project.titleLocalized, language) : project.title;
 
           return (
-            <article id={project.id} className="project-detail-card" key={project.id}>
+            <article id={project.id} className="scroll-mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8" key={project.id}>
               <p className="project-category">{text(project.category, language)}</p>
-              <h2>{title}</h2>
-              <p className="project-detail-description">{text(project.description, language)}</p>
+              <h2 className="mt-2 text-xl font-black tracking-tight sm:text-2xl">{title}</h2>
+              <p className="mt-3 max-w-4xl text-sm leading-7 text-slate-500 sm:text-[.95rem]">{text(project.description, language)}</p>
 
               {extra ? (
-                <div className="project-detail-highlights">
-                  <h3>{t.highlights}</h3>
-                  <ul>
-                    {extra.highlights.map((item) => <li key={text(item, language)}>{text(item, language)}</li>)}
+                <div className="mt-6 border-t border-slate-200 pt-5">
+                  <h3 className="text-xs font-black uppercase tracking-[.08em] text-slate-500">{t.highlights}</h3>
+                  <ul className="mt-3 grid gap-2 text-sm leading-6 text-slate-600 sm:grid-cols-3">
+                    {extra.highlights.map((item) => (
+                      <li className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3" key={text(item, language)}>{text(item, language)}</li>
+                    ))}
                   </ul>
                 </div>
               ) : null}
 
               {extra?.liveHref ? (
-                <a className="project-live-link" href={extra.liveHref} target="_blank" rel="noreferrer">
+                <a className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#12b8bd] px-4 text-sm font-extrabold text-white no-underline transition hover:bg-[#08969b]" href={extra.liveHref} target="_blank" rel="noreferrer">
                   {t.liveApp} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                 </a>
               ) : null}
@@ -145,7 +149,7 @@ export default function ProjectsPage() {
         })}
       </section>
 
-      <footer className="projects-detail-footer">© 2026 Design Yalçın Mutlu</footer>
+      <footer className="mx-auto mt-8 max-w-6xl border-t border-slate-200 py-6 text-xs text-slate-400">© 2026 Design Yalçın Mutlu</footer>
     </main>
   );
 }
