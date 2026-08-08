@@ -6,6 +6,7 @@ import './refinements.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import AOSProvider from '@/components/AOSProvider';
 import TimelinePrecisionController from '@/components/TimelinePrecisionController';
+import ProjectLinksController from '@/components/ProjectLinksController';
 
 config.autoAddCss = false;
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <AOSProvider>{children}</AOSProvider>
         <TimelinePrecisionController />
+        <ProjectLinksController />
       </body>
     </html>
   );
