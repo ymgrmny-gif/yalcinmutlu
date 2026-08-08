@@ -1,14 +1,9 @@
 /* Small visual refinements kept separate so the static portfolio remains easy to tune. */
 
-/* Bring section content closer to the timeline so the usable content area stays wider. */
 .timeline-section {
   padding-left: calc(var(--timeline-x) + 88px);
 }
 
-/*
- * AOS section motion: make the vertical travel unmistakable.
- * The hero/profile area stays static; the following timeline sections rise as one block.
- */
 .timeline-section[data-aos="fade-up"] {
   opacity: 0;
   transform: translate3d(0, 125px, 0);
@@ -22,7 +17,6 @@
   transform: translate3d(0, 0, 0);
 }
 
-/* Profile / introductory copy should appear normally, without a reveal animation. */
 .hero-block[data-aos="fade-up"],
 #profile[data-aos="fade-up"] {
   opacity: 1;
@@ -36,7 +30,6 @@
   transform: none;
 }
 
-/* React still marks timeline items for navigation state, but visual progress follows the painted line precisely. */
 .timeline-marker.is-passed:not(.flow-passed) {
   --marker-accent: #d7dce1;
   background: #f5f6f7;
@@ -59,7 +52,6 @@
   transition-duration: 55ms;
 }
 
-/* Shorter horizontal connector and dot: keeps the timeline readable without stealing content width. */
 .timeline-marker::after {
   width: 20px;
 }
@@ -69,7 +61,6 @@
   height: 7px;
 }
 
-/* Compact practical-experience tags make hands-on work scannable without becoming another timeline. */
 .experience-tags-block {
   margin-top: 18px;
 }
@@ -85,9 +76,12 @@
 .experience-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 6px;
 }
 .experience-tag {
+  width: auto;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   min-height: 28px;
@@ -111,54 +105,18 @@
   background: var(--aqua);
 }
 
-/* The old coloured skill bars are no longer part of the visible layout. */
-#skills .skill-groups {
-  display: none;
-}
 #skills.timeline-section {
   min-height: auto;
-  padding-bottom: 10px;
+  padding-bottom: 38px;
 }
-.skill-value {
-  display: none;
-}
-.skill-name {
-  padding-right: 12px;
-}
-.timeline-section.aos-animate .skill-fill {
-  transform: scaleX(1);
-}
-
-/* Card/tag skills now continue directly beneath the main Yetkinlikler heading. */
-.skills-card-preview {
-  position: relative;
-  z-index: 1;
-  padding: 0 0 38px calc(var(--timeline-x) + 88px);
-  border-top: 0;
-}
-.skills-card-preview[data-aos="fade-up"] {
-  opacity: 0;
-  transform: translate3d(0, 90px, 0);
-  transition-property: opacity, transform;
-  transition-duration: 950ms;
-  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
-}
-.skills-card-preview[data-aos="fade-up"].aos-animate {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-.skills-card-preview-heading {
-  display: none;
-}
-.skills-card-groups {
+.skills-groups {
   display: grid;
   gap: 22px;
 }
-.skills-card-group {
+.skills-group {
   padding: 0;
-  border-left: 0;
 }
-.skills-card-group h3 {
+.skills-group h3 {
   margin: 0 0 11px;
   padding: 0 0 8px;
   border-bottom: 1px solid #dfe3e6;
@@ -168,15 +126,12 @@
   letter-spacing: .012em;
   text-transform: uppercase;
 }
-.skills-card-group h3::after {
-  content: none;
-}
-.skills-chip-grid {
+.skills-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
 }
-.skills-chip {
+.skill-chip {
   min-height: 38px;
   display: flex;
   align-items: center;
@@ -192,13 +147,13 @@
   line-height: 1.28;
   transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
-.skills-chip:hover {
+.skill-chip:hover {
   border-color: rgba(18,184,189,.5);
   background: rgba(18,184,189,.035);
   transform: translateY(-1px);
   box-shadow: 0 4px 11px rgba(15,23,42,.045);
 }
-.skills-chip-dot {
+.skill-chip-dot {
   flex: 0 0 6px;
   width: 6px;
   height: 6px;
@@ -207,7 +162,6 @@
   box-shadow: 0 0 0 3px rgba(18,184,189,.09);
 }
 
-/* Menu language controls and close button sit together in a clearly visible top-right row. */
 .nav-overlay {
   padding-top: 96px;
 }
@@ -295,7 +249,6 @@
   transform: translateY(-1px);
 }
 
-/* Four projects are presented as compact text-only cards. */
 .project-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -313,7 +266,6 @@
   padding-top: 14px;
 }
 
-/* Contact details are intentionally omitted; the invitation and form carry the section. */
 .contact-content {
   max-width: 780px;
   border-left: 0 !important;
@@ -341,12 +293,9 @@
   border: 0 !important;
 }
 
-/* Keep the closing thank-you, but remove the extra opportunities prompt underneath it. */
 .footer-quote p {
   display: none;
 }
-
-/* Only the requested design credit remains visible in the footer bar. */
 .footer-bar {
   font-size: 0;
 }
@@ -361,9 +310,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .timeline-section[data-aos="fade-up"],
-  .timeline-section[data-aos="fade-up"].aos-animate,
-  .skills-card-preview[data-aos="fade-up"],
-  .skills-card-preview[data-aos="fade-up"].aos-animate {
+  .timeline-section[data-aos="fade-up"].aos-animate {
     opacity: 1;
     transform: none;
     transition: none;
@@ -371,11 +318,10 @@
 }
 
 @media (max-width: 800px) {
-  .timeline-section,
-  .skills-card-preview {
+  .timeline-section {
     padding-left: 126px;
   }
-  .skills-chip-grid {
+  .skills-grid {
     grid-template-columns: 1fr;
   }
   .project-grid {
@@ -388,8 +334,7 @@
 }
 
 @media (max-width: 520px) {
-  .timeline-section,
-  .skills-card-preview {
+  .timeline-section {
     padding-left: 112px;
   }
   .experience-tags {
@@ -400,18 +345,14 @@
     padding: 4px 8px;
     font-size: .64rem;
   }
-  .skills-card-preview {
-    padding-top: 0;
-    padding-bottom: 30px;
-  }
-  .skills-card-groups {
+  .skills-groups {
     gap: 18px;
   }
-  .skills-card-group h3 {
+  .skills-group h3 {
     margin-bottom: 9px;
     font-size: .82rem;
   }
-  .skills-chip {
+  .skill-chip {
     min-height: 36px;
     padding: 7px 9px;
     font-size: .7rem;
