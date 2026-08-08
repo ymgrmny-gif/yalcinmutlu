@@ -11,37 +11,34 @@ const copy = {
     pageTitle: 'Güvenli Belgeler | Yalçın Mutlu',
     languageSelector: 'Dil seçimi',
     title: 'Güvenli Belge Merkezi',
-    subtitle: 'CV, diploma ve diğer belgeler yönetici paneli ve güvenli erişim altyapısı tamamlandığında burada yayınlanacak.',
+    subtitle: 'Erişiminize açık CV, diploma ve diğer belgeler burada görüntülenir.',
     back: 'Portföye dön',
     cv: 'Özgeçmiş (CV)',
     diploma: 'Diplomalar',
     certificate: 'Sertifikalar',
     pending: 'Belge henüz eklenmedi',
-    security: 'Bu ekran statik önizlemedir. Gerçek erişim doğrulaması, IP/ülke bilgisi, belge görüntüleme ve indirme olayları Supabase bağlantısından sonra sunucu tarafında kaydedilecektir.',
   },
   en: {
     pageTitle: 'Secure Documents | Yalçın Mutlu',
     languageSelector: 'Language selector',
     title: 'Secure Document Center',
-    subtitle: 'CVs, diplomas and other documents will appear here after the admin panel and secure access backend are connected.',
+    subtitle: 'CVs, diplomas and other documents available to you are shown here.',
     back: 'Back to portfolio',
     cv: 'Curriculum Vitae (CV)',
     diploma: 'Diplomas',
     certificate: 'Certificates',
     pending: 'No document added yet',
-    security: 'This is a static preview. Real access validation plus IP/country, document-view and download events will be recorded server-side after the Supabase integration.',
   },
   de: {
     pageTitle: 'Sichere Dokumente | Yalçın Mutlu',
     languageSelector: 'Sprachauswahl',
     title: 'Sicheres Dokumentenzentrum',
-    subtitle: 'Lebenslauf, Diplome und weitere Dokumente werden hier nach Anbindung des Admin-Panels und der sicheren Zugriffslogik veröffentlicht.',
+    subtitle: 'Freigegebene Lebensläufe, Diplome und weitere Dokumente werden hier angezeigt.',
     back: 'Zurück zum Portfolio',
     cv: 'Lebenslauf (CV)',
     diploma: 'Diplome',
     certificate: 'Zertifikate',
     pending: 'Noch kein Dokument hinterlegt',
-    security: 'Dies ist eine statische Vorschau. Echte Zugriffsprüfung sowie IP/Land-, Ansichts- und Download-Ereignisse werden nach der Supabase-Integration serverseitig protokolliert.',
   },
 } as const;
 
@@ -105,8 +102,6 @@ export default function DocumentsPage() {
           </article>
         ))}
       </section>
-
-      <p className="documents-security-note">{t.security}</p>
     </main>
   );
 }
