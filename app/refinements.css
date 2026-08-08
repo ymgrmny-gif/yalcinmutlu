@@ -1,8 +1,8 @@
 /* Small visual refinements kept separate so the static portfolio remains easy to tune. */
 
-/* Keep section headings clearly separated from the timeline connector/dot, including the active scale state. */
+/* Bring section content closer to the timeline so the usable content area stays wider. */
 .timeline-section {
-  padding-left: calc(var(--timeline-x) + 110px);
+  padding-left: calc(var(--timeline-x) + 88px);
 }
 
 /*
@@ -59,30 +59,46 @@
   transition-duration: 55ms;
 }
 
-/* Skill bars remain visual indicators; exact percentage claims are intentionally hidden. */
+/* Shorter horizontal connector and dot: keeps the timeline readable without stealing content width. */
+.timeline-marker::after {
+  width: 20px;
+}
+.timeline-marker::before {
+  left: calc(100% + 27px);
+  width: 7px;
+  height: 7px;
+}
+
+/* The old coloured skill bars are no longer part of the visible layout. */
+#skills .skill-groups {
+  display: none;
+}
+#skills.timeline-section {
+  min-height: auto;
+  padding-bottom: 10px;
+}
 .skill-value {
   display: none;
 }
 .skill-name {
   padding-right: 12px;
 }
-/* Skill fills now follow the single fade-up animation of their parent section. */
 .timeline-section.aos-animate .skill-fill {
   transform: scaleX(1);
 }
 
-/* Separate comparison section: the current bar-based skills stay untouched above it. */
+/* Card/tag skills now continue directly beneath the main Yetkinlikler heading. */
 .skills-card-preview {
   position: relative;
   z-index: 1;
-  padding: 28px 0 38px calc(var(--timeline-x) + 110px);
-  border-top: 1px solid rgba(148,163,184,.28);
+  padding: 0 0 38px calc(var(--timeline-x) + 88px);
+  border-top: 0;
 }
 .skills-card-preview[data-aos="fade-up"] {
   opacity: 0;
-  transform: translate3d(0, 110px, 0);
+  transform: translate3d(0, 90px, 0);
   transition-property: opacity, transform;
-  transition-duration: 1050ms;
+  transition-duration: 950ms;
   transition-timing-function: cubic-bezier(.22, 1, .36, 1);
 }
 .skills-card-preview[data-aos="fade-up"].aos-animate {
@@ -90,22 +106,7 @@
   transform: translate3d(0, 0, 0);
 }
 .skills-card-preview-heading {
-  margin-bottom: 22px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #cfd5da;
-}
-.skills-card-preview-heading > p,
-.skills-card-preview-heading > span {
   display: none;
-}
-.skills-card-preview-heading h2 {
-  margin: 0;
-  color: var(--ink);
-  font-size: 1.32rem;
-  line-height: 1.15;
-  font-weight: 900;
-  letter-spacing: .01em;
-  text-transform: uppercase;
 }
 .skills-card-groups {
   display: grid;
@@ -116,9 +117,9 @@
   border-left: 0;
 }
 .skills-card-group h3 {
-  position: relative;
   margin: 0 0 11px;
-  padding: 0 0 9px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid #dfe3e6;
   color: var(--ink);
   font-size: .9rem;
   font-weight: 900;
@@ -126,14 +127,7 @@
   text-transform: uppercase;
 }
 .skills-card-group h3::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 42px;
-  height: 3px;
-  border-radius: 99px;
-  background: var(--aqua);
+  content: none;
 }
 .skills-chip-grid {
   display: grid;
@@ -310,7 +304,7 @@
 @media (max-width: 800px) {
   .timeline-section,
   .skills-card-preview {
-    padding-left: 148px;
+    padding-left: 126px;
   }
   .skills-chip-grid {
     grid-template-columns: 1fr;
@@ -327,21 +321,14 @@
 @media (max-width: 520px) {
   .timeline-section,
   .skills-card-preview {
-    padding-left: 136px;
+    padding-left: 112px;
   }
   .skills-card-preview {
-    padding-top: 24px;
-    padding-bottom: 32px;
-  }
-  .skills-card-preview-heading {
-    margin-bottom: 18px;
-    padding-bottom: 12px;
-  }
-  .skills-card-preview-heading h2 {
-    font-size: 1.08rem;
+    padding-top: 0;
+    padding-bottom: 30px;
   }
   .skills-card-groups {
-    gap: 19px;
+    gap: 18px;
   }
   .skills-card-group h3 {
     margin-bottom: 9px;
