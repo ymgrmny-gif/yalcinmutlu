@@ -8,6 +8,8 @@ import type { Language } from '@/data/siteData';
 
 const copy = {
   tr: {
+    pageTitle: 'Güvenli Belgeler | Yalçın Mutlu',
+    languageSelector: 'Dil seçimi',
     title: 'Güvenli Belge Merkezi',
     subtitle: 'CV, diploma ve diğer belgeler yönetici paneli ve güvenli erişim altyapısı tamamlandığında burada yayınlanacak.',
     back: 'Portföye dön',
@@ -18,6 +20,8 @@ const copy = {
     security: 'Bu ekran statik önizlemedir. Gerçek erişim doğrulaması, IP/ülke bilgisi, belge görüntüleme ve indirme olayları Supabase bağlantısından sonra sunucu tarafında kaydedilecektir.',
   },
   en: {
+    pageTitle: 'Secure Documents | Yalçın Mutlu',
+    languageSelector: 'Language selector',
     title: 'Secure Document Center',
     subtitle: 'CVs, diplomas and other documents will appear here after the admin panel and secure access backend are connected.',
     back: 'Back to portfolio',
@@ -28,6 +32,8 @@ const copy = {
     security: 'This is a static preview. Real access validation plus IP/country, document-view and download events will be recorded server-side after the Supabase integration.',
   },
   de: {
+    pageTitle: 'Sichere Dokumente | Yalçın Mutlu',
+    languageSelector: 'Sprachauswahl',
     title: 'Sicheres Dokumentenzentrum',
     subtitle: 'Lebenslauf, Diplome und weitere Dokumente werden hier nach Anbindung des Admin-Panels und der sicheren Zugriffslogik veröffentlicht.',
     back: 'Zurück zum Portfolio',
@@ -55,6 +61,7 @@ export default function DocumentsPage() {
 
   useEffect(() => {
     document.documentElement.lang = language;
+    document.title = copy[language].pageTitle;
     window.sessionStorage.setItem('ym-language', language);
   }, [language]);
 
@@ -71,7 +78,7 @@ export default function DocumentsPage() {
     <main className="documents-page">
       <header className="documents-topbar">
         <Link href="/" className="documents-back"><FontAwesomeIcon icon={faArrowLeft} /> {t.back}</Link>
-        <div className="language-switcher documents-languages" aria-label="Language selector">
+        <div className="language-switcher documents-languages" aria-label={t.languageSelector}>
           {(['de', 'en', 'tr'] as Language[]).map((item) => (
             <button key={item} type="button" className={language === item ? 'active' : ''} onClick={() => setLanguage(item)}>
               {item.toUpperCase()}
