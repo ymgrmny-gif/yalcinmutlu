@@ -36,52 +36,70 @@
   padding-right: 12px;
 }
 
-/* Menu language controls share the same top row as the close button. */
+/* Menu language controls and close button sit together in a clearly visible top-right row. */
 .nav-overlay {
-  padding-top: 92px;
+  padding-top: 96px;
 }
 .nav-topbar {
   position: absolute;
+  z-index: 3;
   top: 24px;
-  left: 42px;
-  right: 25px;
+  left: 24px;
+  right: 24px;
   min-height: 42px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: flex-end;
+  gap: 10px;
 }
 .nav-close {
   position: static;
   top: auto;
   right: auto;
   flex: 0 0 42px;
+  border-radius: 5px;
 }
 .menu-language-switcher {
+  height: 42px;
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 0;
   padding: 3px;
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 6px;
-  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 5px;
+  background: rgba(255,255,255,.08);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.025);
 }
 .menu-language-switcher button {
-  min-width: 34px;
+  position: relative;
+  min-width: 38px;
   height: 34px;
+  padding: 0 9px;
   border: 0;
-  border-radius: 4px;
+  border-radius: 3px;
   background: transparent;
-  color: #94a3b8;
+  color: #e2e8f0;
   font-size: .72rem;
   font-weight: 900;
-  letter-spacing: .05em;
+  letter-spacing: .06em;
   cursor: pointer;
 }
-.menu-language-switcher button:hover,
+.menu-language-switcher button + button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+  width: 1px;
+  background: rgba(255,255,255,.18);
+}
+.menu-language-switcher button:hover {
+  color: white;
+  background: rgba(255,255,255,.07);
+}
 .menu-language-switcher button.active {
-  background: rgba(18,184,189,.14);
-  color: var(--aqua);
+  background: rgba(18,184,189,.18);
+  color: #2dd4d8;
 }
 .nav-secure-docs {
   width: 100%;
@@ -146,8 +164,8 @@
     grid-template-columns: 1fr;
   }
   .nav-topbar {
-    left: 30px;
-    right: 25px;
+    left: 20px;
+    right: 20px;
   }
 }
 
@@ -156,12 +174,13 @@
     padding-left: 136px;
   }
   .nav-topbar {
-    left: 24px;
-    right: 20px;
+    left: 16px;
+    right: 16px;
+    gap: 8px;
   }
   .menu-language-switcher button {
-    min-width: 31px;
-    height: 32px;
+    min-width: 34px;
+    padding: 0 7px;
     font-size: .68rem;
   }
   .contact-message {
