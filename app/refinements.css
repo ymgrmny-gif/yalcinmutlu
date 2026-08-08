@@ -278,7 +278,7 @@
 .contact-message {
   margin: 0 0 22px;
   padding: 15px 17px;
-  border-left: 3px solid var(--aqua);
+  border-left: 0;
   background: rgba(18,184,189,.055);
   color: #536273;
   font-size: .9rem;
