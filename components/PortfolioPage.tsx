@@ -327,12 +327,20 @@ export default function PortfolioPage() {
           <Section id="experience" title={text(navItems[2].label, language)} icon={sectionIcons.experience} index={2} progressIndex={progressIndex}>
             <div className="entry-list">
               {siteData.experience.map((entry, index) => (
-                <article key={`${entry.period}-${index}`} className="entry">
+                <article key={`${entry.period}-${index}`} className="entry experience-entry">
                   <time>{entry.period}</time>
                   <div>
                     <h3>{text(entry.title, language)}</h3>
                     <p className="entry-place">{text(entry.place, language)}</p>
                     <p>{text(entry.description, language)}</p>
+                    <div className="experience-tags-block">
+                      <p className="experience-tags-label">{text(entry.experienceLabel, language)}</p>
+                      <div className="experience-tags" aria-label={text(entry.experienceLabel, language)}>
+                        {entry.experienceTags.map((tag) => (
+                          <span className="experience-tag" key={text(tag, language)}>{text(tag, language)}</span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </article>
               ))}
