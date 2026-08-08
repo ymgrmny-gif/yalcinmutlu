@@ -2,7 +2,7 @@
 
 ## Aktif mimari
 
-Kullanıcı formu → Cloudflare Pages Function `/api/contact` → Supabase Edge Function `yalcinmutlu-contact` → Supabase veritabanı
+Kullanıcı formu → Cloudflare Pages Function `/api/contact` → Supabase Edge Function `yalcinmutlu-contact` → Supabase veritabanı → e-posta bildirimi
 
 Mesajların ana kayıt yeri Supabase veritabanıdır. Cloudflare Pages Function yalnızca aynı alan adındaki form isteğini Supabase Edge Function'a proxy eder; Cloudflare tarafında Supabase service key tutulmaz.
 
@@ -47,6 +47,8 @@ Supabase secret/service-role anahtarı tarayıcıya veya Cloudflare'a verilmez. 
 3. Cloudflare Pages Function isteğin same-origin ve temel HTTP kontrollerini yapıp Supabase Edge Function'a iletir.
 4. Supabase Edge Function bot ve alan doğrulamalarını uygular.
 5. Mesaj `public.yalcinmutlu_contact_messages` tablosuna kaydedilir.
+6. Veritabanı kaydı başarılı olduktan sonra server-side e-posta bildirimi tetiklenir.
+7. Bildirim sağlayıcısı isteği kabul ederse ilgili kayıt `email_notified=true` olarak işaretlenir.
 
 ## Cloudflare runtime değişkenleri
 
@@ -54,7 +56,11 @@ Aktif iletişim akışı için Cloudflare'da Supabase secret veya service-role d
 
 ## E-posta bildirimi
 
-Veritabanı kaydı aktif akıştır. E-posta bildirimi daha sonra Resend veya EmailJS gibi bir kanal üzerinden eklenebilir. Bildirim eklendiğinde alıcı adresi ve API anahtarı GitHub'a ya da istemci tarafına yazılmamalıdır.
+Aktif bildirim sağlayıcısı FormSubmit AJAX endpoint'idir ve yalnız Supabase Edge Function tarafından çağrılır. Alıcı e-posta adresi istemci tarafına veya bu public repoya yazılmaz.
+
+FormSubmit ilk kullanımda alıcı adrese tek seferlik aktivasyon/onay e-postası gönderir. Aktivasyon tamamlandıktan sonra yeni iletişim kayıtları otomatik olarak e-posta ile iletilir. E-posta sağlayıcısında sorun olsa bile mesajın Supabase veritabanı kaydı ana kayıt olarak korunur.
+
+İleride istenirse FormSubmit yerine Resend veya EmailJS'e geçilebilir; veritabanı ve form akışı değişmeden kalır.
 
 ## Gizlilik
 
@@ -66,4 +72,4 @@ Mevcut Edge Function temel bot kontrolleri içerir. Cloudflare Turnstile sonraki
 
 ## EmailJS
 
-EmailJS mevcut bağımlılıklarda yalnızca olası geri dönüş seçeneği olarak tutulabilir; aktif form akışı EmailJS kullanmaz.
+EmailJS mevcut bağımlılıklarda yalnızca geri dönüş seçeneği olarak tutulabilir; aktif form akışı EmailJS kullanmaz.
