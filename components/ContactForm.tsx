@@ -12,17 +12,17 @@ const copy = {
   tr: {
     aria: 'İletişim formu', name: 'Adınız', email: 'E-posta', subject: 'Konu', message: 'Mesajınız',
     send: 'Mesaj Gönder', sending: 'Gönderiliyor', sent: 'Mesaj gönderildi.', error: 'Mesaj gönderilemedi. Lütfen tekrar deneyin.',
-    unconfigured: 'EmailJS ayarları henüz eklenmedi (.env.local).',
+    unconfigured: 'İletişim formu şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
   },
   en: {
     aria: 'Contact form', name: 'Your name', email: 'Email', subject: 'Subject', message: 'Your message',
     send: 'Send Message', sending: 'Sending', sent: 'Message sent.', error: 'Message could not be sent. Please try again.',
-    unconfigured: 'EmailJS settings have not been configured yet (.env.local).',
+    unconfigured: 'The contact form is currently unavailable. Please try again later.',
   },
   de: {
     aria: 'Kontaktformular', name: 'Ihr Name', email: 'E-Mail', subject: 'Betreff', message: 'Ihre Nachricht',
     send: 'Nachricht senden', sending: 'Wird gesendet', sent: 'Nachricht gesendet.', error: 'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
-    unconfigured: 'EmailJS ist noch nicht konfiguriert (.env.local).',
+    unconfigured: 'Das Kontaktformular ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut.',
   },
 } as const;
 
