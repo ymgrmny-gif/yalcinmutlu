@@ -25,8 +25,8 @@ export const siteData = {
   cvHref: '',
   profileImage: '/images/yalcin-mutlu-profile.webp',
   details: [
-    { value: 'Yalçın Mutlu', icon: 'user' },
-    { value: 'Almanya', icon: 'location' },
+    { value: l('Yalçın Mutlu', 'Yalçın Mutlu', 'Yalçın Mutlu'), icon: 'user' },
+    { value: l('Almanya', 'Germany', 'Deutschland'), icon: 'location' },
   ],
   education: [
     {
@@ -90,7 +90,7 @@ export const siteData = {
     {
       period: '2008 — 2009',
       title: l('Yayın Sistemleri Teknikeri', 'Broadcast Systems Technician', 'Techniker für Rundfunksysteme'),
-      place: l('İdil Prodüksiyon — Türkiye geneli', 'İdil Prodüksiyon — Türkiye-wide', 'İdil Prodüksiyon — Türkeiweit'),
+      place: l('İdil Prodüksiyon — Türkiye geneli', 'İdil Prodüksiyon — Across Türkiye', 'İdil Prodüksiyon — Türkeiweit'),
       description: l(
         'Yerel televizyon ve radyo istasyonlarının teknik kurulum, bakım ve arıza giderme çalışmalarına katılım; yayın sistemlerinin sahada kurulumu, test edilmesi ve teknik sorunlarının giderilmesine destek.',
         'Participated in technical installation, maintenance and troubleshooting of local television and radio stations; supported on-site installation, testing and fault resolution for broadcast systems.',
@@ -178,6 +178,7 @@ export const siteData = {
     {
       id: 'secure-docs',
       title: 'Kişiye Özel Güvenli Belge Deposu',
+      titleLocalized: l('Kişiye Özel Güvenli Belge Deposu', 'Personal Secure Document Vault', 'Persönlicher sicherer Dokumentenspeicher'),
       category: l('Güvenli Belge Merkezi', 'Secure Document Center', 'Sicheres Dokumentenzentrum'),
       description: l(
         'CV, diploma ve önemli belgeleri güvenli, düzenli ve kontrollü biçimde paylaşmak için tasarlanmış kişisel belge merkezi.',
