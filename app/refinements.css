@@ -274,20 +274,47 @@
 /* Contact details are intentionally omitted; the invitation and form carry the section. */
 .contact-content {
   max-width: 780px;
+  border-left: 0 !important;
+}
+.contact-content::before,
+.contact-content::after {
+  content: none !important;
+  display: none !important;
 }
 .contact-message {
   margin: 0 0 22px;
   padding: 15px 17px;
-  border-left: 0;
+  border: 0 !important;
+  border-left: 0 !important;
+  box-shadow: none !important;
   background: rgba(18,184,189,.055);
   color: #536273;
   font-size: .9rem;
   line-height: 1.75;
 }
+.contact-message::before,
+.contact-message::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+}
 
 /* Keep the closing thank-you, but remove the extra opportunities prompt underneath it. */
 .footer-quote p {
   display: none;
+}
+
+/* Only the requested design credit remains visible in the footer bar. */
+.footer-bar {
+  font-size: 0;
+}
+.footer-bar span {
+  display: none !important;
+}
+.footer-bar::before {
+  content: "© 2026 Design Yalçın Mutlu";
+  color: #94a3b8;
+  font-size: .68rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
