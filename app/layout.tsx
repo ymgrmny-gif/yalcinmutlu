@@ -5,6 +5,7 @@ import './globals.css';
 import './refinements.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import AOSProvider from '@/components/AOSProvider';
+import TimelinePrecisionController from '@/components/TimelinePrecisionController';
 
 config.autoAddCss = false;
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="tr" className="scroll-smooth">
       <body>
         <AOSProvider>{children}</AOSProvider>
+        <TimelinePrecisionController />
       </body>
     </html>
   );
