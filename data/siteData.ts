@@ -89,7 +89,7 @@ export const siteData = {
   projects: [
     {
       id: 'ase',
-      image: '/images/projects/ase.webp',
+      image: '/images/projects/ase.svg',
       title: 'Academic Style Engine (ASE)',
       category: l('Akademik Yazım Teknolojisi', 'Academic Writing Technology', 'Technologie für akademisches Schreiben'),
       description: l(
@@ -100,7 +100,7 @@ export const siteData = {
     },
     {
       id: 'kariyer-avcisi',
-      image: '/images/projects/kariyer-avcisi.webp',
+      image: '/images/projects/kariyer-avcisi.svg',
       title: 'Kariyer Avcısı',
       category: l('Kariyer Teknolojisi', 'Career Technology', 'Karriere-Technologie'),
       description: l(
@@ -111,13 +111,13 @@ export const siteData = {
     },
     {
       id: 'secure-docs',
-      image: '/images/projects/guvenli-belge-deposu.webp',
+      image: '/images/projects/guvenli-belge-deposu.svg',
       title: 'Kişiye Özel Güvenli Belge Deposu',
       category: l('Güvenli Belge Merkezi', 'Secure Document Center', 'Sicheres Dokumentenzentrum'),
       description: l(
-        'CV, diploma ve önemli belgeleri yalnızca yetkili kişilerle paylaşmak için tasarlanan; çok dilli arayüz, kontrollü erişim ve düzenli belge yönetimi sunan kişisel belge merkezi.',
-        'A personal document center for sharing CVs, diplomas and important files only with authorized viewers, with multilingual access and organized document management.',
-        'Ein persönliches Dokumentenzentrum zum Teilen von Lebenslauf, Diplomen und wichtigen Dateien ausschließlich mit berechtigten Personen, inklusive mehrsprachigem Zugang und geordneter Dokumentverwaltung.'
+        'CV, diploma ve önemli belgeleri güvenli, düzenli ve kontrollü biçimde paylaşmak için tasarlanmış kişisel belge merkezi.',
+        'A personal document center designed to share CVs, diplomas and important files in a secure, organized and controlled way.',
+        'Ein persönliches Dokumentenzentrum, das Lebensläufe, Diplome und wichtige Dateien sicher, geordnet und kontrolliert bereitstellt.'
       ),
     },
     {
@@ -126,9 +126,9 @@ export const siteData = {
       title: 'Privacy CV Builder',
       category: l('CV Teknolojisi', 'CV Technology', 'CV-Technologie'),
       description: l(
-        'Gizlilik odaklı, çok dilli CV ve Alman standardına uygun Anschreiben oluşturucu; verileri tarayıcıda işler, PDF/DOCX ve yerel proje çıktıları üretir.',
-        'A privacy-focused multilingual CV and German-standard cover-letter builder that processes data in the browser and exports PDF, DOCX and local project files.',
-        'Ein datenschutzorientierter, mehrsprachiger CV- und DIN-orientierter Anschreiben-Builder, der Daten im Browser verarbeitet und PDF-, DOCX- sowie lokale Projektdateien exportiert.'
+        'Tamamen tarayıcıda çalışan, gizlilik odaklı ve çok dilli CV ile Alman standardına uygun Anschreiben oluşturucu; PDF, DOCX ve yerel proje çıktıları üretir.',
+        'A privacy-focused multilingual CV and German-standard cover-letter builder that runs entirely in the browser and exports PDF, DOCX and local project files.',
+        'Ein datenschutzorientierter, mehrsprachiger CV- und Anschreiben-Builder, der vollständig im Browser läuft und PDF-, DOCX- sowie lokale Projektdateien exportiert.'
       ),
     },
   ],
