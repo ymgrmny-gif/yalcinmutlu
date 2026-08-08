@@ -9,28 +9,21 @@ import {
   faBriefcase,
   faCode,
   faDownload,
-  faEnvelope,
-  faGlobe,
   faGraduationCap,
   faLayerGroup,
   faLocationDot,
   faLock,
   faPaperPlane,
-  faPhone,
   faShieldHalved,
   faUser,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import ContactForm from '@/components/ContactForm';
 import { Language, LocalizedText, navItems, SectionId, siteData } from '@/data/siteData';
 
 const iconMap = {
   user: faUser,
   location: faLocationDot,
-  email: faEnvelope,
-  phone: faPhone,
-  web: faGlobe,
   briefcase: faBriefcase,
 };
 
@@ -52,6 +45,7 @@ const ui = {
     requestAccess: 'Diğer bilgiler için erişim isteyin',
     secureDocs: 'Güvenli Belge Girişi',
     projectDetail: 'Detay',
+    contactIntro: 'Belgelerime erişim talebinde bulunmak veya benimle iletişime geçmek için aşağıdaki formu kullanabilirsiniz. Yeni projeler ve fırsatlar için iletişime geçebilirsiniz.',
     thanks: 'Buraya kadar geldiğiniz için teşekkür ederim.',
     footerText: 'Yeni projeler ve fırsatlar için iletişime geçebilirsiniz.',
     modalTitle: 'Güvenli Belge Girişi',
@@ -69,6 +63,7 @@ const ui = {
     requestAccess: 'Request access for additional information',
     secureDocs: 'Secure Document Access',
     projectDetail: 'Details',
+    contactIntro: 'You can use the form below to request access to my documents or contact me directly. Feel free to get in touch about new projects and opportunities.',
     thanks: 'Thank you for visiting my portfolio.',
     footerText: 'Feel free to get in touch about new projects and opportunities.',
     modalTitle: 'Secure Document Access',
@@ -86,6 +81,7 @@ const ui = {
     requestAccess: 'Zugriff auf weitere Informationen anfragen',
     secureDocs: 'Sicherer Dokumentenzugang',
     projectDetail: 'Details',
+    contactIntro: 'Über das folgende Formular können Sie den Zugang zu meinen Dokumenten anfragen oder direkt mit mir Kontakt aufnehmen. Für neue Projekte und Möglichkeiten können Sie mich gerne kontaktieren.',
     thanks: 'Vielen Dank für Ihren Besuch.',
     footerText: 'Für neue Projekte und Möglichkeiten können Sie mich gerne kontaktieren.',
     modalTitle: 'Sicherer Dokumentenzugang',
@@ -188,9 +184,25 @@ export default function PortfolioPage() {
       </aside>
 
       <div className={`nav-overlay ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
-        <button className="nav-close" onClick={() => setMenuOpen(false)} aria-label={labels.menuClose}>
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
+        <div className="nav-topbar">
+          <div className="menu-language-switcher" aria-label="Language selector">
+            {(['de', 'en', 'tr'] as Language[]).map((item) => (
+              <button
+                key={item}
+                type="button"
+                className={language === item ? 'active' : ''}
+                onClick={() => setLanguage(item)}
+                aria-pressed={language === item}
+              >
+                {item.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          <button className="nav-close" onClick={() => setMenuOpen(false)} aria-label={labels.menuClose}>
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </div>
+
         <nav aria-label="Ana menü">
           {navItems.map((item, index) => (
             <button
@@ -206,6 +218,18 @@ export default function PortfolioPage() {
             </button>
           ))}
         </nav>
+
+        <button
+          type="button"
+          className="nav-secure-docs"
+          onClick={() => {
+            setMenuOpen(false);
+            setSecureModalOpen(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faLock} />
+          {labels.secureDocs}
+        </button>
       </div>
 
       <article className="portfolio-panel">
@@ -217,19 +241,6 @@ export default function PortfolioPage() {
               <FontAwesomeIcon icon={faDownload} /> {labels.downloadCv}
             </a>
           ) : null}
-          <div className="language-switcher" aria-label="Language selector">
-            {(['de', 'en', 'tr'] as Language[]).map((item) => (
-              <button
-                key={item}
-                type="button"
-                className={language === item ? 'active' : ''}
-                onClick={() => setLanguage(item)}
-                aria-pressed={language === item}
-              >
-                {item.toUpperCase()}
-              </button>
-            ))}
-          </div>
           <button className="icon-button" onClick={() => setMenuOpen(true)} aria-label={labels.menuOpen}>
             <FontAwesomeIcon icon={faBars} />
           </button>
@@ -271,9 +282,6 @@ export default function PortfolioPage() {
             <div className="profile-actions" data-aos="fade-up">
               <button className="profile-access-button" type="button" onClick={() => scrollToSection('contact')}>
                 {labels.requestAccess}<FontAwesomeIcon icon={faArrowRight} />
-              </button>
-              <button className="secure-doc-button" type="button" onClick={() => setSecureModalOpen(true)}>
-                <FontAwesomeIcon icon={faLock} /> {labels.secureDocs}
               </button>
             </div>
           </Section>
@@ -334,15 +342,6 @@ export default function PortfolioPage() {
             <div className="project-grid">
               {siteData.projects.map((project, index) => (
                 <article key={project.id} className="project-card" data-aos="fade-up" data-aos-delay={index * 70}>
-                  <div className="project-image-wrap">
-                    <img
-                      src={project.image}
-                      alt={`${project.title} proje görseli`}
-                      className="project-image"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
                   <div className="p-4">
                     <p className="project-category">{text(project.category, language)}</p>
                     <h3>{project.title}</h3>
@@ -357,19 +356,9 @@ export default function PortfolioPage() {
           </Section>
 
           <Section id="contact" title={text(navItems[5].label, language)} icon={sectionIcons.contact} index={5} progressIndex={progressIndex}>
-            <div className="grid gap-10 xl:grid-cols-[.75fr_1.25fr]">
-              <div className="contact-list" data-aos="fade-right">
-                <ContactLine icon={faLocationDot} text={siteData.contact.location} />
-                <ContactLine icon={faPhone} text={siteData.contact.phone} />
-                <ContactLine icon={faEnvelope} text={siteData.contact.email} />
-                <ContactLine icon={faGlobe} text={siteData.contact.website} />
-                <div className="social-row" aria-label="Sosyal medya bağlantıları">
-                  <SocialPlaceholder icon={faLinkedinIn} label="LinkedIn" />
-                  <SocialPlaceholder icon={faGithub} label="GitHub" />
-                  <SocialPlaceholder icon={faInstagram} label="Instagram" />
-                </div>
-              </div>
-              <div data-aos="fade-left"><ContactForm language={language} /></div>
+            <div className="contact-content">
+              <p className="contact-message" data-aos="fade-up">{labels.contactIntro}</p>
+              <div data-aos="fade-up"><ContactForm language={language} /></div>
             </div>
           </Section>
         </div>
@@ -453,17 +442,5 @@ function Section({ id, title, icon, index, progressIndex, children }: {
       <h2 id={`${id}-title`} className="section-title" data-aos="fade-right">{title}</h2>
       <div className="section-body">{children}</div>
     </section>
-  );
-}
-
-function ContactLine({ icon, text }: { icon: typeof faPhone; text: string }) {
-  return <div><FontAwesomeIcon icon={icon} /><span>{text}</span></div>;
-}
-
-function SocialPlaceholder({ icon, label }: { icon: typeof faLinkedinIn; label: string }) {
-  return (
-    <button type="button" aria-label={`${label} bağlantısı daha sonra eklenecek`} title={`${label} bağlantısı daha sonra eklenecek`}>
-      <FontAwesomeIcon icon={icon} />
-    </button>
   );
 }
