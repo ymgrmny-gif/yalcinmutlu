@@ -28,6 +28,14 @@
   transition-duration: 55ms;
 }
 
+/* Skill bars remain visual indicators; exact percentage claims are intentionally hidden. */
+.skill-value {
+  display: none;
+}
+.skill-name {
+  padding-right: 12px;
+}
+
 /* Four projects are presented as a balanced 2x2 grid on desktop. */
 .project-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
