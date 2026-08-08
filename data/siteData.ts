@@ -62,9 +62,9 @@ export const siteData = {
     {
       period: '2018 — 12/2024',
       title: l(
-        'Şirket Sahibi & Teknik Proje Yöneticisi',
-        'Company Owner & Technical Project Manager',
-        'Unternehmensinhaber & Technischer Projektmanager'
+        'Teknik Proje Yöneticisi',
+        'Technical Project Manager',
+        'Technischer Projektmanager'
       ),
       place: l('Mutlu Akustik — Ankara, Türkiye', 'Mutlu Akustik — Ankara, Türkiye', 'Mutlu Akustik — Ankara, Türkei'),
       description: l(
@@ -76,9 +76,9 @@ export const siteData = {
     {
       period: '2010 — 2018',
       title: l(
-        'Şirket Sahibi • Teknik Proje Yöneticisi • Elektronik Teknisyeni',
-        'Company Owner • Technical Project Manager • Electronics Technician',
-        'Unternehmensinhaber • Technischer Projektmanager • Elektroniktechniker'
+        'Teknik Proje Yöneticisi • Elektronik Teknikeri',
+        'Technical Project Manager • Electronics Technician',
+        'Technischer Projektmanager • Technischer Mitarbeiter Elektronik'
       ),
       place: l('Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkei'),
       description: l(
@@ -89,7 +89,7 @@ export const siteData = {
     },
     {
       period: '2008 — 2009',
-      title: l('Yayın Sistemleri Teknikeri', 'Broadcast Systems Technician', 'Techniker für Rundfunksysteme'),
+      title: l('Yayın Sistemleri Teknikeri', 'Broadcast Systems Technician', 'Technischer Mitarbeiter für Rundfunksysteme'),
       place: l('İdil Prodüksiyon — Türkiye geneli', 'İdil Prodüksiyon — Türkiye-wide', 'İdil Prodüksiyon — Türkeiweit'),
       description: l(
         'Yerel televizyon ve radyo istasyonlarının teknik kurulum, bakım ve arıza giderme çalışmalarına katılım; yayın sistemlerinin sahada kurulumu, test edilmesi ve teknik sorunlarının giderilmesine destek.',
@@ -100,15 +100,15 @@ export const siteData = {
     {
       period: '2006 — 2007',
       title: l(
-        'Stajyer, ardından IT & Elektronik Servis Teknisyeni',
+        'Stajyer, ardından IT & Elektronik Servis Teknikeri',
         'Intern, then IT & Electronics Service Technician',
-        'Praktikant, anschließend Techniker im IT- und Elektronikservice'
+        'Praktikant, anschließend technischer Mitarbeiter im IT- und Elektronikservice'
       ),
       place: l('Koyuncu Holding — İstanbul, Türkiye', 'Koyuncu Holding — İstanbul, Türkiye', 'Koyuncu Holding — İstanbul, Türkei'),
       description: l(
-        'Üç aylık stajın ardından yaklaşık dokuz ay teknisyen olarak bilgisayar ve IT donanımlarında bakım, onarım ve arıza tespiti; Windows kurulum ve yeniden kurulumları ile yazılım sorunlarının giderilmesi; bilgisayar bileşenleri üzerinde teknik servis; CCTV ve elektronik güvenlik sistemlerinde arıza tespiti ve onarım; elektronik cihazların test edilmesi ve yeniden devreye alınması.',
+        'Üç aylık stajın ardından yaklaşık dokuz ay tekniker olarak bilgisayar ve IT donanımlarında bakım, onarım ve arıza tespiti; Windows kurulum ve yeniden kurulumları ile yazılım sorunlarının giderilmesi; bilgisayar bileşenleri üzerinde teknik servis; CCTV ve elektronik güvenlik sistemlerinde arıza tespiti ve onarım; elektronik cihazların test edilmesi ve yeniden devreye alınması.',
         'After a three-month internship, worked for approximately nine months as a technician performing maintenance, repair and fault diagnosis on computers and IT hardware; Windows installation and reinstallation, software troubleshooting and component-level technical service; CCTV and electronic-security fault diagnosis and repair; testing and recommissioning of electronic devices.',
-        'Nach einem dreimonatigen Praktikum rund neun Monate als Techniker tätig: Wartung, Reparatur und Fehlerdiagnose an Computern und IT-Hardware; Windows-Installation und Neuinstallation sowie Behebung von Softwareproblemen; technischer Service an Computerkomponenten; Fehlerdiagnose und Reparatur an CCTV- und elektronischen Sicherheitssystemen; Prüfung und Wiederinbetriebnahme elektronischer Geräte.'
+        'Nach einem dreimonatigen Praktikum rund neun Monate im technischen Service tätig: Wartung, Reparatur und Fehlerdiagnose an Computern und IT-Hardware; Windows-Installation und Neuinstallation sowie Behebung von Softwareproblemen; technischer Service an Computerkomponenten; Fehlerdiagnose und Reparatur an CCTV- und elektronischen Sicherheitssystemen; Prüfung und Wiederinbetriebnahme elektronischer Geräte.'
       ),
     },
   ],
