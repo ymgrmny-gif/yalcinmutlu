@@ -36,26 +36,106 @@
   padding-right: 12px;
 }
 
-/* Four projects are presented as a balanced 2x2 grid on desktop. */
+/* Menu language controls share the same top row as the close button. */
+.nav-overlay {
+  padding-top: 92px;
+}
+.nav-topbar {
+  position: absolute;
+  top: 24px;
+  left: 42px;
+  right: 25px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-close {
+  position: static;
+  top: auto;
+  right: auto;
+  flex: 0 0 42px;
+}
+.menu-language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 6px;
+  background: rgba(255,255,255,.04);
+}
+.menu-language-switcher button {
+  min-width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  cursor: pointer;
+}
+.menu-language-switcher button:hover,
+.menu-language-switcher button.active {
+  background: rgba(18,184,189,.14);
+  color: var(--aqua);
+}
+.nav-secure-docs {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(18,184,189,.42);
+  border-radius: 6px;
+  background: rgba(18,184,189,.10);
+  color: #e7fbfb;
+  font-size: .82rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.nav-secure-docs:hover {
+  background: rgba(18,184,189,.18);
+  border-color: var(--aqua);
+  transform: translateY(-1px);
+}
+
+/* Four projects are presented as compact text-only cards. */
 .project-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
+.project-card {
+  min-height: 190px;
+}
+.project-card > .p-4 {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.project-card .project-link {
+  margin-top: auto;
+  padding-top: 14px;
+}
 
-/* Project media boxes stay in the layout, but artwork is intentionally hidden. */
-.project-image-wrap {
-  aspect-ratio: 16 / 10;
-  min-height: 180px;
-  background:
-    linear-gradient(135deg, rgba(18,184,189,.08), rgba(7,20,38,.03)),
-    #f5f8f8;
-  border-bottom: 1px solid rgba(148,163,184,.24);
+/* Contact details are intentionally omitted; the invitation and form carry the section. */
+.contact-content {
+  max-width: 780px;
 }
-.project-image {
-  display: none !important;
-}
-.project-card:hover .project-image {
-  transform: none;
+.contact-message {
+  margin: 0 0 22px;
+  padding: 15px 17px;
+  border-left: 3px solid var(--aqua);
+  background: rgba(18,184,189,.055);
+  color: #536273;
+  font-size: .9rem;
+  line-height: 1.75;
 }
 
 @media (max-width: 800px) {
@@ -65,13 +145,26 @@
   .project-grid {
     grid-template-columns: 1fr;
   }
+  .nav-topbar {
+    left: 30px;
+    right: 25px;
+  }
 }
 
 @media (max-width: 520px) {
   .timeline-section {
     padding-left: 136px;
   }
-  .project-image-wrap {
-    min-height: 0;
+  .nav-topbar {
+    left: 24px;
+    right: 20px;
+  }
+  .menu-language-switcher button {
+    min-width: 31px;
+    height: 32px;
+    font-size: .68rem;
+  }
+  .contact-message {
+    font-size: .84rem;
   }
 }
