@@ -90,7 +90,7 @@ export const siteData = {
     {
       period: '2008 — 2009',
       title: l('Yayın Sistemleri Teknikeri', 'Broadcast Systems Technician', 'Techniker für Rundfunksysteme'),
-      place: l('İdil Prodüksiyon — Türkiye geneli', 'İdil Prodüksiyon — Across Türkiye', 'İdil Prodüksiyon — Türkeiweit'),
+      place: l('İdil Prodüksiyon — Türkiye geneli', 'İdil Prodüksiyon — Türkiye-wide', 'İdil Prodüksiyon — Türkeiweit'),
       description: l(
         'Yerel televizyon ve radyo istasyonlarının teknik kurulum, bakım ve arıza giderme çalışmalarına katılım; yayın sistemlerinin sahada kurulumu, test edilmesi ve teknik sorunlarının giderilmesine destek.',
         'Participated in technical installation, maintenance and troubleshooting of local television and radio stations; supported on-site installation, testing and fault resolution for broadcast systems.',
@@ -168,6 +168,7 @@ export const siteData = {
     {
       id: 'kariyer-avcisi',
       title: 'Kariyer Avcısı',
+      titleLocalized: l('Kariyer Avcısı', 'Career Hunter', 'Karriere-Scout'),
       category: l('Kariyer Teknolojisi', 'Career Technology', 'Karriere-Technologie'),
       description: l(
         'CV ve tercihleri temel alarak kamuya açık kariyer sayfalarını güvenli biçimde tarayan, açıklanabilir eşleştirme ve kullanıcı onaylı başvuru akışı sunan kariyer yardımcısı.',
