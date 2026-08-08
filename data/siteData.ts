@@ -8,14 +8,14 @@ export const siteData = {
   name: 'Yalçın Mutlu',
   eyebrow: l('Kişisel Portföy', 'Personal Portfolio', 'Persönliches Portfolio'),
   role: l(
-    'Teknik Proje Yönetimi • Elektronik • Yapı & Akustik • IT & Dijital Çözümler',
-    'Technical Project Management • Electronics • Construction & Acoustics • IT & Digital Solutions',
-    'Technisches Projektmanagement • Elektronik • Bau & Akustik • IT & Digitale Lösungen'
+    'Teknik Proje Yönetimi • Elektronik • Yapı & Hacim Akustiği • IT & Dijital Çözümler',
+    'Technical Project Management • Electronics • Building & Room Acoustics • IT & Digital Solutions',
+    'Technisches Projektmanagement • Elektronik • Bau- & Raumakustik • IT & Digitale Lösungen'
   ),
   intro: l(
-    'Elektronik ve güvenlik sistemlerinden ses yalıtımı, oda akustiği ve yapı uygulamalarına kadar farklı teknik alanlarda saha ve proje yönetimi deneyimine sahibim. Teknik keşif, teklif, satın alma, ekip ve taşeron koordinasyonu ile uygulama süreçlerini yönetirken sahada da aktif rol aldım. Bugün bu birikimi IT sistemleri ve yapay zekâ destekli dijital çözümlerle birleştirerek, gerçek ihtiyaçları uygulanabilir teknik ve dijital çözümlere dönüştürmeye odaklanıyorum.',
+    'Elektronik ve güvenlik sistemlerinden ses yalıtımı, hacim akustiği ve yapı uygulamalarına kadar farklı teknik alanlarda saha ve proje yönetimi deneyimine sahibim. Teknik keşif, teklif, satın alma, ekip ve taşeron koordinasyonu ile uygulama süreçlerini yönetirken sahada da aktif rol aldım. Bugün bu birikimi IT sistemleri ve yapay zekâ destekli dijital çözümlerle birleştirerek, gerçek ihtiyaçları uygulanabilir teknik ve dijital çözümlere dönüştürmeye odaklanıyorum.',
     'I have field and project management experience across technical disciplines ranging from electronic and security systems to sound insulation, room acoustics and construction applications. I have managed site surveys, quotations, purchasing, team and subcontractor coordination and implementation processes while remaining actively involved on site. Today, I combine this background with IT systems and AI-assisted digital solutions to turn real needs into practical technical and digital solutions.',
-    'Ich verfüge über praktische Erfahrung im Feld- und Projektmanagement in unterschiedlichen technischen Bereichen – von Elektronik- und Sicherheitssystemen bis zu Schallschutz, Raumakustik und Bauanwendungen. Dabei habe ich technische Bestandsaufnahmen, Angebote, Einkauf, Team- und Nachunternehmerkoordination sowie Umsetzungsprozesse gesteuert und zugleich aktiv vor Ort mitgearbeitet. Heute verbinde ich diese Erfahrung mit IT-Systemen und KI-gestützten digitalen Lösungen, um reale Anforderungen in praktikable technische und digitale Lösungen zu überführen.'
+    'Ich verfüge über praktische Erfahrung im Feld- und Projektmanagement in unterschiedlichen technischen Bereichen – von Elektronik- und Sicherheitssystemen bis zu Schalldämmung, Raumakustik und Bauanwendungen. Dabei habe ich technische Bestandsaufnahmen, Angebote, Einkauf, Team- und Nachunternehmerkoordination sowie Umsetzungsprozesse gesteuert und zugleich aktiv vor Ort mitgearbeitet. Heute verbinde ich diese Erfahrung mit IT-Systemen und KI-gestützten digitalen Lösungen, um reale Anforderungen in praktikable technische und digitale Lösungen zu überführen.'
   ),
   tagline: l(
     'Teknik deneyim, sistem düşüncesi ve dijital üretimi aynı projede buluşturmak.',
@@ -68,9 +68,9 @@ export const siteData = {
       ),
       place: l('Mutlu Akustik — Ankara, Türkiye', 'Mutlu Akustik — Ankara, Türkiye', 'Mutlu Akustik — Ankara, Türkei'),
       description: l(
-        'Ses yalıtımı ve oda akustiği projelerinin planlanması; yedi kişilik teknik ekip ve gerektiğinde taşeron ekiplerin yönetimi; teknik keşif, teklif, satın alma, lojistik, ödeme takibi ve saha uygulamalarına aktif katılım.',
+        'Ses yalıtımı ve hacim akustiği projelerinin planlanması; yedi kişilik teknik ekip ve gerektiğinde taşeron ekiplerin yönetimi; teknik keşif, teklif, satın alma, lojistik, ödeme takibi ve saha uygulamalarına aktif katılım.',
         'Planned sound-insulation and room-acoustics projects; managed a seven-person technical team and subcontractors when needed; handled site surveys, quotations, purchasing, logistics, payment tracking and hands-on field installation.',
-        'Planung von Schallschutz- und Raumakustikprojekten; Führung eines siebenköpfigen technischen Teams sowie bei Bedarf von Nachunternehmern; technische Bestandsaufnahme, Angebotserstellung, Einkauf, Logistik, Zahlungsnachverfolgung und aktive Mitarbeit bei Montagearbeiten.'
+        'Planung von Schalldämmungs- und Raumakustikprojekten; Führung eines siebenköpfigen technischen Teams sowie bei Bedarf von Nachunternehmern; technische Bestandsaufnahme, Angebotserstellung, Einkauf, Logistik, Zahlungsnachverfolgung und aktive Mitarbeit bei Montagearbeiten.'
       ),
     },
     {
@@ -118,11 +118,12 @@ export const siteData = {
       ],
     },
     {
-      title: l('Akustik & Teknik Uygulama', 'Acoustics & Technical Installation', 'Akustik & Technische Montage'),
+      title: l('Yapı & Hacim Akustiği', 'Building & Room Acoustics', 'Bau- & Raumakustik'),
       skills: [
-        { name: l('Ses Yalıtımı', 'Sound Insulation', 'Schallschutztechnik'), level: 88, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'aqua' },
-        { name: l('Oda Akustiği', 'Room Acoustics', 'Raumakustik'), level: 86, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'navy' },
-        { name: l('Montaj & Yerinde Uygulama', 'Installation & On-site Work', 'Montage & Vor-Ort-Ausführung'), level: 84, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'red' },
+        { name: l('Ses Yalıtımı', 'Sound Insulation', 'Schalldämmung'), level: 88, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'aqua' },
+        { name: l('Hacim Akustiği', 'Room Acoustics', 'Raumakustik'), level: 86, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'navy' },
+        { name: l('Akustik Panel Uygulamaları', 'Acoustic Panel Systems & Installation', 'Akustikpaneele & Montage'), level: 84, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'red' },
+        { name: l('Saha & Montaj Koordinasyonu', 'Site & Installation Coordination', 'Baustellen- & Montagekoordination'), level: 84, levelLabel: l('Deneyimli', 'Experienced', 'Erfahren'), tone: 'green' },
       ],
     },
     {
@@ -133,7 +134,7 @@ export const siteData = {
         { name: l('Web Hosting, Domain, DNS & SSL', 'Web Hosting, Domains, DNS & SSL', 'Webhosting, Domains, DNS & SSL'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'red' },
         { name: l('Donanım & Ağ Arıza Tespiti', 'Hardware & Network Diagnostics', 'Hardware- & Netzwerkfehlerdiagnose'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'green' },
         { name: l('Windows & Linux Sunucu Desteği', 'Windows & Linux Server Support', 'Betreuung von Windows- & Linux-Servern'), level: 82, levelLabel: l('İyi', 'Good', 'Gut'), tone: 'aqua' },
-        { name: l('WordPress & Joomla CMS', 'WordPress & Joomla CMS', 'WordPress & Joomla CMS'), level: 80, levelLabel: l('İyi', 'Good', 'Gut'), tone: 'navy' },
+        { name: l('İçerik Yönetim Sistemleri (CMS)', 'Content Management Systems (CMS)', 'Content-Management-Systeme (CMS)'), level: 80, levelLabel: l('İyi', 'Good', 'Gut'), tone: 'navy' },
         { name: l('Yapay Zekâ Destekli Dijital Ürün Geliştirme', 'AI-Assisted Digital Product Development', 'KI-gestützte Digitale Produktentwicklung'), level: 78, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'red' },
         { name: l('API, Otomasyon & Teknik Testlerle Çalışma', 'Working with APIs, Automation & Technical Testing', 'Arbeit mit APIs, Automatisierung & technischen Tests'), level: 68, levelLabel: l('Temel / Proje Deneyimi', 'Basic / Project Experience', 'Grundkenntnisse / Projekterfahrung'), tone: 'green' },
       ],
