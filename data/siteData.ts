@@ -82,9 +82,9 @@ export const siteData = {
       ),
       place: l('Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkiye', 'Webrano — Ankara, Türkei'),
       description: l(
-        'Ortalama beş kişilik teknik ve dijital proje ekibinin yönetimi; CCTV, hırsız ve yangın alarm sistemlerinin kurulumu, devreye alınması ve bakımı; FM-200 gazlı söndürme sistemleri ile donanım, ağ ve elektronik arıza tespiti.',
-        'Managed an average five-person technical and digital project team; installed, commissioned and maintained CCTV, intrusion and fire-alarm systems; worked with FM-200 gas suppression systems and hardware, network and electronic fault diagnosis.',
-        'Führung eines durchschnittlich fünfköpfigen technischen und digitalen Projektteams; Installation, Inbetriebnahme und Wartung von CCTV-, Einbruch- und Brandmeldeanlagen; Installation von FM-200-Gaslöschanlagen sowie Fehlerdiagnose an Hardware-, Netzwerk- und Elektroniksystemen.'
+        'Ortalama beş kişilik teknik ve dijital proje ekibinin yönetimi; CCTV, hırsız ve yangın alarm sistemlerinin kurulumu, devreye alınması ve bakımı; donanım, ağ ve elektronik sistemlerde arıza tespiti ve giderme.',
+        'Managed an average five-person technical and digital project team; installed, commissioned and maintained CCTV, intrusion and fire-alarm systems; diagnosed and resolved hardware, network and electronic system faults.',
+        'Führung eines durchschnittlich fünfköpfigen technischen und digitalen Projektteams; Installation, Inbetriebnahme und Wartung von CCTV-, Einbruch- und Brandmeldeanlagen sowie Fehlerdiagnose und Störungsbehebung an Hardware-, Netzwerk- und Elektroniksystemen.'
       ),
     },
     {
@@ -106,7 +106,6 @@ export const siteData = {
         { name: l('CCTV & Güvenlik Sistemleri', 'CCTV & Security Systems', 'CCTV- & Sicherheitssysteme'), level: 90, levelLabel: l('İleri', 'Advanced', 'Fortgeschritten'), tone: 'navy' },
         { name: l('Yangın Alarm Sistemleri', 'Fire Alarm Systems', 'Brandmeldeanlagen'), level: 90, levelLabel: l('İleri', 'Advanced', 'Fortgeschritten'), tone: 'red' },
         { name: l('Devre Geliştirme', 'Circuit Development', 'Schaltungsentwicklung'), level: 88, levelLabel: l('İleri', 'Advanced', 'Fortgeschritten'), tone: 'green' },
-        { name: l('FM-200 Gazlı Söndürme Sistemleri', 'FM-200 Gas Suppression Systems', 'FM-200-Gaslöschanlagen'), level: 78, levelLabel: l('Uygulamalı', 'Hands-on', 'Praxiserfahrung'), tone: 'aqua' },
         { name: l('Donanım & Ağ Arıza Tespiti', 'Hardware & Network Diagnostics', 'Hardware- & Netzwerkdiagnose'), level: 78, levelLabel: l('Uygulamalı', 'Hands-on', 'Praxiserfahrung'), tone: 'navy' },
       ],
     },
@@ -141,7 +140,6 @@ export const siteData = {
   projects: [
     {
       id: 'ase',
-      image: '/images/projects/ase.svg',
       title: 'Academic Style Engine (ASE)',
       category: l('Akademik Yazım Teknolojisi', 'Academic Writing Technology', 'Technologie für akademisches Schreiben'),
       description: l(
@@ -152,7 +150,6 @@ export const siteData = {
     },
     {
       id: 'kariyer-avcisi',
-      image: '/images/projects/kariyer-avcisi.svg',
       title: 'Kariyer Avcısı',
       category: l('Kariyer Teknolojisi', 'Career Technology', 'Karriere-Technologie'),
       description: l(
@@ -163,7 +160,6 @@ export const siteData = {
     },
     {
       id: 'secure-docs',
-      image: '/images/projects/guvenli-belge-deposu.svg',
       title: 'Kişiye Özel Güvenli Belge Deposu',
       category: l('Güvenli Belge Merkezi', 'Secure Document Center', 'Sicheres Dokumentenzentrum'),
       description: l(
@@ -174,7 +170,6 @@ export const siteData = {
     },
     {
       id: 'privacy-cv-builder',
-      image: '/images/projects/privacy-cv-builder.svg',
       title: 'Privacy CV Builder',
       category: l('CV Teknolojisi', 'CV Technology', 'CV-Technologie'),
       description: l(
