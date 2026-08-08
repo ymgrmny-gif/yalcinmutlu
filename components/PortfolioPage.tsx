@@ -38,13 +38,19 @@ const sectionIcons = {
 
 const ui = {
   tr: {
+    pageTitle: 'Yalçın Mutlu | Kişisel Portföy',
     greeting: 'Merhaba, ben',
     downloadCv: 'CV İndir',
     menuOpen: 'Menüyü aç',
     menuClose: 'Menüyü kapat',
+    mainMenu: 'Ana menü',
+    languageSelector: 'Dil seçimi',
+    portraitAria: 'Yalçın Mutlu portresi',
+    profilePhotoAlt: 'Yalçın Mutlu profil fotoğrafı',
     requestAccess: 'Diğer bilgiler için erişim isteyin',
     secureDocs: 'Güvenli Belge Girişi',
     projectDetail: 'Detay',
+    projectPendingTitle: 'Proje bağlantısı daha sonra eklenecek',
     skillsPreviewEyebrow: 'Alternatif görünüm',
     skillsPreviewTitle: 'Yetkinlikler — Kart Görünümü',
     skillsPreviewText: 'Mevcut yetkinlik çubukları korunmuştur. Bu bölüm yalnızca kart ve etiket düzenini karşılaştırmak için eklenmiştir.',
@@ -59,13 +65,19 @@ const ui = {
     previewNote: 'Statik önizleme: gerçek parola doğrulaması ve erişim kayıtları Supabase bağlantısında etkinleştirilecek.',
   },
   en: {
+    pageTitle: 'Yalçın Mutlu | Personal Portfolio',
     greeting: "Hi, I'm",
     downloadCv: 'Download CV',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
+    mainMenu: 'Main menu',
+    languageSelector: 'Language selector',
+    portraitAria: 'Portrait of Yalçın Mutlu',
+    profilePhotoAlt: 'Profile photo of Yalçın Mutlu',
     requestAccess: 'Request access for additional information',
     secureDocs: 'Secure Document Access',
     projectDetail: 'Details',
+    projectPendingTitle: 'Project link will be added later',
     skillsPreviewEyebrow: 'Alternative view',
     skillsPreviewTitle: 'Skills — Card View',
     skillsPreviewText: 'The existing skill bars are kept unchanged. This section was added only to compare the card and tag layout.',
@@ -80,13 +92,19 @@ const ui = {
     previewNote: 'Static preview: real password validation and access logging will be enabled with the Supabase integration.',
   },
   de: {
+    pageTitle: 'Yalçın Mutlu | Persönliches Portfolio',
     greeting: 'Hallo, ich bin',
     downloadCv: 'CV herunterladen',
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
+    mainMenu: 'Hauptmenü',
+    languageSelector: 'Sprachauswahl',
+    portraitAria: 'Porträt von Yalçın Mutlu',
+    profilePhotoAlt: 'Profilfoto von Yalçın Mutlu',
     requestAccess: 'Zugriff auf weitere Informationen anfragen',
     secureDocs: 'Sicherer Dokumentenzugang',
     projectDetail: 'Details',
+    projectPendingTitle: 'Projektlink wird später hinzugefügt',
     skillsPreviewEyebrow: 'Alternative Ansicht',
     skillsPreviewTitle: 'Kompetenzen — Kartenansicht',
     skillsPreviewText: 'Die bestehenden Kompetenzbalken bleiben unverändert. Dieser Bereich dient nur zum Vergleich mit der Karten- und Tag-Darstellung.',
@@ -127,8 +145,9 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     document.documentElement.lang = language;
+    document.title = labels.pageTitle;
     window.sessionStorage.setItem('ym-language', language);
-  }, [language]);
+  }, [language, labels.pageTitle]);
 
   const updateTimeline = useCallback(() => {
     const line = timelineRef.current;
@@ -176,7 +195,7 @@ export default function PortfolioPage() {
 
   return (
     <main className="min-h-screen bg-shell text-ink">
-      <aside className="portrait-rail" aria-label="Yalçın Mutlu portresi">
+      <aside className="portrait-rail" aria-label={labels.portraitAria}>
         <Image
           src={siteData.profileImage}
           alt="Yalçın Mutlu"
@@ -194,7 +213,7 @@ export default function PortfolioPage() {
 
       <div className={`nav-overlay ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
         <div className="nav-topbar">
-          <div className="menu-language-switcher" aria-label="Language selector">
+          <div className="menu-language-switcher" aria-label={labels.languageSelector}>
             {(['de', 'en', 'tr'] as Language[]).map((item) => (
               <button
                 key={item}
@@ -212,7 +231,7 @@ export default function PortfolioPage() {
           </button>
         </div>
 
-        <nav aria-label="Ana menü">
+        <nav aria-label={labels.mainMenu}>
           {navItems.map((item, index) => (
             <button
               key={item.id}
@@ -259,7 +278,7 @@ export default function PortfolioPage() {
           <div className="hero-avatar">
             <Image
               src={siteData.profileImage}
-              alt="Yalçın Mutlu profil fotoğrafı"
+              alt={labels.profilePhotoAlt}
               fill
               sizes="180px"
               className="object-cover object-[50%_17%]"
@@ -282,9 +301,9 @@ export default function PortfolioPage() {
           <Section id="profile" title={text(navItems[0].label, language)} icon={sectionIcons.profile} index={0} progressIndex={progressIndex}>
             <div className="profile-details">
               {siteData.details.map((detail) => (
-                <div key={detail.value} className="detail-item profile-detail-item">
+                <div key={text(detail.value, language)} className="detail-item profile-detail-item">
                   <FontAwesomeIcon icon={iconMap[detail.icon as keyof typeof iconMap]} />
-                  <p>{detail.value}</p>
+                  <p>{text(detail.value, language)}</p>
                 </div>
               ))}
             </div>
@@ -376,9 +395,9 @@ export default function PortfolioPage() {
                 <article key={project.id} className="project-card">
                   <div className="p-4">
                     <p className="project-category">{text(project.category, language)}</p>
-                    <h3>{project.title}</h3>
+                    <h3>{'titleLocalized' in project ? text(project.titleLocalized, language) : project.title}</h3>
                     <p>{text(project.description, language)}</p>
-                    <button type="button" className="project-link" title="Proje bağlantısı daha sonra eklenecek">
+                    <button type="button" className="project-link" title={labels.projectPendingTitle}>
                       {labels.projectDetail} <FontAwesomeIcon icon={faArrowRight} />
                     </button>
                   </div>
@@ -400,7 +419,7 @@ export default function PortfolioPage() {
             <span>“</span>
             <div><strong>{labels.thanks}</strong><p>{labels.footerText}</p></div>
           </div>
-          <div className="footer-bar">© 2026 Yalçın Mutlu <span>Next.js • Tailwind CSS • AOS • EmailJS</span></div>
+          <div className="footer-bar">© 2026 Design Yalçın Mutlu</div>
         </footer>
       </article>
 
