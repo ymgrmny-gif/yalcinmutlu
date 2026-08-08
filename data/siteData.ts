@@ -146,7 +146,7 @@ export const siteData = {
         { name: l('Yerinde & Uzaktan IT Destek', 'On-site & Remote IT Support', 'IT-Support vor Ort & per Fernzugriff'), level: 92, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'aqua' },
         { name: l('Windows Kurulum, Bakım & Sorun Giderme', 'Windows Setup, Maintenance & Troubleshooting', 'Windows-Installation, Wartung & Fehlerbehebung'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'navy' },
         { name: l('Web Hosting, Domain, DNS & SSL Yönetimi', 'Web Hosting, Domains, DNS & SSL Management', 'Webhosting, Domains, DNS & SSL-Verwaltung'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'red' },
-        { name: l('Donanım & Ağ Sorun Giderme', 'Hardware & Network Troubleshooting', 'Hardware & Network Troubleshooting', 'Hardware- & Netzwerk-Fehlerbehebung'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'green' },
+        { name: l('Donanım & Ağ Sorun Giderme', 'Hardware & Network Troubleshooting', 'Hardware- & Netzwerk-Fehlerbehebung'), level: 90, levelLabel: l('İleri', 'Advanced', 'Sehr gut'), tone: 'green' },
         { name: l('Windows & Linux Sunucu Desteği', 'Windows & Linux Server Support', 'Betreuung von Windows- & Linux-Servern'), level: 82, levelLabel: l('İyi', 'Good', 'Gut'), tone: 'aqua' },
         { name: l('İçerik Yönetim Sistemleri (CMS)', 'Content Management Systems (CMS)', 'Content-Management-Systeme (CMS)'), level: 80, levelLabel: l('İyi', 'Good', 'Gut'), tone: 'navy' },
         { name: l('Yapay Zekâ Destekli Dijital Ürün Geliştirme', 'AI-Assisted Digital Product Development', 'KI-gestützte Digitale Produktentwicklung'), level: 78, levelLabel: l('Proje Deneyimi', 'Project Experience', 'Projekterfahrung'), tone: 'red' },
