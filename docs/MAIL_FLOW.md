@@ -10,9 +10,11 @@ Mesajların ana kayıt yeri Supabase veritabanıdır. E-posta bildirimi yardımc
 
 Portföy iletişimi, mevcut `neslihan-yuce-mutlu` Supabase projesinde diğer verilerden ayrı tutulur.
 
-Tablo:
+**Kanonik iletişim tablosu — değiştirmeyin / başka ad aramayın:**
 
 `public.yalcinmutlu_contact_messages`
+
+Kod, migration, Cloudflare Function ve gelecekteki admin paneli bu tablo adını kullanmalıdır. Eski/genel `contact_messages` adı bu portföy için kullanılmaz.
 
 Alanlar:
 - `id`
