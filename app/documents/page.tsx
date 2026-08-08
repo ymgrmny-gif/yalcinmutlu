@@ -1,10 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCertificate, faFilePdf, faGraduationCap, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
 import type { Language } from '@/data/siteData';
+
+type SecureDocument = {
+  document_id: string;
+  category: 'cv' | 'diploma' | 'certificate' | 'other';
+  title: string;
+  description: string;
+  can_download: boolean;
+};
 
 const copy = {
   tr: {
@@ -16,7 +24,8 @@ const copy = {
     cv: 'Özgeçmiş (CV)',
     diploma: 'Diplomalar',
     certificate: 'Sertifikalar',
-    pending: 'Belge henüz eklenmedi',
+    pending: 'Bu kategoride erişiminize açık belge bulunmuyor.',
+    loading: 'Güvenli oturum doğrulanıyor…',
   },
   en: {
     pageTitle: 'Secure Documents | Yalçın Mutlu',
@@ -27,7 +36,8 @@ const copy = {
     cv: 'Curriculum Vitae (CV)',
     diploma: 'Diplomas',
     certificate: 'Certificates',
-    pending: 'No document added yet',
+    pending: 'No document in this category is currently available to your account.',
+    loading: 'Verifying secure session…',
   },
   de: {
     pageTitle: 'Sichere Dokumente | Yalçın Mutlu',
@@ -38,22 +48,48 @@ const copy = {
     cv: 'Lebenslauf (CV)',
     diploma: 'Diplome',
     certificate: 'Zertifikate',
-    pending: 'Noch kein Dokument hinterlegt',
+    pending: 'Für Ihr Konto ist in dieser Kategorie derzeit kein Dokument freigegeben.',
+    loading: 'Sichere Sitzung wird geprüft…',
   },
 } as const;
 
 export default function DocumentsPage() {
   const [allowed, setAllowed] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [documents, setDocuments] = useState<SecureDocument[]>([]);
   const [language, setLanguage] = useState<Language>('tr');
 
   useEffect(() => {
     const saved = window.sessionStorage.getItem('ym-language') as Language | null;
     if (saved === 'de' || saved === 'en' || saved === 'tr') setLanguage(saved);
-    if (window.sessionStorage.getItem('ym-doc-preview') === '1') {
-      setAllowed(true);
-      return;
-    }
-    window.location.replace('/#profile');
+
+    let active = true;
+    const verify = async () => {
+      try {
+        const response = await fetch('/api/documents', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ action: 'session' }),
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!active) return;
+        if (!response.ok || !body?.ok) {
+          window.location.replace('/#profile');
+          return;
+        }
+        setAllowed(true);
+      } catch {
+        if (active) window.location.replace('/#profile');
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+
+    void verify();
+    return () => {
+      active = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -62,13 +98,49 @@ export default function DocumentsPage() {
     window.sessionStorage.setItem('ym-language', language);
   }, [language]);
 
-  if (!allowed) return <main className="documents-loading" aria-live="polite">...</main>;
+  useEffect(() => {
+    if (!allowed) return;
+    let active = true;
+
+    const loadDocuments = async () => {
+      try {
+        const response = await fetch('/api/documents', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ action: 'list', language }),
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!active) return;
+        if (!response.ok || !body?.ok) {
+          window.location.replace('/#profile');
+          return;
+        }
+        setDocuments(Array.isArray(body.documents) ? body.documents : []);
+      } catch {
+        if (active) window.location.replace('/#profile');
+      }
+    };
+
+    void loadDocuments();
+    return () => {
+      active = false;
+    };
+  }, [allowed, language]);
+
+  const grouped = useMemo(() => ({
+    cv: documents.filter((document) => document.category === 'cv'),
+    diploma: documents.filter((document) => document.category === 'diploma'),
+    certificate: documents.filter((document) => document.category === 'certificate'),
+  }), [documents]);
 
   const t = copy[language];
+  if (loading || !allowed) return <main className="documents-loading" aria-live="polite">{t.loading}</main>;
+
   const cards = [
-    { title: t.cv, icon: faFilePdf },
-    { title: t.diploma, icon: faGraduationCap },
-    { title: t.certificate, icon: faCertificate },
+    { key: 'cv' as const, title: t.cv, icon: faFilePdf },
+    { key: 'diploma' as const, title: t.diploma, icon: faGraduationCap },
+    { key: 'certificate' as const, title: t.certificate, icon: faCertificate },
   ];
 
   return (
@@ -94,13 +166,27 @@ export default function DocumentsPage() {
       </section>
 
       <section className="documents-grid" aria-label={t.title}>
-        {cards.map((card) => (
-          <article className="document-placeholder" key={card.title}>
-            <FontAwesomeIcon icon={card.icon} />
-            <h2>{card.title}</h2>
-            <p>{t.pending}</p>
-          </article>
-        ))}
+        {cards.map((card) => {
+          const items = grouped[card.key];
+          return (
+            <article className="document-placeholder" key={card.key}>
+              <FontAwesomeIcon icon={card.icon} />
+              <h2>{card.title}</h2>
+              {items.length === 0 ? (
+                <p>{t.pending}</p>
+              ) : (
+                <div>
+                  {items.map((document) => (
+                    <div key={document.document_id}>
+                      <strong>{document.title}</strong>
+                      {document.description ? <p>{document.description}</p> : null}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </article>
+          );
+        })}
       </section>
     </main>
   );
