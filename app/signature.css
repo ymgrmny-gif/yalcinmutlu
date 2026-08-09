@@ -6,7 +6,7 @@
   aspect-ratio: 360 / 139;
   margin-top: 6px;
   margin-left: -4px;
-  background: url('/images/yalcin-mutlu-signature.webp') left center / contain no-repeat;
+  background: url('/images/yalcin-mutlu-signature.svg') left center / contain no-repeat;
   opacity: .96;
   filter: drop-shadow(0 0 7px rgba(18, 184, 189, .14));
 }
