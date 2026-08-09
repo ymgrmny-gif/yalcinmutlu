@@ -76,7 +76,7 @@ const projectExtras: Record<string, { highlights: LocalizedText[]; liveHref?: st
 };
 
 export default function ProjectsPage() {
-  const [language, setLanguage] = useState<Language>('tr');
+  const [language, setLanguage] = useState<Language>('de');
 
   useEffect(() => {
     const saved = window.sessionStorage.getItem('ym-language') as Language | null;
