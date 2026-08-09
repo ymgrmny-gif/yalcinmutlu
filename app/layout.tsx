@@ -12,13 +12,13 @@ import SecureDocumentsAuthController from '@/components/SecureDocumentsAuthContr
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-  title: 'Yalçın Mutlu | Kişisel Portföy',
-  description: 'Yalçın Mutlu kişisel portföy, CV, deneyim ve proje sayfası.',
+  title: 'Yalçın Mutlu | Persönliches Portfolio',
+  description: 'Persönliches Portfolio von Yalçın Mutlu mit Lebenslauf, Erfahrung und Projekten.',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className="scroll-smooth">
+    <html lang="de" className="scroll-smooth">
       <body>
         <AOSProvider>{children}</AOSProvider>
         <TimelinePrecisionController />
