@@ -24,7 +24,7 @@ const copy = {
 
 function currentLanguage(): Language {
   const saved = window.sessionStorage.getItem('ym-language');
-  return saved === 'de' || saved === 'en' ? saved : 'tr';
+  return saved === 'de' || saved === 'en' || saved === 'tr' ? saved : 'de';
 }
 
 function statusElement(form: HTMLFormElement) {
