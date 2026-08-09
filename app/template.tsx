@@ -4,11 +4,11 @@ export default function Template({ children }: { children: ReactNode }) {
   return (
     <>
       <style>{`
-        .hero-avatar {
-          background: url('/images/yalcin-mutlu-avatar.webp') 50% 17% / cover no-repeat;
+        .portrait-rail {
+          background: url('/images/yalcin-mutlu-avatar.webp') 50% 18% / cover no-repeat;
         }
 
-        .hero-avatar > img {
+        .portrait-rail > img {
           opacity: 0;
         }
       `}</style>
