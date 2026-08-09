@@ -1,0 +1,10 @@
+/* Keep the timeline line and markers on the same percentage reference box.
+   Previously .timeline-stage had right padding, so the line's 7.5% and each
+   marker's inherited 7.5% were resolved against slightly different widths. */
+.timeline-stage {
+  padding-right: 0;
+}
+
+.timeline-section {
+  padding-right: 8.5%;
+}
