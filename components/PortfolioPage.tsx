@@ -116,7 +116,7 @@ function text(value: LocalizedText, language: Language) {
 export default function PortfolioPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [secureModalOpen, setSecureModalOpen] = useState(false);
-  const [language, setLanguage] = useState<Language>('tr');
+  const [language, setLanguage] = useState<Language>('de');
   const [activeSection, setActiveSection] = useState<SectionId>('profile');
   const [progressIndex, setProgressIndex] = useState(-1);
   const [fillHeight, setFillHeight] = useState(0);
