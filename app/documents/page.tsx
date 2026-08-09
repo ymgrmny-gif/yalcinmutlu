@@ -57,7 +57,7 @@ export default function DocumentsPage() {
   const [allowed, setAllowed] = useState(false);
   const [loading, setLoading] = useState(true);
   const [documents, setDocuments] = useState<SecureDocument[]>([]);
-  const [language, setLanguage] = useState<Language>('tr');
+  const [language, setLanguage] = useState<Language>('de');
 
   useEffect(() => {
     const saved = window.sessionStorage.getItem('ym-language') as Language | null;
