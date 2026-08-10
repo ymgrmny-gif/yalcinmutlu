@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import './globals.css';
 import './refinements.css';
 import './signature.css';
+import './signature-glow.css';
 import './timeline-alignment.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import AOSProvider from '@/components/AOSProvider';
