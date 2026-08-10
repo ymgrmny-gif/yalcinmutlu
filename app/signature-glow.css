@@ -1,0 +1,7 @@
+/* Controlled turquoise glow for the existing signature artwork. */
+.portrait-caption span::after {
+  filter:
+    drop-shadow(0 0 2px rgba(18, 184, 189, .72))
+    drop-shadow(0 0 7px rgba(18, 184, 189, .38))
+    drop-shadow(0 0 14px rgba(18, 184, 189, .20));
+}
