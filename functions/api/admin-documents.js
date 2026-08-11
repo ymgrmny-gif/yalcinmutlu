@@ -1,4 +1,5 @@
 const ADMIN_EDGE_URL = 'https://fxpcmlkmkwiwocvrhpvj.supabase.co/functions/v1/yalcinmutlu-admin';
+const GUEST_EDGE_URL = 'https://fxpcmlkmkwiwocvrhpvj.supabase.co/functions/v1/yalcinmutlu-guest-access';
 const COOKIE_NAME = 'ym_admin_documents_session';
 
 function json(status, body, extraHeaders = {}) {
@@ -29,10 +30,10 @@ function clearCookie() {
   return `${COOKIE_NAME}=; Path=/api/admin-documents; HttpOnly; Secure; SameSite=Strict; Max-Age=0`;
 }
 
-async function callJson(origin, body, token = '') {
+async function callJson(url, origin, body, token = '') {
   const headers = { 'Content-Type': 'application/json', Origin: origin };
   if (token) headers['x-admin-session'] = token;
-  return fetch(ADMIN_EDGE_URL, { method: 'POST', headers, body: JSON.stringify(body) });
+  return fetch(url, { method: 'POST', headers, body: JSON.stringify(body) });
 }
 
 export async function onRequestPost({ request }) {
@@ -63,7 +64,7 @@ export async function onRequestPost({ request }) {
   if (action === 'login') {
     const password = typeof input.password === 'string' ? input.password : '';
     if (!password || password.length > 200) return json(422, { ok:false, code:'INVALID_CREDENTIALS' });
-    const upstream = await callJson(origin, { action:'login', password });
+    const upstream = await callJson(ADMIN_EDGE_URL, origin, { action:'login', password });
     const body = await upstream.json().catch(() => ({ ok:false, code:'UPSTREAM_ERROR' }));
     if (!upstream.ok || !body?.sessionToken) return json(401, { ok:false, code:'INVALID_CREDENTIALS' });
     const expiresAt = Date.parse(body.expiresAt || '');
@@ -78,10 +79,18 @@ export async function onRequestPost({ request }) {
     return json(401, { ok:false, code:'ADMIN_SESSION_REQUIRED' });
   }
 
+  const guestActions = new Set(['guestLinks','createGuestLink','revokeGuestLink']);
+  if (guestActions.has(action)) {
+    const upstream = await callJson(GUEST_EDGE_URL, origin, input, token);
+    const body = await upstream.json().catch(() => ({ ok:false, code:'UPSTREAM_ERROR' }));
+    if (upstream.status === 401) return json(401, body, { 'Set-Cookie':clearCookie() });
+    return json(upstream.status, body);
+  }
+
   const allowed = new Set(['session','dashboard','changePassword','createUser','toggleUser','resetUserPassword','setPermission','toggleDocument','documentUrl','deleteDocument','logout']);
   if (!allowed.has(action)) return json(400, { ok:false, code:'UNKNOWN_ACTION' });
 
-  const upstream = await callJson(origin, input, token);
+  const upstream = await callJson(ADMIN_EDGE_URL, origin, input, token);
   const body = await upstream.json().catch(() => ({ ok:false, code:'UPSTREAM_ERROR' }));
   if (action === 'logout') return json(200, { ok:true }, { 'Set-Cookie':clearCookie() });
   if (upstream.status === 401) return json(401, body, { 'Set-Cookie':clearCookie() });
