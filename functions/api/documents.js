@@ -6,7 +6,8 @@ function json(status, body, extraHeaders = {}) {
     status,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-store',
+      'Cache-Control': 'no-store, max-age=0',
+      'Pragma': 'no-cache',
       'X-Content-Type-Options': 'nosniff',
       ...extraHeaders,
     },
@@ -36,6 +37,16 @@ async function callEdge(origin, body) {
     },
     body: JSON.stringify(body),
   });
+}
+
+function freshSignedUrl(value) {
+  try {
+    const url = new URL(value);
+    url.searchParams.set('cacheNonce', `${Date.now()}-${crypto.randomUUID()}`);
+    return url.toString();
+  } catch {
+    return value;
+  }
 }
 
 export async function onRequestPost({ request }) {
@@ -122,6 +133,34 @@ export async function onRequestPost({ request }) {
       return json(401, { ok: false, code: 'SESSION_EXPIRED' }, { 'Set-Cookie': clearCookie() });
     }
     return json(200, { ok: true, documents: Array.isArray(body.documents) ? body.documents : [] });
+  }
+
+  if (action === 'url') {
+    const documentId = typeof input.documentId === 'string' ? input.documentId : '';
+    const mode = input.mode === 'download' ? 'download' : 'view';
+    if (!/^[0-9a-f-]{36}$/i.test(documentId)) {
+      return json(422, { ok: false, code: 'INVALID_DOCUMENT' });
+    }
+
+    const upstream = await callEdge(origin, { action: 'url', token, documentId, mode });
+    const body = await upstream.json().catch(() => ({ ok: false, code: 'UPSTREAM_ERROR' }));
+
+    if (!upstream.ok || !body?.ok || typeof body?.url !== 'string') {
+      if (upstream.status === 401) {
+        return json(401, { ok: false, code: 'SESSION_EXPIRED' }, { 'Set-Cookie': clearCookie() });
+      }
+      if (upstream.status === 403) {
+        return json(403, { ok: false, code: 'DOCUMENT_FORBIDDEN' });
+      }
+      return json(502, { ok: false, code: 'DOCUMENT_URL_ERROR' });
+    }
+
+    return json(200, {
+      ok: true,
+      url: freshSignedUrl(body.url),
+      expiresIn: Number(body.expiresIn) || 90,
+      canDownload: Boolean(body.canDownload),
+    });
   }
 
   if (action === 'logout') {
