@@ -3,16 +3,26 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faCertificate, faFilePdf, faGraduationCap, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faCertificate,
+  faDownload,
+  faEye,
+  faFilePdf,
+  faGraduationCap,
+  faShieldHalved,
+} from '@fortawesome/free-solid-svg-icons';
 import type { Language } from '@/data/siteData';
 
 type SecureDocument = {
   document_id: string;
-  category: 'cv' | 'diploma' | 'certificate' | 'other';
+  category: 'cv' | 'diploma' | 'certificate' | 'reference' | 'other';
   title: string;
   description: string;
   can_download: boolean;
 };
+
+type ActionMode = 'view' | 'download';
 
 const copy = {
   tr: {
@@ -26,6 +36,11 @@ const copy = {
     certificate: 'Sertifikalar',
     pending: 'Bu kategoride erişiminize açık belge bulunmuyor.',
     loading: 'Güvenli oturum doğrulanıyor…',
+    view: 'Görüntüle',
+    download: 'İndir',
+    opening: 'Açılıyor…',
+    downloading: 'Hazırlanıyor…',
+    actionError: 'Belge açılamadı. Erişim iznini veya oturum süresini kontrol edin.',
   },
   en: {
     pageTitle: 'Secure Documents | Yalçın Mutlu',
@@ -38,6 +53,11 @@ const copy = {
     certificate: 'Certificates',
     pending: 'No document in this category is currently available to your account.',
     loading: 'Verifying secure session…',
+    view: 'View',
+    download: 'Download',
+    opening: 'Opening…',
+    downloading: 'Preparing…',
+    actionError: 'The document could not be opened. Please check access permissions or session validity.',
   },
   de: {
     pageTitle: 'Sichere Dokumente | Yalçın Mutlu',
@@ -50,6 +70,11 @@ const copy = {
     certificate: 'Zertifikate',
     pending: 'Für Ihr Konto ist in dieser Kategorie derzeit kein Dokument freigegeben.',
     loading: 'Sichere Sitzung wird geprüft…',
+    view: 'Ansehen',
+    download: 'Herunterladen',
+    opening: 'Wird geöffnet…',
+    downloading: 'Wird vorbereitet…',
+    actionError: 'Das Dokument konnte nicht geöffnet werden. Bitte Berechtigung oder Sitzung prüfen.',
   },
 } as const;
 
@@ -58,6 +83,8 @@ export default function DocumentsPage() {
   const [loading, setLoading] = useState(true);
   const [documents, setDocuments] = useState<SecureDocument[]>([]);
   const [language, setLanguage] = useState<Language>('de');
+  const [actionState, setActionState] = useState<Record<string, ActionMode | undefined>>({});
+  const [actionError, setActionError] = useState('');
 
   useEffect(() => {
     const saved = window.sessionStorage.getItem('ym-language') as Language | null;
@@ -70,6 +97,7 @@ export default function DocumentsPage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'same-origin',
+          cache: 'no-store',
           body: JSON.stringify({ action: 'session' }),
         });
         const body = await response.json().catch(() => ({}));
@@ -96,6 +124,7 @@ export default function DocumentsPage() {
     document.documentElement.lang = language;
     document.title = copy[language].pageTitle;
     window.sessionStorage.setItem('ym-language', language);
+    setActionError('');
   }, [language]);
 
   useEffect(() => {
@@ -108,6 +137,7 @@ export default function DocumentsPage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'same-origin',
+          cache: 'no-store',
           body: JSON.stringify({ action: 'list', language }),
         });
         const body = await response.json().catch(() => ({}));
@@ -129,13 +159,70 @@ export default function DocumentsPage() {
   }, [allowed, language]);
 
   const grouped = useMemo(() => ({
-    cv: documents.filter((document) => document.category === 'cv'),
-    diploma: documents.filter((document) => document.category === 'diploma'),
-    certificate: documents.filter((document) => document.category === 'certificate'),
+    cv: documents.filter((item) => item.category === 'cv'),
+    diploma: documents.filter((item) => item.category === 'diploma'),
+    certificate: documents.filter((item) => item.category === 'certificate'),
   }), [documents]);
 
   const t = copy[language];
-  if (loading || !allowed) return <main className="documents-loading" aria-live="polite">{t.loading}</main>;
+
+  async function openDocument(item: SecureDocument, mode: ActionMode) {
+    if (mode === 'download' && !item.can_download) return;
+
+    setActionError('');
+    setActionState((current) => ({ ...current, [item.document_id]: mode }));
+
+    const previewWindow = mode === 'view' ? window.open('about:blank', '_blank') : null;
+    if (previewWindow) {
+      previewWindow.document.title = t.opening;
+      previewWindow.opener = null;
+    }
+
+    try {
+      const response = await fetch('/api/documents', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        cache: 'no-store',
+        body: JSON.stringify({ action: 'url', documentId: item.document_id, mode }),
+      });
+      const body = await response.json().catch(() => ({}));
+
+      if (!response.ok || !body?.ok || typeof body?.url !== 'string') {
+        if (response.status === 401) {
+          previewWindow?.close();
+          window.location.replace('/#profile');
+          return;
+        }
+        throw new Error(body?.code || 'DOCUMENT_URL_ERROR');
+      }
+
+      if (mode === 'view') {
+        if (previewWindow) {
+          previewWindow.location.replace(body.url);
+        } else {
+          window.open(body.url, '_blank', 'noopener,noreferrer');
+        }
+      } else {
+        const anchor = document.createElement('a');
+        anchor.href = body.url;
+        anchor.rel = 'noopener noreferrer';
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+    } catch {
+      previewWindow?.close();
+      setActionError(t.actionError);
+    } finally {
+      setActionState((current) => ({ ...current, [item.document_id]: undefined }));
+    }
+  }
+
+  if (loading || !allowed) {
+    return <main className="documents-loading" aria-live="polite">{t.loading}</main>;
+  }
 
   const cards = [
     { key: 'cv' as const, title: t.cv, icon: faFilePdf },
@@ -165,23 +252,52 @@ export default function DocumentsPage() {
         </div>
       </section>
 
+      {actionError ? <div className="secure-document-error" role="alert">{actionError}</div> : null}
+
       <section className="documents-grid" aria-label={t.title}>
         {cards.map((card) => {
           const items = grouped[card.key];
           return (
-            <article className="document-placeholder" key={card.key}>
+            <article className="document-placeholder secure-document-card" key={card.key}>
               <FontAwesomeIcon icon={card.icon} />
               <h2>{card.title}</h2>
               {items.length === 0 ? (
                 <p>{t.pending}</p>
               ) : (
-                <div>
-                  {items.map((document) => (
-                    <div key={document.document_id}>
-                      <strong>{document.title}</strong>
-                      {document.description ? <p>{document.description}</p> : null}
-                    </div>
-                  ))}
+                <div className="secure-document-list">
+                  {items.map((item) => {
+                    const busyMode = actionState[item.document_id];
+                    return (
+                      <div className="secure-document-item" key={item.document_id}>
+                        <strong>{item.title}</strong>
+                        {item.description ? <p>{item.description}</p> : null}
+                        <div className="secure-document-actions">
+                          <button
+                            type="button"
+                            className="secure-document-action primary"
+                            disabled={Boolean(busyMode)}
+                            aria-busy={busyMode === 'view'}
+                            onClick={() => void openDocument(item, 'view')}
+                          >
+                            <FontAwesomeIcon icon={faEye} />
+                            {busyMode === 'view' ? t.opening : t.view}
+                          </button>
+                          {item.can_download ? (
+                            <button
+                              type="button"
+                              className="secure-document-action secondary"
+                              disabled={Boolean(busyMode)}
+                              aria-busy={busyMode === 'download'}
+                              onClick={() => void openDocument(item, 'download')}
+                            >
+                              <FontAwesomeIcon icon={faDownload} />
+                              {busyMode === 'download' ? t.downloading : t.download}
+                            </button>
+                          ) : null}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </article>
