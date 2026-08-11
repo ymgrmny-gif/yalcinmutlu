@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './admin.css';
+import './document-edit.css';
 
 export const metadata: Metadata = {
   title: 'Belge Yönetimi | Yalçın Mutlu',
