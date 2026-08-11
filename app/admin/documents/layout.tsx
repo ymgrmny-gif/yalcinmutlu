@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AdminPasswordEnhancer from '@/components/AdminPasswordEnhancer';
 import './admin.css';
 import './document-edit.css';
 
@@ -9,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function AdminDocumentsLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return children;
+  return <>{children}<AdminPasswordEnhancer /></>;
 }
