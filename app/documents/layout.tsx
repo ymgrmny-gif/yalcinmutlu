@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import './document-actions.css';
 
 export const metadata: Metadata = {
   title: 'Güvenli Belgeler | Yalçın Mutlu',
