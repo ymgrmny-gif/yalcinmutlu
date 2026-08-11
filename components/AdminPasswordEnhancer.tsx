@@ -8,6 +8,27 @@ function findFormByText(text: string) {
   );
 }
 
+function showPasswordResult(form: HTMLFormElement, text: string, error = false) {
+  let result = form.querySelector<HTMLElement>('[data-password-change-result]');
+  if (!result) {
+    result = document.createElement('div');
+    result.dataset.passwordChangeResult = 'true';
+    result.style.cssText = [
+      'margin:0 0 14px',
+      'padding:11px 12px',
+      'border-radius:9px',
+      'font-size:.78rem',
+      'font-weight:750',
+      'line-height:1.5',
+    ].join(';');
+    const button = form.querySelector('button.admin-primary');
+    form.insertBefore(result, button);
+  }
+  result.textContent = text;
+  result.style.background = error ? '#fff0f2' : '#edf9f9';
+  result.style.color = error ? '#9c2834' : '#087f84';
+}
+
 export default function AdminPasswordEnhancer() {
   const [generatedPassword, setGeneratedPassword] = useState('');
   const [copied, setCopied] = useState(false);
@@ -60,6 +81,9 @@ export default function AdminPasswordEnhancer() {
           if (field) field.style.display = 'none';
         }
 
+        const staleError = settingsForm?.querySelector<HTMLElement>('.admin-error');
+        if (staleError?.textContent?.includes('12 karakter')) staleError.style.display = 'none';
+
         if (settingsForm && !settingsForm.querySelector('[data-free-password-note]')) {
           const note = document.createElement('div');
           note.dataset.freePasswordNote = 'true';
@@ -83,6 +107,61 @@ export default function AdminPasswordEnhancer() {
     observer.observe(document.body, { childList: true, subtree: true });
 
     const originalFetch = window.fetch.bind(window);
+
+    const onSettingsSubmit = async (event: Event) => {
+      const form = event.target instanceof HTMLFormElement ? event.target : null;
+      if (!form?.querySelector('input[name="newPassword"]')) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+
+      const newPassword = form.querySelector<HTMLInputElement>('input[name="newPassword"]')?.value ?? '';
+      const confirmPassword = form.querySelector<HTMLInputElement>('input[name="confirmPassword"]')?.value ?? '';
+      const button = form.querySelector<HTMLButtonElement>('button.admin-primary');
+
+      const staleError = form.querySelector<HTMLElement>('.admin-error');
+      if (staleError) staleError.style.display = 'none';
+
+      if (!newPassword) {
+        showPasswordResult(form, 'Yeni şifre boş bırakılamaz.', true);
+        return;
+      }
+      if (newPassword !== confirmPassword) {
+        showPasswordResult(form, 'Yeni şifreler aynı değil.', true);
+        return;
+      }
+
+      if (button) {
+        button.disabled = true;
+        button.dataset.originalText = button.textContent || 'Şifreyi güncelle';
+        button.textContent = 'Kaydediliyor…';
+      }
+
+      try {
+        const response = await originalFetch('/api/admin-documents', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store',
+          body: JSON.stringify({ action: 'changePassword', newPassword }),
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok || !body?.ok) throw new Error(String(body?.code || 'PASSWORD_CHANGE_FAILED'));
+
+        form.reset();
+        showPasswordResult(form, 'Yönetici şifresi başarıyla değiştirildi. Yeni şifren artık aktif.');
+      } catch {
+        showPasswordResult(form, 'Şifre değiştirilemedi. Oturumun süresi dolmuş olabilir; sayfayı yenileyip tekrar giriş yap.', true);
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = button.dataset.originalText || 'Şifreyi güncelle';
+        }
+      }
+    };
+
+    document.addEventListener('submit', onSettingsSubmit, true);
+
     const patchedFetch: typeof window.fetch = async (input, init) => {
       let action = '';
       try {
@@ -129,6 +208,7 @@ export default function AdminPasswordEnhancer() {
     window.fetch = patchedFetch;
     return () => {
       observer.disconnect();
+      document.removeEventListener('submit', onSettingsSubmit, true);
       window.fetch = originalFetch;
     };
   }, []);
