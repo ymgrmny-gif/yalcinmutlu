@@ -10,28 +10,37 @@ Neslihan projesindeki `public.documents`, `public.guest_users`, `public.guest_se
 
 ## Kanonik tablolar
 
-Ziyaretçi erişimi:
-
 - `yalcinmutlu.access_users`
 - `yalcinmutlu.access_sessions`
 - `yalcinmutlu.documents`
 - `yalcinmutlu.document_permissions`
 - `yalcinmutlu.access_logs`
-
-Yönetici erişimi:
-
 - `yalcinmutlu.admin_users`
 - `yalcinmutlu.admin_sessions`
 
-Tüm tablolarda RLS açıktır. `anon` / `authenticated` rolleri için doğrudan tablo erişimi verilmez; yönetim ve belge işlemleri service-role üzerinden sunucu tarafında yürütülür.
+Tüm güvenli tablolarda RLS açıktır ve `anon` / `authenticated` rolleri için doğrudan tablo policy'si yoktur. `yalcinmutlu` şemasının public erişimi kapalıdır.
 
-## Ziyaretçi belge sistemi
+## Ziyaretçi sunucu fonksiyonu
 
 Supabase Edge Function:
 
 `yalcinmutlu-documents`
 
-Cloudflare same-origin endpoint:
+Service-role erişimi yalnız sunucu tarafında kullanılır.
+
+Kullanılan RPC'ler arasında:
+
+- `public.yalcinmutlu_create_access_user`
+- `public.yalcinmutlu_document_login`
+- `public.yalcinmutlu_document_session`
+- `public.yalcinmutlu_document_list`
+- `public.yalcinmutlu_document_logout`
+
+Bu RPC'lerin `anon` ve `authenticated` execute yetkileri kaldırılmıştır; yalnız `service_role` kullanır.
+
+## Cloudflare ziyaretçi endpoint'i
+
+Aynı origin sunucu endpoint'i:
 
 `/api/documents`
 
@@ -39,25 +48,31 @@ Dosya:
 
 `functions/api/documents.js`
 
-Başarılı ziyaretçi girişinde Cloudflare Pages Function aşağıdaki HttpOnly cookie'yi oluşturur:
+Tarayıcı Supabase session token'ını JavaScript içinde tutmaz. Başarılı girişte Cloudflare Pages Function aşağıdaki HttpOnly cookie'yi oluşturur:
 
 `ym_secure_documents_session`
 
-Cookie `HttpOnly`, `Secure`, `SameSite=Strict` özelliklerine sahiptir ve en fazla 2 saat geçerlidir.
+Cookie özellikleri:
 
-## Yönetici paneli
+- `HttpOnly`
+- `Secure`
+- `SameSite=Strict`
+- Path: `/api/documents`
+- Oturum en fazla 2 saat
 
-Yönetici arayüzü:
+## Yönetim paneli
+
+Yönetim ekranı:
 
 `/admin/documents/`
 
-Dosyalar:
+Frontend dosyaları:
 
 - `app/admin/documents/page.tsx`
 - `app/admin/documents/admin.css`
-- `app/admin/documents/layout.tsx`
+- `app/admin/documents/document-edit.css`
 
-Yönetici Cloudflare endpoint'i:
+Cloudflare yönetim endpoint'i:
 
 `/api/admin-documents`
 
@@ -69,20 +84,32 @@ Supabase Edge Function:
 
 `yalcinmutlu-admin`
 
-Yönetici oturumu `ym_admin_documents_session` isimli `HttpOnly`, `Secure`, `SameSite=Strict` cookie ile tutulur. Yönetici session token'ı tarayıcı JavaScript'ine verilmez. Oturum süresi 8 saattir.
+Yönetici oturumu ayrı bir HttpOnly cookie ile korunur. Yönetim panelinde belge, kullanıcı, izin ve istatistik yönetimi yapılır.
 
-Panel özellikleri:
+### Belge düzenleme
 
-- İstatistik kartları ve 14 günlük aktivite grafiği
-- Belge listesi, önizleme, aktif/pasif yönetimi ve kalıcı silme
-- Private storage alanına PDF/JPG/PNG/WebP yükleme (maks. 20 MB)
-- Ziyaretçi erişim şifresi oluşturma ve devre dışı bırakma
-- Ziyaretçi şifresi sıfırlama
-- Belge bazında görüntüleme ve indirme izni
-- Son erişim hareketleri ve başarısız giriş kayıtları
-- Yönetici şifresi değiştirme
+Mevcut belgeler kalem düğmesiyle düzenlenebilir. Her belge için bağımsız olarak:
 
-Dosyalar `yalcinmutlu-private-documents` private bucket'ında tutulur. Yönetici önizlemeleri kısa ömürlü signed URL ile açılır.
+- kategori,
+- Türkçe başlık ve açıklama,
+- Almanca başlık ve açıklama,
+- İngilizce başlık ve açıklama
+
+güncellenebilir.
+
+PDF/JPG/PNG/WebP dosyasının kendisi de isteğe bağlı olarak yeni bir sürümle değiştirilebilir. Yeni dosya özel bucket'a önce yeni bir path ile yüklenir; veritabanı güncellemesi başarılı olduktan sonra eski dosya silinir. Böylece başarısız güncellemede mevcut dosya mümkün olduğunca korunur.
+
+Belge güncelleme RPC'si:
+
+`public.yalcinmutlu_admin_update_document`
+
+Bu RPC yalnız `service_role` tarafından çalıştırılabilir.
+
+## Frontend ziyaretçi alanı
+
+`components/SecureDocumentsAuthController.tsx` mevcut güvenli giriş modalını yakalar ve şifreyi `/api/documents` endpoint'ine gönderir. Eski `ym-doc-preview` sessionStorage kontrolü artık belge sayfasında kullanılmaz.
+
+`app/documents/page.tsx` açıldığında gerçek sunucu oturumunu doğrular ve yalnız yetkili belge listesini ister.
 
 ## Gizlilik
 
@@ -95,10 +122,10 @@ Bu namespace'teki erişim loglarında IP adresi tutulmaz. Loglanan temel olaylar
 - view
 - download
 
-## Güvenlik sınırları
+## Storage
 
-- `yalcinmutlu` şeması doğrudan public veri kaynağı olarak kullanılmaz.
-- Hassas service-role anahtarı tarayıcıya gönderilmez.
-- Ziyaretçi ve yönetici oturumları birbirinden ayrı tutulur.
-- Yönetici sayfası `noindex` ve `no-store` başlıklarıyla yayınlanır.
-- Belge bağlantıları kalıcı public URL değildir.
+Private bucket:
+
+`yalcinmutlu-private-documents`
+
+Belge görüntüleme ve indirme işlemlerinde kısa ömürlü signed URL kullanılır.
