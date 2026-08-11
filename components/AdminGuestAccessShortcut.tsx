@@ -2,10 +2,31 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function AdminGuestAccessShortcut() {
   const pathname = usePathname();
+  const [visible, setVisible] = useState(false);
   const onGuestPage = pathname?.startsWith('/admin/documents/guest-access');
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/admin-documents', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      cache: 'no-store',
+      body: JSON.stringify({ action: 'session' }),
+    }).then((response) => {
+      if (active) setVisible(response.ok);
+    }).catch(() => {
+      if (active) setVisible(false);
+    });
+    return () => { active = false; };
+  }, [pathname]);
+
+  if (!visible) return null;
+
   return (
     <Link
       href={onGuestPage ? '/admin/documents/' : '/admin/documents/guest-access/'}
