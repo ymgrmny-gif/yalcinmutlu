@@ -17,6 +17,9 @@ Neslihan projesindeki `public.documents`, `public.guest_users`, `public.guest_se
 - `yalcinmutlu.access_logs`
 - `yalcinmutlu.admin_users`
 - `yalcinmutlu.admin_sessions`
+- `yalcinmutlu.guest_access_links`
+- `yalcinmutlu.guest_access_documents`
+- `yalcinmutlu.guest_sessions`
 
 Tüm güvenli tablolarda RLS açıktır ve `anon` / `authenticated` rolleri için doğrudan tablo policy'si yoktur. `yalcinmutlu` şemasının public erişimi kapalıdır.
 
@@ -60,6 +63,41 @@ Cookie özellikleri:
 - Path: `/api/documents`
 - Oturum en fazla 2 saat
 
+## Tek tıklamalı guest access / magic link
+
+Admin, her başvuru veya alıcı için ayrı bir paylaşım bağlantısı oluşturabilir. Yönetim ekranı:
+
+`/admin/documents/guest-access/`
+
+Bağlantı biçimi:
+
+`/access/<TOKEN>`
+
+Ham erişim tokenı 32 byte cryptographically secure random veri kullanılarak üretilir ve URL-safe base64 olarak gösterilir. Ham token yalnız oluşturma sonucunda admin tarayıcısına döner; veritabanına yalnız SHA-256 hash'i yazılır.
+
+Guest akışı:
+
+1. `functions/access/[token].js` token biçimini kontrol eder.
+2. `yalcinmutlu-guest-access` Edge Function tokenı SHA-256 ile hash'leyip DB kaydıyla karşılaştırır.
+3. Link aktif ve süresi geçmemişse en fazla 2 saatlik ayrı guest session oluşturulur.
+4. Cloudflare `ym_guest_documents_session` adlı `HttpOnly`, `Secure`, `SameSite=Lax` cookie oluşturur.
+5. Tarayıcı `/documents/` adresine yönlendirilir ve paylaşım tokenı adres çubuğundan temizlenir.
+6. `/api/documents` guest session olduğunu algılar ve liste / dosya URL isteklerini guest Edge Function'a yönlendirir.
+7. `yalcinmutlu.guest_access_documents` tablosunda bu linke atanmış olmayan document ID'leri server-side reddedilir.
+
+Guest session her istek sırasında hem session kaydını hem bağlı guest-access linkinin `revoked_at` / `expires_at` durumunu tekrar doğrular. Bir link admin tarafından iptal edildiğinde mevcut guest session kayıtları da anında revoke edilir.
+
+Guest erişimi yalnız görüntüleme / indirme içindir. Admin, upload, edit, delete veya başka linkleri yönetme endpoint'leri guest cookie kabul etmez.
+
+Guest link yönetim verileri minimum tutulur:
+
+- `access_count`
+- `last_access_at`
+- oluşturma / sona erme / iptal zamanları
+- seçili belge kimlikleri
+
+IP adresi veya fingerprint kaydedilmez.
+
 ## Yönetim paneli
 
 Yönetim ekranı:
@@ -86,6 +124,8 @@ Supabase Edge Function:
 
 Yönetici oturumu ayrı bir HttpOnly cookie ile korunur. Yönetim panelinde belge, kullanıcı, izin ve istatistik yönetimi yapılır.
 
+Guest-link yönetimi mevcut admin cookie'sini kullanır fakat backend işlemleri ayrı `yalcinmutlu-guest-access` Edge Function'ında gerçekleştirilir. Bu fonksiyon admin session'ı server-side doğrulamadan link listeleme, oluşturma veya iptal etme işlemi yapmaz.
+
 ### Belge düzenleme
 
 Mevcut belgeler kalem düğmesiyle düzenlenebilir. Her belge için bağımsız olarak:
@@ -109,7 +149,7 @@ Bu RPC yalnız `service_role` tarafından çalıştırılabilir.
 
 `components/SecureDocumentsAuthController.tsx` mevcut güvenli giriş modalını yakalar ve şifreyi `/api/documents` endpoint'ine gönderir. Eski `ym-doc-preview` sessionStorage kontrolü artık belge sayfasında kullanılmaz.
 
-`app/documents/page.tsx` açıldığında gerçek sunucu oturumunu doğrular ve yalnız yetkili belge listesini ister.
+`app/documents/page.tsx` açıldığında gerçek sunucu oturumunu doğrular ve yalnız yetkili belge listesini ister. Guest session olduğunda ekran salt-okunur paylaşım bağlamını açıkça gösterir; edit / upload / delete / admin kontrolleri bulunmaz.
 
 ## Gizlilik
 
@@ -122,10 +162,12 @@ Bu namespace'teki erişim loglarında IP adresi tutulmaz. Loglanan temel olaylar
 - view
 - download
 
+Guest-link tablosu yalnız kullanım sayısı ve son erişim zamanını tutar; IP/fingerprint saklamaz.
+
 ## Storage
 
 Private bucket:
 
 `yalcinmutlu-private-documents`
 
-Belge görüntüleme ve indirme işlemlerinde kısa ömürlü signed URL kullanılır.
+Belge görüntüleme ve indirme işlemlerinde kısa ömürlü signed URL kullanılır. Guest erişimi de aynı private bucket modelini kullanır; public storage URL oluşturmaz.
