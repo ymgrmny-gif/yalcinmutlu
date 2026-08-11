@@ -5,9 +5,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
+  faBriefcase,
   faCertificate,
   faDownload,
   faEye,
+  faFileLines,
   faFilePdf,
   faGraduationCap,
   faShieldHalved,
@@ -30,10 +32,14 @@ const copy = {
     languageSelector: 'Dil seçimi',
     title: 'Güvenli Belge Merkezi',
     subtitle: 'Erişiminize açık CV, diploma ve diğer belgeler burada görüntülenir.',
+    guestNotice: 'Yalçın Mutlu tarafından paylaşılan belgeler',
+    guestSubtitle: 'Bu bağlantı yalnızca sizinle paylaşılan, salt-okunur belgeleri gösterir.',
     back: 'Portföye dön',
     cv: 'Özgeçmiş (CV)',
     diploma: 'Diplomalar',
     certificate: 'Sertifikalar',
+    reference: 'İş / Referans Belgeleri',
+    other: 'Diğer Belgeler',
     pending: 'Bu kategoride erişiminize açık belge bulunmuyor.',
     loading: 'Güvenli oturum doğrulanıyor…',
     view: 'Görüntüle',
@@ -47,10 +53,14 @@ const copy = {
     languageSelector: 'Language selector',
     title: 'Secure Document Center',
     subtitle: 'CVs, diplomas and other documents available to you are shown here.',
+    guestNotice: 'Documents shared by Yalçın Mutlu',
+    guestSubtitle: 'This link shows only the read-only documents shared specifically with you.',
     back: 'Back to portfolio',
     cv: 'Curriculum Vitae (CV)',
     diploma: 'Diplomas',
     certificate: 'Certificates',
+    reference: 'Employment / Reference Documents',
+    other: 'Other Documents',
     pending: 'No document in this category is currently available to your account.',
     loading: 'Verifying secure session…',
     view: 'View',
@@ -64,11 +74,15 @@ const copy = {
     languageSelector: 'Sprachauswahl',
     title: 'Sicheres Dokumentenzentrum',
     subtitle: 'Freigegebene Lebensläufe, Diplome und weitere Dokumente werden hier angezeigt.',
+    guestNotice: 'Freigegebene Bewerbungsunterlagen',
+    guestSubtitle: 'Dieser Gastzugang zeigt ausschließlich die für diesen Link freigegebenen Dokumente im Nur-Lese-Modus.',
     back: 'Zurück zum Portfolio',
     cv: 'Lebenslauf (CV)',
     diploma: 'Diplome',
     certificate: 'Zertifikate',
-    pending: 'Für Ihr Konto ist in dieser Kategorie derzeit kein Dokument freigegeben.',
+    reference: 'Arbeitszeugnisse / Referenzen',
+    other: 'Weitere Dokumente',
+    pending: 'Für Ihren Zugang ist in dieser Kategorie derzeit kein Dokument freigegeben.',
     loading: 'Sichere Sitzung wird geprüft…',
     view: 'Ansehen',
     download: 'Herunterladen',
@@ -83,6 +97,7 @@ export default function DocumentsPage() {
   const [loading, setLoading] = useState(true);
   const [documents, setDocuments] = useState<SecureDocument[]>([]);
   const [language, setLanguage] = useState<Language>('de');
+  const [guestMode, setGuestMode] = useState(false);
   const [actionState, setActionState] = useState<Record<string, ActionMode | undefined>>({});
   const [actionError, setActionError] = useState('');
 
@@ -106,6 +121,7 @@ export default function DocumentsPage() {
           window.location.replace('/#profile');
           return;
         }
+        setGuestMode(body.sessionType === 'guest');
         setAllowed(true);
       } catch {
         if (active) window.location.replace('/#profile');
@@ -162,6 +178,8 @@ export default function DocumentsPage() {
     cv: documents.filter((item) => item.category === 'cv'),
     diploma: documents.filter((item) => item.category === 'diploma'),
     certificate: documents.filter((item) => item.category === 'certificate'),
+    reference: documents.filter((item) => item.category === 'reference'),
+    other: documents.filter((item) => item.category === 'other'),
   }), [documents]);
 
   const t = copy[language];
@@ -228,6 +246,8 @@ export default function DocumentsPage() {
     { key: 'cv' as const, title: t.cv, icon: faFilePdf },
     { key: 'diploma' as const, title: t.diploma, icon: faGraduationCap },
     { key: 'certificate' as const, title: t.certificate, icon: faCertificate },
+    { key: 'reference' as const, title: t.reference, icon: faBriefcase },
+    { key: 'other' as const, title: t.other, icon: faFileLines },
   ];
 
   return (
@@ -246,9 +266,9 @@ export default function DocumentsPage() {
       <section className="documents-hero">
         <div className="documents-shield"><FontAwesomeIcon icon={faShieldHalved} /></div>
         <div>
-          <p className="eyebrow">Yalçın Mutlu</p>
+          <p className="eyebrow">{guestMode ? t.guestNotice : 'Yalçın Mutlu'}</p>
           <h1>{t.title}</h1>
-          <p>{t.subtitle}</p>
+          <p>{guestMode ? t.guestSubtitle : t.subtitle}</p>
         </div>
       </section>
 
