@@ -95,6 +95,25 @@ export default function AdminPasswordEnhancer() {
       }
 
       const response = await originalFetch(input, init);
+
+      if (action === 'documentUrl' && response.ok) {
+        const body = await response.clone().json().catch(() => null) as { url?: unknown } | null;
+        if (typeof body?.url === 'string') {
+          try {
+            const freshUrl = new URL(body.url);
+            freshUrl.searchParams.set('cacheNonce', `${Date.now()}-${crypto.randomUUID()}`);
+            const freshBody = { ...body, url: freshUrl.toString() };
+            return new Response(JSON.stringify(freshBody), {
+              status: response.status,
+              statusText: response.statusText,
+              headers: response.headers,
+            });
+          } catch {
+            // If URL parsing ever fails, fall back to the original response.
+          }
+        }
+      }
+
       if (action === 'createUser' && response.ok) {
         response.clone().json().then((body) => {
           const code = typeof body?.generatedPassword === 'string' ? body.generatedPassword : '';
