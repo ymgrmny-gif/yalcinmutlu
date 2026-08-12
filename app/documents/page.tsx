@@ -9,7 +9,6 @@ import {
   faCertificate,
   faDownload,
   faEye,
-  faFileLines,
   faFilePdf,
   faGraduationCap,
   faShieldHalved,
@@ -35,12 +34,10 @@ const copy = {
     guestNotice: 'Yalçın Mutlu tarafından paylaşılan belgeler',
     guestSubtitle: 'Bu bağlantı yalnızca sizinle paylaşılan, salt-okunur belgeleri gösterir.',
     back: 'Portföye dön',
-    cv: 'Özgeçmiş (CV)',
+    application: 'Başvuru Belgeleri',
     diploma: 'Diplomalar',
     certificate: 'Sertifikalar',
     reference: 'İş / Referans Belgeleri',
-    other: 'Diğer Belgeler',
-    pending: 'Bu kategoride erişiminize açık belge bulunmuyor.',
     loading: 'Güvenli oturum doğrulanıyor…',
     view: 'Görüntüle',
     download: 'İndir',
@@ -56,12 +53,10 @@ const copy = {
     guestNotice: 'Documents shared by Yalçın Mutlu',
     guestSubtitle: 'This link shows only the read-only documents shared specifically with you.',
     back: 'Back to portfolio',
-    cv: 'Curriculum Vitae (CV)',
+    application: 'Application Documents',
     diploma: 'Diplomas',
     certificate: 'Certificates',
     reference: 'Employment / Reference Documents',
-    other: 'Other Documents',
-    pending: 'No document in this category is currently available to your account.',
     loading: 'Verifying secure session…',
     view: 'View',
     download: 'Download',
@@ -77,12 +72,10 @@ const copy = {
     guestNotice: 'Freigegebene Bewerbungsunterlagen',
     guestSubtitle: 'Dieser Gastzugang zeigt ausschließlich die für diesen Link freigegebenen Dokumente im Nur-Lese-Modus.',
     back: 'Zurück zum Portfolio',
-    cv: 'Lebenslauf (CV)',
+    application: 'Bewerbungsunterlagen',
     diploma: 'Diplome',
     certificate: 'Zertifikate',
     reference: 'Arbeitszeugnisse / Referenzen',
-    other: 'Weitere Dokumente',
-    pending: 'Für Ihren Zugang ist in dieser Kategorie derzeit kein Dokument freigegeben.',
     loading: 'Sichere Sitzung wird geprüft…',
     view: 'Ansehen',
     download: 'Herunterladen',
@@ -243,12 +236,11 @@ export default function DocumentsPage() {
   }
 
   const cards = [
-    { key: 'cv' as const, title: t.cv, icon: faFilePdf },
-    { key: 'diploma' as const, title: t.diploma, icon: faGraduationCap },
-    { key: 'certificate' as const, title: t.certificate, icon: faCertificate },
-    { key: 'reference' as const, title: t.reference, icon: faBriefcase },
-    { key: 'other' as const, title: t.other, icon: faFileLines },
-  ];
+    { key: 'application', title: t.application, icon: faFilePdf, items: [...grouped.cv, ...grouped.other] },
+    { key: 'diploma', title: t.diploma, icon: faGraduationCap, items: grouped.diploma },
+    { key: 'certificate', title: t.certificate, icon: faCertificate, items: grouped.certificate },
+    { key: 'reference', title: t.reference, icon: faBriefcase, items: grouped.reference },
+  ].filter((card) => card.items.length > 0);
 
   return (
     <main className="documents-page">
@@ -275,54 +267,47 @@ export default function DocumentsPage() {
       {actionError ? <div className="secure-document-error" role="alert">{actionError}</div> : null}
 
       <section className="documents-grid" aria-label={t.title}>
-        {cards.map((card) => {
-          const items = grouped[card.key];
-          return (
-            <article className="document-placeholder secure-document-card" key={card.key}>
-              <FontAwesomeIcon icon={card.icon} />
-              <h2>{card.title}</h2>
-              {items.length === 0 ? (
-                <p>{t.pending}</p>
-              ) : (
-                <div className="secure-document-list">
-                  {items.map((item) => {
-                    const busyMode = actionState[item.document_id];
-                    return (
-                      <div className="secure-document-item" key={item.document_id}>
-                        <strong>{item.title}</strong>
-                        {item.description ? <p>{item.description}</p> : null}
-                        <div className="secure-document-actions">
-                          <button
-                            type="button"
-                            className="secure-document-action primary"
-                            disabled={Boolean(busyMode)}
-                            aria-busy={busyMode === 'view'}
-                            onClick={() => void openDocument(item, 'view')}
-                          >
-                            <FontAwesomeIcon icon={faEye} />
-                            {busyMode === 'view' ? t.opening : t.view}
-                          </button>
-                          {item.can_download ? (
-                            <button
-                              type="button"
-                              className="secure-document-action secondary"
-                              disabled={Boolean(busyMode)}
-                              aria-busy={busyMode === 'download'}
-                              onClick={() => void openDocument(item, 'download')}
-                            >
-                              <FontAwesomeIcon icon={faDownload} />
-                              {busyMode === 'download' ? t.downloading : t.download}
-                            </button>
-                          ) : null}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </article>
-          );
-        })}
+        {cards.map((card) => (
+          <article className="document-placeholder secure-document-card" key={card.key}>
+            <FontAwesomeIcon icon={card.icon} />
+            <h2>{card.title}</h2>
+            <div className="secure-document-list">
+              {card.items.map((item) => {
+                const busyMode = actionState[item.document_id];
+                return (
+                  <div className="secure-document-item" key={item.document_id}>
+                    <strong>{item.title}</strong>
+                    {item.description ? <p>{item.description}</p> : null}
+                    <div className="secure-document-actions">
+                      <button
+                        type="button"
+                        className="secure-document-action primary"
+                        disabled={Boolean(busyMode)}
+                        aria-busy={busyMode === 'view'}
+                        onClick={() => void openDocument(item, 'view')}
+                      >
+                        <FontAwesomeIcon icon={faEye} />
+                        {busyMode === 'view' ? t.opening : t.view}
+                      </button>
+                      {item.can_download ? (
+                        <button
+                          type="button"
+                          className="secure-document-action secondary"
+                          disabled={Boolean(busyMode)}
+                          aria-busy={busyMode === 'download'}
+                          onClick={() => void openDocument(item, 'download')}
+                        >
+                          <FontAwesomeIcon icon={faDownload} />
+                          {busyMode === 'download' ? t.downloading : t.download}
+                        </button>
+                      ) : null}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </article>
+        ))}
       </section>
     </main>
   );
