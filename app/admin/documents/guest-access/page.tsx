@@ -305,7 +305,6 @@ export default function GuestAccessAdminPage() {
                   {item.toUpperCase()}
                 </button>
               ))}
-              <button className="admin-secondary" disabled={busy} onClick={() => void load()}><FontAwesomeIcon icon={faRotate}/>{t.refresh}</button>
             </div>
           </header>
 
