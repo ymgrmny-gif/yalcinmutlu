@@ -1,0 +1,4 @@
+/* Legacy visitor-password access is retired; share links are the single access model. */
+.admin-nav > button:nth-child(3) {
+  display: none !important;
+}
