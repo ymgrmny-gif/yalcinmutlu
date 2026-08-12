@@ -1,4 +1,5 @@
 .secure-document-card { justify-content:flex-start; }
+.secure-document-card:not(:has(.secure-document-list)) { display:none; }
 .secure-document-card > svg { margin-bottom:18px; }
 .secure-document-card h2 { margin-top:0; }
 .secure-document-list { width:100%; display:grid; gap:14px; }
