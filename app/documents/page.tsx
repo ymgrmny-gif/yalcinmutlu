@@ -32,8 +32,11 @@ const copy = {
     languageSelector: 'Dil seçimi',
     title: 'Güvenli Belge Merkezi',
     subtitle: 'Erişiminize açık CV, diploma ve diğer belgeler burada görüntülenir.',
-    guestNotice: 'Yalçın Mutlu tarafından paylaşılan belgeler',
-    guestSubtitle: 'Bu bağlantı yalnızca sizinle paylaşılan, salt-okunur belgeleri gösterir.',
+    guestNotice: 'Yalçın Mutlu tarafından paylaşılan başvuru belgeleri',
+    welcomeTitle: 'Hoş geldiniz',
+    welcomeFor: 'Bu güvenli erişim için hazırlanmıştır:',
+    welcomeMessage: 'Başvuruma gösterdiğiniz ilgi ve belgelerimi incelemek için ayırdığınız zaman için teşekkür ederim. İncelemeniz için paylaşmayı uygun gördüğüm başvuru belgelerini bu güvenli alanda düzenli şekilde bir araya getirdim. Belgelerin mesleki deneyimim ve niteliklerim hakkında açık bir fikir vermesini umuyorum.',
+    guestSubtitle: 'Aşağıdaki belgeler yalnızca bu özel bağlantı için paylaşılmıştır.',
     back: 'Portföye dön',
     application: 'Başvuru Belgeleri',
     diploma: 'Diplomalar',
@@ -52,8 +55,11 @@ const copy = {
     languageSelector: 'Language selector',
     title: 'Secure Document Center',
     subtitle: 'CVs, diplomas and other documents available to you are shown here.',
-    guestNotice: 'Documents shared by Yalçın Mutlu',
-    guestSubtitle: 'This link shows only the read-only documents shared specifically with you.',
+    guestNotice: 'Application documents shared by Yalçın Mutlu',
+    welcomeTitle: 'Welcome',
+    welcomeFor: 'This secure access has been prepared for:',
+    welcomeMessage: 'Thank you for your interest in my application and for taking the time to review my documents. I have brought together the relevant application materials in this secure area for your review. I hope they provide a clear impression of my professional experience and qualifications.',
+    guestSubtitle: 'The documents below have been shared exclusively through this private access link.',
     back: 'Back to portfolio',
     application: 'Application Documents',
     diploma: 'Diplomas',
@@ -72,8 +78,11 @@ const copy = {
     languageSelector: 'Sprachauswahl',
     title: 'Sicheres Dokumentenzentrum',
     subtitle: 'Freigegebene Lebensläufe, Diplome und weitere Dokumente werden hier angezeigt.',
-    guestNotice: 'Freigegebene Bewerbungsunterlagen',
-    guestSubtitle: 'Dieser Gastzugang zeigt ausschließlich die für diesen Link freigegebenen Dokumente im Nur-Lese-Modus.',
+    guestNotice: 'Freigegebene Bewerbungsunterlagen von Yalçın Mutlu',
+    welcomeTitle: 'Herzlich willkommen',
+    welcomeFor: 'Dieser sichere Zugang wurde bereitgestellt für:',
+    welcomeMessage: 'Vielen Dank für Ihr Interesse an meiner Bewerbung und die Zeit, die Sie sich für die Prüfung meiner Unterlagen nehmen. Die für Sie relevanten Bewerbungsunterlagen habe ich in diesem geschützten Bereich übersichtlich zusammengestellt. Ich freue mich, wenn Ihnen die Unterlagen einen klaren Eindruck von meiner beruflichen Erfahrung und meinen Qualifikationen vermitteln.',
+    guestSubtitle: 'Die folgenden Dokumente wurden ausschließlich über diesen privaten Freigabelink zur Verfügung gestellt.',
     back: 'Zurück zum Portfolio',
     application: 'Bewerbungsunterlagen',
     diploma: 'Diplome',
@@ -95,6 +104,7 @@ export default function DocumentsPage() {
   const [documents, setDocuments] = useState<SecureDocument[]>([]);
   const [language, setLanguage] = useState<Language>('de');
   const [guestMode, setGuestMode] = useState(false);
+  const [guestLabel, setGuestLabel] = useState('');
   const [actionState, setActionState] = useState<Record<string, ActionMode | undefined>>({});
   const [actionError, setActionError] = useState('');
 
@@ -119,6 +129,7 @@ export default function DocumentsPage() {
           return;
         }
         setGuestMode(body.sessionType === 'guest');
+        setGuestLabel(typeof body.displayName === 'string' ? body.displayName.trim() : '');
         setAllowed(true);
       } catch {
         if (active) window.location.replace('/#profile');
@@ -261,12 +272,16 @@ export default function DocumentsPage() {
         </div>
       </header>
 
-      <section className="documents-hero">
+      <section className={`documents-hero ${guestMode ? 'guest-documents-hero' : ''}`}>
         <div className="documents-shield"><FontAwesomeIcon icon={faShieldHalved} /></div>
         <div>
           <p className="eyebrow">{guestMode ? t.guestNotice : 'Yalçın Mutlu'}</p>
-          <h1>{t.title}</h1>
-          <p>{guestMode ? t.guestSubtitle : t.subtitle}</p>
+          <h1>{guestMode ? t.welcomeTitle : t.title}</h1>
+          {guestMode && guestLabel ? (
+            <p className="guest-welcome-recipient"><span>{t.welcomeFor}</span><strong>{guestLabel}</strong></p>
+          ) : null}
+          <p className={guestMode ? 'guest-welcome-message' : undefined}>{guestMode ? t.welcomeMessage : t.subtitle}</p>
+          {guestMode ? <p className="guest-welcome-hint">{t.guestSubtitle}</p> : null}
         </div>
       </section>
 
