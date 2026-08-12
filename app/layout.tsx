@@ -10,13 +10,49 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import AOSProvider from '@/components/AOSProvider';
 import TimelinePrecisionController from '@/components/TimelinePrecisionController';
 import ProjectLinksController from '@/components/ProjectLinksController';
-import SecureDocumentsAuthController from '@/components/SecureDocumentsAuthController';
 
 config.autoAddCss = false;
 
+const siteUrl = 'https://yalcinmutlu.pages.dev';
+
 export const metadata: Metadata = {
-  title: 'Yalçın Mutlu | Persönliches Portfolio',
-  description: 'Persönliches Portfolio von Yalçın Mutlu mit Lebenslauf, Erfahrung und Projekten.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Yalçın Mutlu | Persönliches Portfolio',
+    template: '%s | Yalçın Mutlu',
+  },
+  description: 'Persönliches Portfolio von Yalçın Mutlu mit Berufserfahrung, Ausbildung, Kompetenzen und Projekten.',
+  applicationName: 'Yalçın Mutlu Portfolio',
+  authors: [{ name: 'Yalçın Mutlu' }],
+  creator: 'Yalçın Mutlu',
+  publisher: 'Yalçın Mutlu',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Yalçın Mutlu Portfolio',
+    title: 'Yalçın Mutlu | Persönliches Portfolio',
+    description: 'Berufserfahrung, Ausbildung, Kompetenzen und Projekte von Yalçın Mutlu.',
+    locale: 'de_DE',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Yalçın Mutlu | Persönliches Portfolio',
+    description: 'Berufserfahrung, Ausbildung, Kompetenzen und Projekte von Yalçın Mutlu.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -26,7 +62,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <AOSProvider>{children}</AOSProvider>
         <TimelinePrecisionController />
         <ProjectLinksController />
-        <SecureDocumentsAuthController />
       </body>
     </html>
   );
