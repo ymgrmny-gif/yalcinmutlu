@@ -3,6 +3,7 @@ import AdminPasswordEnhancer from '@/components/AdminPasswordEnhancer';
 import AdminGuestAccessShortcut from '@/components/AdminGuestAccessShortcut';
 import './admin.css';
 import './document-edit.css';
+import './legacy-access.css';
 
 export const metadata: Metadata = {
   title: 'Belge Yönetimi | Yalçın Mutlu',
