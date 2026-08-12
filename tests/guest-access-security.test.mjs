@@ -23,6 +23,7 @@ test('document API accepts only guest sessions and retires password login', () =
   assert.doesNotMatch(source, /yalcinmutlu-documents/);
   assert.match(source, /ym_guest_documents_session/);
   assert.match(source, /sessionType:\s*'guest'/);
+  assert.match(source, /displayName:\s*body\.label/);
   assert.match(source, /DOCUMENT_FORBIDDEN/);
   assert.doesNotMatch(source, /ym_secure_documents_session/);
 });
@@ -73,9 +74,13 @@ test('guest-link updates change metadata and permissions without rotating the li
   assert.doesNotMatch(source, /token_hash\s*=/);
 });
 
-test('guest document UI is read-only and covers all document categories', () => {
+test('guest document UI is read-only, personalized and covers all document categories', () => {
   const source = read('app/documents/page.tsx');
   assert.match(source, /body\.sessionType === 'guest'/);
+  assert.match(source, /setGuestLabel/);
+  assert.match(source, /body\.displayName/);
+  assert.match(source, /welcomeTitle/);
+  assert.match(source, /guest-welcome-recipient/);
   assert.match(source, /guestNotice/);
   assert.match(source, /reference:/);
   assert.match(source, /other:/);
