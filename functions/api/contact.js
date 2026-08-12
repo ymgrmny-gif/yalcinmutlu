@@ -1,14 +1,37 @@
 const CONTACT_EDGE_URL = 'https://fxpcmlkmkwiwocvrhpvj.supabase.co/functions/v1/yalcinmutlu-contact';
+const RATE_BUCKETS = new Map();
 
-function json(status, body) {
+function json(status, body, extraHeaders = {}) {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff',
+      ...extraHeaders,
     },
   });
+}
+
+function clientAddress(request) {
+  return request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim() || 'unknown';
+}
+
+function isRateLimited(request, limit, windowMs) {
+  const now = Date.now();
+  const key = clientAddress(request);
+  const current = RATE_BUCKETS.get(key);
+  if (!current || current.resetAt <= now) {
+    RATE_BUCKETS.set(key, { count: 1, resetAt: now + windowMs });
+    return false;
+  }
+  current.count += 1;
+  if (RATE_BUCKETS.size > 1000) {
+    for (const [bucketKey, bucket] of RATE_BUCKETS) {
+      if (bucket.resetAt <= now) RATE_BUCKETS.delete(bucketKey);
+    }
+  }
+  return current.count > limit;
 }
 
 export async function onRequestPost({ request }) {
@@ -17,6 +40,10 @@ export async function onRequestPost({ request }) {
 
   if (!origin || origin !== requestUrl.origin) {
     return json(403, { ok: false, code: 'ORIGIN_REJECTED' });
+  }
+
+  if (isRateLimited(request, 5, 10 * 60 * 1000)) {
+    return json(429, { ok: false, code: 'RATE_LIMITED' }, { 'Retry-After': '600' });
   }
 
   const contentType = request.headers.get('Content-Type') || '';
