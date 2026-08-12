@@ -1,0 +1,4 @@
+/* Password-based document access is retired. Share links are the only visitor access path. */
+.nav-secure-docs {
+  display: none !important;
+}
