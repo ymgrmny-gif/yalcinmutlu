@@ -9,6 +9,7 @@ import {
   faCertificate,
   faDownload,
   faEye,
+  faFileLines,
   faFilePdf,
   faGraduationCap,
   faShieldHalved,
@@ -17,7 +18,7 @@ import type { Language } from '@/data/siteData';
 
 type SecureDocument = {
   document_id: string;
-  category: 'cv' | 'diploma' | 'certificate' | 'reference' | 'other';
+  category: 'cv' | 'cover_letter' | 'diploma' | 'certificate' | 'reference' | 'other';
   title: string;
   description: string;
   can_download: boolean;
@@ -38,6 +39,7 @@ const copy = {
     diploma: 'Diplomalar',
     certificate: 'Sertifikalar',
     reference: 'İş / Referans Belgeleri',
+    other: 'Diğer Belgeler',
     loading: 'Güvenli oturum doğrulanıyor…',
     view: 'Görüntüle',
     download: 'İndir',
@@ -57,6 +59,7 @@ const copy = {
     diploma: 'Diplomas',
     certificate: 'Certificates',
     reference: 'Employment / Reference Documents',
+    other: 'Other Documents',
     loading: 'Verifying secure session…',
     view: 'View',
     download: 'Download',
@@ -76,6 +79,7 @@ const copy = {
     diploma: 'Diplome',
     certificate: 'Zertifikate',
     reference: 'Arbeitszeugnisse / Referenzen',
+    other: 'Weitere Dokumente',
     loading: 'Sichere Sitzung wird geprüft…',
     view: 'Ansehen',
     download: 'Herunterladen',
@@ -169,6 +173,7 @@ export default function DocumentsPage() {
 
   const grouped = useMemo(() => ({
     cv: documents.filter((item) => item.category === 'cv'),
+    coverLetter: documents.filter((item) => item.category === 'cover_letter'),
     diploma: documents.filter((item) => item.category === 'diploma'),
     certificate: documents.filter((item) => item.category === 'certificate'),
     reference: documents.filter((item) => item.category === 'reference'),
@@ -236,10 +241,11 @@ export default function DocumentsPage() {
   }
 
   const cards = [
-    { key: 'application', title: t.application, icon: faFilePdf, items: [...grouped.cv, ...grouped.other] },
+    { key: 'application', title: t.application, icon: faFilePdf, items: [...grouped.cv, ...grouped.coverLetter] },
     { key: 'diploma', title: t.diploma, icon: faGraduationCap, items: grouped.diploma },
     { key: 'certificate', title: t.certificate, icon: faCertificate, items: grouped.certificate },
     { key: 'reference', title: t.reference, icon: faBriefcase, items: grouped.reference },
+    { key: 'other', title: t.other, icon: faFileLines, items: grouped.other },
   ].filter((card) => card.items.length > 0);
 
   return (
