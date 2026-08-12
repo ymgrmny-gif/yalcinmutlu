@@ -14,24 +14,28 @@ test('access route exchanges a strong URL token and removes it by redirect', () 
   assert.match(source, /Location:\s*'\/documents\/'/);
   assert.match(source, /HttpOnly; Secure; SameSite=Lax/);
   assert.match(source, /Referrer-Policy': 'no-referrer'/);
+  assert.match(source, /RATE_BUCKETS/);
 });
 
-test('document API keeps viewer login and routes guest sessions separately', () => {
+test('document API accepts only guest sessions and retires password login', () => {
   const source = read('functions/api/documents.js');
-  assert.match(source, /action === 'login'/);
-  assert.match(source, /yalcinmutlu-documents/);
+  assert.match(source, /PASSWORD_ACCESS_RETIRED/);
+  assert.doesNotMatch(source, /yalcinmutlu-documents/);
   assert.match(source, /ym_guest_documents_session/);
-  assert.match(source, /sessionType === 'guest'/);
+  assert.match(source, /sessionType:\s*'guest'/);
   assert.match(source, /DOCUMENT_FORBIDDEN/);
-  assert.match(source, /clearCookie\(GUEST_COOKIE, 'Lax'\)/);
+  assert.doesNotMatch(source, /ym_secure_documents_session/);
 });
 
 test('admin API accepts guest-link actions only with the admin cookie path', () => {
   const source = read('functions/api/admin-documents.js');
   assert.match(source, /ym_admin_documents_session/);
-  assert.match(source, /guestLinks','createGuestLink','revokeGuestLink/);
+  assert.match(source, /guestLinks/);
+  assert.match(source, /createGuestLink/);
+  assert.match(source, /revokeGuestLink/);
   assert.match(source, /updateGuestLink/);
   assert.match(source, /x-admin-session/);
+  assert.match(source, /LEGACY_ACCESS_RETIRED/);
   assert.doesNotMatch(source, /ym_guest_documents_session/);
 });
 
@@ -42,7 +46,7 @@ test('guest Edge function generates random tokens, hashes them and revalidates s
   assert.match(source, /crypto\.subtle\.digest\('SHA-256'/);
   assert.match(source, /yalcinmutlu_guest_session/);
   assert.match(source, /yalcinmutlu_guest_document_access/);
-  assert.match(source, /yalcinmutlu_admin_update_guest_link_documents/);
+  assert.match(source, /yalcinmutlu_admin_update_guest_link/);
   assert.match(source, /validateAdmin/);
 });
 
@@ -59,9 +63,11 @@ test('migration stores only token hashes and revokes active guest sessions', () 
   assert.match(source, /revoke all[\s\S]*from public, anon, authenticated/);
 });
 
-test('guest-link document updates replace permissions without rotating the link token', () => {
-  const source = read('supabase/migrations/20260812013612_update_guest_link_documents.sql');
-  assert.match(source, /yalcinmutlu_admin_update_guest_link_documents/);
+test('guest-link updates change metadata and permissions without rotating the link token', () => {
+  const source = read('supabase/migrations/20260812102000_update_guest_link_metadata.sql');
+  assert.match(source, /yalcinmutlu_admin_update_guest_link/);
+  assert.match(source, /set label = trim\(p_label\)/);
+  assert.match(source, /expires_at = p_expires_at/);
   assert.match(source, /delete from yalcinmutlu\.guest_access_documents/);
   assert.match(source, /insert into yalcinmutlu\.guest_access_documents/);
   assert.doesNotMatch(source, /token_hash\s*=/);
