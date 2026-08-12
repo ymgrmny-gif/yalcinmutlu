@@ -9,18 +9,27 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 type Language = 'tr' | 'de' | 'en';
 
 const labels: Record<Language, string> = {
-  tr: 'Misafir Erişimi & Paylaşım Linkleri',
-  de: 'Gastzugänge & Freigabelinks',
-  en: 'Guest Access & Share Links',
+  tr: 'Paylaşım Linkleri',
+  de: 'Freigabelinks',
+  en: 'Share Links',
 };
 
 const hashTargets: Record<string, string> = {
   dashboard: 'Genel Bakış',
   documents: 'Belgeler',
-  access: 'Erişim Yönetimi',
   activity: 'Erişim Kayıtları',
   settings: 'Güvenlik',
 };
+
+function hideLegacyAccess(nav: HTMLElement) {
+  for (const button of Array.from(nav.querySelectorAll<HTMLButtonElement>('button'))) {
+    if (button.textContent?.trim() === 'Erişim Yönetimi') {
+      button.hidden = true;
+      button.setAttribute('aria-hidden', 'true');
+      button.tabIndex = -1;
+    }
+  }
+}
 
 export default function AdminGuestAccessShortcut() {
   const pathname = usePathname();
@@ -32,7 +41,12 @@ export default function AdminGuestAccessShortcut() {
     const saved = window.sessionStorage.getItem('ym-language') as Language | null;
     if (saved === 'tr' || saved === 'de' || saved === 'en') setLanguage(saved);
 
-    const locateNav = () => setNav(document.querySelector<HTMLElement>('.admin-nav'));
+    const locateNav = () => {
+      const nextNav = document.querySelector<HTMLElement>('.admin-nav');
+      if (nextNav) hideLegacyAccess(nextNav);
+      setNav(nextNav);
+    };
+
     locateNav();
     const observer = new MutationObserver(locateNav);
     observer.observe(document.body, { childList: true, subtree: true });
@@ -41,7 +55,12 @@ export default function AdminGuestAccessShortcut() {
 
   useEffect(() => {
     if (onGuestPage || !nav || !window.location.hash) return;
-    const target = hashTargets[window.location.hash.slice(1)];
+    const hash = window.location.hash.slice(1);
+    if (hash === 'access') {
+      window.location.replace('/admin/documents/guest-access/');
+      return;
+    }
+    const target = hashTargets[hash];
     if (!target) return;
     const button = Array.from(nav.querySelectorAll<HTMLButtonElement>('button')).find((item) => item.textContent?.trim() === target);
     if (button) {
