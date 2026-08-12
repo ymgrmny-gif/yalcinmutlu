@@ -1,55 +1,36 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 export default function AdminGuestAccessShortcut() {
   const pathname = usePathname();
-  const [visible, setVisible] = useState(false);
+  const [nav, setNav] = useState<HTMLElement | null>(null);
   const onGuestPage = pathname?.startsWith('/admin/documents/guest-access');
 
   useEffect(() => {
-    let active = true;
-    fetch('/api/admin-documents', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'same-origin',
-      cache: 'no-store',
-      body: JSON.stringify({ action: 'session' }),
-    }).then((response) => {
-      if (active) setVisible(response.ok);
-    }).catch(() => {
-      if (active) setVisible(false);
-    });
-    return () => { active = false; };
+    const locateNav = () => setNav(document.querySelector<HTMLElement>('.admin-nav'));
+    locateNav();
+
+    const observer = new MutationObserver(locateNav);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
   }, [pathname]);
 
-  if (!visible) return null;
+  if (onGuestPage || !nav) return null;
 
-  return (
-    <Link
-      href={onGuestPage ? '/admin/documents/' : '/admin/documents/guest-access/'}
-      aria-label={onGuestPage ? 'Zur Dokumentverwaltung' : 'Gastzugänge verwalten'}
-      style={{
-        position: 'fixed',
-        right: '1rem',
-        bottom: '1rem',
-        zIndex: 80,
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '.45rem',
-        padding: '.7rem .9rem',
-        borderRadius: '999px',
-        background: '#173f5f',
-        color: '#fff',
-        textDecoration: 'none',
-        fontSize: '.78rem',
-        fontWeight: 800,
-        boxShadow: '0 12px 30px rgba(15,23,42,.22)',
-      }}
+  return createPortal(
+    <button
+      type="button"
+      aria-label="Gastzugänge und Freigabelinks verwalten"
+      onClick={() => window.location.assign('/admin/documents/guest-access/')}
     >
-      {onGuestPage ? '← Belge yönetimi' : '🔗 Gastzugänge'}
-    </Link>
+      <FontAwesomeIcon icon={faLink}/>
+      Gastzugänge &amp; Freigabelinks
+    </button>,
+    nav,
   );
 }
