@@ -172,7 +172,6 @@ Deno.serve(async (request: Request) => {
           p_document_ids: ids,
         });
         if (!result.response.ok || typeof result.body !== 'string') return json(422, { ok: false, code: 'GUEST_LINK_CREATE_FAILED' }, origin);
-
         return json(200, { ok: true, linkId: result.body, token: rawToken }, origin);
       }
 
@@ -180,11 +179,20 @@ Deno.serve(async (request: Request) => {
       if (!isUuid(guestLinkId)) return json(422, { ok: false, code: 'INVALID_GUEST_LINK' }, origin);
 
       if (action === 'updateGuestLink') {
+        const label = safeText(input.label, 160);
+        const note = safeText(input.note, 1000);
+        const expiresAt = typeof input.expiresAt === 'string' && input.expiresAt ? input.expiresAt : null;
+        const parsedExpiry = expiresAt ? Date.parse(expiresAt) : NaN;
         const ids = documentIds(input.documentIds);
-        if (ids.length < 1 || ids.length > 100) return json(422, { ok: false, code: 'DOCUMENT_REQUIRED' }, origin);
-        const result = await rpcJson('yalcinmutlu_admin_update_guest_link_documents', {
+        if (!label || ids.length < 1 || ids.length > 100) return json(422, { ok: false, code: 'INVALID_GUEST_LINK' }, origin);
+        if (expiresAt && (!Number.isFinite(parsedExpiry) || parsedExpiry <= Date.now())) return json(422, { ok: false, code: 'INVALID_EXPIRY' }, origin);
+
+        const result = await rpcJson('yalcinmutlu_admin_update_guest_link', {
           p_token: adminToken,
           p_guest_link_id: guestLinkId,
+          p_label: label,
+          p_note: note || null,
+          p_expires_at: expiresAt,
           p_document_ids: ids,
         });
         if (!result.response.ok) return json(422, { ok: false, code: 'GUEST_LINK_UPDATE_FAILED' }, origin);
