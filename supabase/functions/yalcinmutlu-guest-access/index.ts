@@ -179,12 +179,25 @@ Deno.serve(async (request: Request) => {
       if (!isUuid(guestLinkId)) return json(422, { ok: false, code: 'INVALID_GUEST_LINK' }, origin);
 
       if (action === 'updateGuestLink') {
+        const ids = documentIds(input.documentIds);
+        if (ids.length < 1 || ids.length > 100) return json(422, { ok: false, code: 'DOCUMENT_REQUIRED' }, origin);
+
+        if (typeof input.label !== 'string') {
+          const legacyResult = await rpcJson('yalcinmutlu_admin_update_guest_link_documents', {
+            p_token: adminToken,
+            p_guest_link_id: guestLinkId,
+            p_document_ids: ids,
+          });
+          if (!legacyResult.response.ok) return json(422, { ok: false, code: 'GUEST_LINK_UPDATE_FAILED' }, origin);
+          if (legacyResult.body !== true) return json(404, { ok: false, code: 'GUEST_LINK_NOT_FOUND' }, origin);
+          return json(200, { ok: true }, origin);
+        }
+
         const label = safeText(input.label, 160);
         const note = safeText(input.note, 1000);
         const expiresAt = typeof input.expiresAt === 'string' && input.expiresAt ? input.expiresAt : null;
         const parsedExpiry = expiresAt ? Date.parse(expiresAt) : NaN;
-        const ids = documentIds(input.documentIds);
-        if (!label || ids.length < 1 || ids.length > 100) return json(422, { ok: false, code: 'INVALID_GUEST_LINK' }, origin);
+        if (!label) return json(422, { ok: false, code: 'INVALID_GUEST_LINK' }, origin);
         if (expiresAt && (!Number.isFinite(parsedExpiry) || parsedExpiry <= Date.now())) return json(422, { ok: false, code: 'INVALID_EXPIRY' }, origin);
 
         const result = await rpcJson('yalcinmutlu_admin_update_guest_link', {
