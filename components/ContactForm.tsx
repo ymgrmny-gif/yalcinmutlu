@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { FormEvent, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -12,16 +13,19 @@ const copy = {
     aria: 'İletişim formu', name: 'Adınız', email: 'E-posta', subject: 'Konu', message: 'Mesajınız',
     send: 'Mesaj Gönder', sending: 'Gönderiliyor', sent: 'Mesaj gönderildi.', error: 'Mesaj gönderilemedi. Lütfen tekrar deneyin.',
     unconfigured: 'İletişim formu şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
+    privacy: 'Formu göndererek mesajınızın yanıtlanması amacıyla işlenmesini kabul edersiniz. Gizlilik bilgileri',
   },
   en: {
     aria: 'Contact form', name: 'Your name', email: 'Email', subject: 'Subject', message: 'Your message',
     send: 'Send Message', sending: 'Sending', sent: 'Message sent.', error: 'Message could not be sent. Please try again.',
     unconfigured: 'The contact form is currently unavailable. Please try again later.',
+    privacy: 'By submitting the form, you agree that your message may be processed in order to respond. Privacy notice',
   },
   de: {
     aria: 'Kontaktformular', name: 'Ihr Name', email: 'E-Mail', subject: 'Betreff', message: 'Ihre Nachricht',
     send: 'Nachricht senden', sending: 'Wird gesendet', sent: 'Nachricht gesendet.', error: 'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
     unconfigured: 'Das Kontaktformular ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut.',
+    privacy: 'Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Nachricht zur Beantwortung zu. Datenschutzhinweis',
   },
 } as const;
 
@@ -81,6 +85,9 @@ export default function ContactForm({ language = 'tr' }: { language?: Language }
       </div>
       <input className="form-field" name="subject" placeholder={t.subject} minLength={2} maxLength={180} required />
       <textarea className="form-field min-h-32 resize-y" name="message" placeholder={t.message} minLength={10} maxLength={5000} required />
+      <p className="text-xs leading-relaxed text-slate-500">
+        {t.privacy}: <Link href="/privacy/" className="underline underline-offset-2">/privacy</Link>
+      </p>
       <div className="flex flex-wrap items-center gap-3">
         <button className="action-primary" type="submit" disabled={status === 'sending'}>
           <FontAwesomeIcon icon={status === 'sending' ? faSpinner : faPaperPlane} spin={status === 'sending'} />
