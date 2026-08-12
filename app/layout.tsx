@@ -6,6 +6,7 @@ import './refinements.css';
 import './signature.css';
 import './signature-glow.css';
 import './timeline-alignment.css';
+import './legacy-cleanup.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import AOSProvider from '@/components/AOSProvider';
 import TimelinePrecisionController from '@/components/TimelinePrecisionController';
