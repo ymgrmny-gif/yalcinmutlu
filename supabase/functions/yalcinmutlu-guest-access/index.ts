@@ -80,6 +80,12 @@ function isUuid(value: string) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
+function documentIds(value: unknown) {
+  return Array.isArray(value)
+    ? [...new Set(value.filter((item): item is string => typeof item === 'string' && isUuid(item)))]
+    : [];
+}
+
 function randomAccessToken() {
   const bytes = new Uint8Array(32);
   crypto.getRandomValues(bytes);
@@ -136,7 +142,7 @@ Deno.serve(async (request: Request) => {
       return json(200, { ok: true, sessionToken: row.session_token, expiresAt: row.session_expires_at, label: row.label }, origin);
     }
 
-    if (action === 'guestLinks' || action === 'createGuestLink' || action === 'revokeGuestLink') {
+    if (action === 'guestLinks' || action === 'createGuestLink' || action === 'revokeGuestLink' || action === 'updateGuestLink') {
       const adminToken = request.headers.get('x-admin-session') || '';
       if (!await validateAdmin(adminToken)) return json(401, { ok: false, code: 'ADMIN_SESSION_REQUIRED' }, origin);
 
@@ -151,9 +157,7 @@ Deno.serve(async (request: Request) => {
         const note = safeText(input.note, 1000);
         const expiresAt = typeof input.expiresAt === 'string' && input.expiresAt ? input.expiresAt : null;
         const parsedExpiry = expiresAt ? Date.parse(expiresAt) : NaN;
-        const ids = Array.isArray(input.documentIds)
-          ? [...new Set(input.documentIds.filter((value): value is string => typeof value === 'string' && isUuid(value)))]
-          : [];
+        const ids = documentIds(input.documentIds);
         if (!label || ids.length < 1 || ids.length > 100) return json(422, { ok: false, code: 'INVALID_GUEST_LINK' }, origin);
         if (expiresAt && (!Number.isFinite(parsedExpiry) || parsedExpiry <= Date.now())) return json(422, { ok: false, code: 'INVALID_EXPIRY' }, origin);
 
@@ -174,6 +178,20 @@ Deno.serve(async (request: Request) => {
 
       const guestLinkId = typeof input.guestLinkId === 'string' ? input.guestLinkId : '';
       if (!isUuid(guestLinkId)) return json(422, { ok: false, code: 'INVALID_GUEST_LINK' }, origin);
+
+      if (action === 'updateGuestLink') {
+        const ids = documentIds(input.documentIds);
+        if (ids.length < 1 || ids.length > 100) return json(422, { ok: false, code: 'DOCUMENT_REQUIRED' }, origin);
+        const result = await rpcJson('yalcinmutlu_admin_update_guest_link_documents', {
+          p_token: adminToken,
+          p_guest_link_id: guestLinkId,
+          p_document_ids: ids,
+        });
+        if (!result.response.ok) return json(422, { ok: false, code: 'GUEST_LINK_UPDATE_FAILED' }, origin);
+        if (result.body !== true) return json(404, { ok: false, code: 'GUEST_LINK_NOT_FOUND' }, origin);
+        return json(200, { ok: true }, origin);
+      }
+
       const result = await rpcJson('yalcinmutlu_admin_revoke_guest_link', { p_token: adminToken, p_guest_link_id: guestLinkId });
       if (!result.response.ok || result.body !== true) return json(404, { ok: false, code: 'GUEST_LINK_NOT_FOUND' }, origin);
       return json(200, { ok: true }, origin);

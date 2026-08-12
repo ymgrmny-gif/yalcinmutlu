@@ -33,7 +33,7 @@ function clearCookie() {
 async function callJson(url, origin, body, token = '') {
   const headers = { 'Content-Type': 'application/json', Origin: origin };
   if (token) headers['x-admin-session'] = token;
-  return fetch(url, { method: 'POST', headers, body: JSON.stringify(body) });
+  return fetch(url, { method:'POST', headers, body:JSON.stringify(body) });
 }
 
 export async function onRequestPost({ request }) {
@@ -79,7 +79,7 @@ export async function onRequestPost({ request }) {
     return json(401, { ok:false, code:'ADMIN_SESSION_REQUIRED' });
   }
 
-  const guestActions = new Set(['guestLinks','createGuestLink','revokeGuestLink']);
+  const guestActions = new Set(['guestLinks','createGuestLink','revokeGuestLink','updateGuestLink']);
   if (guestActions.has(action)) {
     const upstream = await callJson(GUEST_EDGE_URL, origin, input, token);
     const body = await upstream.json().catch(() => ({ ok:false, code:'UPSTREAM_ERROR' }));

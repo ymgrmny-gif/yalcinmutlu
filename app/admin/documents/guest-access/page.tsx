@@ -19,6 +19,7 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './guest-access.module.css';
+import GuestLinkDocumentEditor from './GuestLinkDocumentEditor';
 
 type Language = 'tr' | 'de' | 'en';
 type Validity = '7' | '30' | '90' | 'never';
@@ -377,11 +378,12 @@ export default function GuestAccessAdminPage() {
                 <div className={styles.linkList}>
                   {data.links.map((link) => {
                     const state = linkState(link);
+                    const isActive = !link.revokedAt && state.label === t.active;
                     return (
                       <article key={link.id} className={styles.linkItem}>
                         <div className={styles.linkTop}>
                           <div><strong>{link.label}</strong><span className={`${styles.status} ${state.className}`}>{state.label}</span></div>
-                          {!link.revokedAt && state.label === t.active ? (
+                          {isActive ? (
                             <button type="button" className={styles.revoke} onClick={() => void revoke(link)} disabled={busy}><FontAwesomeIcon icon={faPowerOff}/>{t.disable}</button>
                           ) : null}
                         </div>
@@ -395,6 +397,15 @@ export default function GuestAccessAdminPage() {
                         <div className={styles.allowedDocs}>
                           {link.documentIds.map((id) => <span key={id}>{documentNames.get(id) || t.documents}</span>)}
                         </div>
+                        <GuestLinkDocumentEditor
+                          linkId={link.id}
+                          documentIds={link.documentIds}
+                          documents={activeDocuments}
+                          language={language}
+                          active={isActive}
+                          disabled={busy}
+                          onUpdated={load}
+                        />
                       </article>
                     );
                   })}
