@@ -153,23 +153,22 @@
 }
 
 .answerPanel {
-  display: grid;
-  grid-template-rows: 0fr;
+  max-height: 0;
   opacity: 0;
   overflow: hidden;
   margin-top: 0;
-  transition: grid-template-rows .2s ease, opacity .18s ease, margin-top .2s ease;
-}
-
-.answerPanel > * {
-  min-height: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: max-height .28s ease, opacity .18s ease, margin-top .2s ease, transform .2s ease, visibility 0s linear .28s;
 }
 
 .answerVisible {
-  grid-template-rows: 1fr;
+  max-height: 900px;
   opacity: 1;
   margin-top: 20px;
-  overflow: visible;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
 }
 
 .answerDe,
