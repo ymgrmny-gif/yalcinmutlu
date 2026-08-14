@@ -1,4 +1,4 @@
 aiohttp>=3.11,<4
-numpy>=2.0,<3
+numpy>=1.26,<3
 soundcard>=0.4.4,<0.5
-python-dotenv>=1.0,<2
+faster-whisper>=1.1,<2
