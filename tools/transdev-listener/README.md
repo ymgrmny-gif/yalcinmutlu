@@ -17,7 +17,17 @@ Local Windows helper for the Transdev interview study project. It captures the s
 - OpenAI API key
 - PC and tablet on the same local network for tablet mode
 
-## Setup
+## Fast setup on Windows
+
+From PowerShell inside this folder:
+
+```powershell
+.\start.ps1
+```
+
+The first run creates `.venv`, installs dependencies and creates `.env`. If the API key is missing, Notepad opens the local `.env` file. Put the key only there; do not commit or paste it into chat. Run `start.ps1` again after saving.
+
+## Manual setup
 
 ```powershell
 cd tools\transdev-listener
@@ -60,6 +70,12 @@ Or choose a speaker/headset by part of its name:
 python app.py --speaker "Headphones"
 ```
 
+You can also pass that argument through the launcher:
+
+```powershell
+.\start.ps1 --speaker "Headphones"
+```
+
 At startup the helper prints two tokenized URLs. Open the `Tablet:` URL on the tablet/phone. The tablet never receives the API key.
 
 ## UI / matcher test without audio
@@ -84,8 +100,8 @@ The prepared B1 answer should appear immediately in the browser.
 1. Realtime transcript deltas update while the interviewer is still speaking.
 2. Every partial transcript is checked against `cards.json` locally.
 3. A strong prepared-question match shows its B1 answer immediately without waiting for an LLM answer.
-4. Unknown questions are sent to a short-debounce AI fallback. Older fallback requests are cancelled/ignored when newer speech arrives.
-5. Local silence detection is used only to commit/finalize a speech segment; prepared-answer matching does **not** wait for finalization.
+4. For an unknown question, the first meaningful partial starts the AI fallback early. While that request is running, the newest partial transcript is kept pending and used for an immediate refinement; the system does not wait for turn-end before starting an answer.
+5. Local silence detection is used only to commit/finalize a speech segment; prepared-answer matching and the AI fallback start before finalization.
 
 ## Known prototype limitation
 
