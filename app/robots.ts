@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/documents/', '/access/', '/api/'],
+        disallow: ['/admin/', '/documents/', '/access/', '/api/', '/transdev-gorusme/'],
       },
     ],
     sitemap: 'https://yalcinmutlu.pages.dev/sitemap.xml',
