@@ -139,36 +139,15 @@
   line-height: 1.45;
 }
 
-.revealButton {
-  width: 100%;
-  border: 0;
-  border-radius: 14px;
-  background: #111827;
-  color: #fff;
-  padding: 13px 16px;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 850;
-  cursor: pointer;
-}
-
 .answerPanel {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  margin-top: 0;
-  visibility: hidden;
-  transform: translateY(-6px);
-  transition: max-height .28s ease, opacity .18s ease, margin-top .2s ease, transform .2s ease, visibility 0s linear .28s;
+  margin-top: 8px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e7eb;
 }
 
 .answerVisible {
-  max-height: 900px;
   opacity: 1;
-  margin-top: 20px;
   visibility: visible;
-  transform: translateY(0);
-  transition-delay: 0s;
 }
 
 .answerDe,
@@ -213,7 +192,7 @@
   width: min(100%, 420px);
   margin: 14px auto 0;
   display: grid;
-  grid-template-columns: 54px 1fr 54px;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
@@ -224,17 +203,10 @@
   background: #fff;
   color: #111827;
   font: inherit;
-  font-size: 21px;
+  font-size: 14px;
   font-weight: 900;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(15, 23, 42, .06);
-}
-
-.controls .centerAction {
-  font-size: 14px;
-  background: #111827;
-  color: #fff;
-  border-color: #111827;
 }
 
 .mobileHint {
@@ -258,12 +230,12 @@
   .questionBlock { padding: 14px 0 10px; }
   .questionBlock h2 { font-size: 22px; }
   .questionTr { margin-top: 7px; font-size: 13px; }
+  .answerPanel { padding-top: 13px; }
   .controls { margin-top: 9px; }
   .controls button { min-height: 42px; }
   .mobileHint { margin-top: 5px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .progressBar,
-  .answerPanel { transition: none; }
+  .progressBar { transition: none; }
 }
