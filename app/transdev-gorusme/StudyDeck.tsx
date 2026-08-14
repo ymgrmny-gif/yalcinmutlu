@@ -145,7 +145,6 @@ const cards: Card[] = [
 
 export default function StudyDeck() {
   const [index, setIndex] = useState(0);
-  const [revealed, setRevealed] = useState(false);
   const startX = useRef<number | null>(null);
   const current = cards[index];
 
@@ -153,22 +152,16 @@ export default function StudyDeck() {
 
   const goNext = () => {
     setIndex((i) => (i + 1) % cards.length);
-    setRevealed(false);
   };
 
   const goPrev = () => {
     setIndex((i) => (i - 1 + cards.length) % cards.length);
-    setRevealed(false);
   };
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') goNext();
       if (event.key === 'ArrowLeft') goPrev();
-      if (event.key === ' ' || event.key === 'Enter') {
-        event.preventDefault();
-        setRevealed((v) => !v);
-      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -195,7 +188,7 @@ export default function StudyDeck() {
           if (startX.current === null) return;
           const dx = e.changedTouches[0].clientX - startX.current;
           startX.current = null;
-          if (Math.abs(dx) < 55) return;
+          if (Math.abs(dx) < 45) return;
           if (dx > 0) goNext();
           else goPrev();
         }}
@@ -212,11 +205,7 @@ export default function StudyDeck() {
             <p className={styles.questionTr}>{current.tr}</p>
           </div>
 
-          <button className={styles.revealButton} onClick={() => setRevealed((v) => !v)}>
-            {revealed ? 'Cevabı gizle' : 'Cevabı göster'}
-          </button>
-
-          <div className={`${styles.answerPanel} ${revealed ? styles.answerVisible : ''}`} aria-hidden={!revealed}>
+          <div className={`${styles.answerPanel} ${styles.answerVisible}`}>
             <p className={styles.answerLabel}>B1 ALMANCA CEVAP</p>
             <p className={styles.answerDe}>{current.a}</p>
             <div className={styles.divider} />
@@ -228,11 +217,8 @@ export default function StudyDeck() {
       </section>
 
       <nav className={styles.controls} aria-label="Kart kontrolleri">
-        <button onClick={goPrev} aria-label="Önceki soru">←</button>
-        <button className={styles.centerAction} onClick={() => setRevealed((v) => !v)}>
-          {revealed ? 'Gizle' : 'Göster'}
-        </button>
-        <button onClick={goNext} aria-label="Sonraki soru">→</button>
+        <button onClick={goPrev} aria-label="Önceki soru">← Önceki</button>
+        <button onClick={goNext} aria-label="Sonraki soru">Sonraki →</button>
       </nav>
 
       <p className={styles.mobileHint}>Sağa kaydır: sonraki • Sola kaydır: önceki</p>
