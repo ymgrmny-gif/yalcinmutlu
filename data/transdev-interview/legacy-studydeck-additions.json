@@ -13,6 +13,27 @@
     "soru_04": [
       "warum möchten sie als prüfpersonal arbeiten"
     ],
+    "soru_05": [
+      "warum möchten sie ihre karriere wechseln",
+      "warum wechseln sie ihren beruf",
+      "warum möchten sie die branche wechseln",
+      "warum wechseln sie die branche",
+      "warum möchten sie nicht mehr im technischen bereich arbeiten",
+      "warum möchten sie nicht mehr in der technik arbeiten",
+      "warum möchten sie nicht mehr in der elektronik arbeiten",
+      "warum wechseln sie von der technik in diesen bereich",
+      "warum wechseln sie von der elektronik in diesen bereich",
+      "warum möchten sie etwas anderes machen",
+      "warum möchten sie einen anderen beruf machen",
+      "warum möchten sie ihren aktuellen job verlassen",
+      "warum möchten sie ihren jetzigen job verlassen",
+      "warum wollen sie ihren aktuellen job verlassen",
+      "warum arbeiten sie zurzeit nicht",
+      "warum sind sie zurzeit arbeitslos",
+      "warum haben sie in deutschland noch nicht gearbeitet",
+      "warum haben sie bisher in deutschland nicht gearbeitet",
+      "warum möchten sie als quereinsteiger arbeiten"
+    ],
     "soru_09": [
       "was machen sie, wenn ein fahrgast kein gültiges ticket hat",
       "fahrgast kein gültiges ticket"
@@ -60,6 +81,15 @@
     "soru_02": {
       "cevap": "Transdev ist ein großes Unternehmen. Ich habe viel Erfahrung mit Kunden und bleibe auch bei Problemen ruhig. Deshalb passt diese Stelle gut zu mir.",
       "anlami": "Transdev büyük bir şirkettir. Müşterilerle çok deneyimim var ve sorunlarda da sakin kalırım. Bu nedenle bu pozisyon bana uygundur."
+    },
+    "soru_05": {
+      "ceviri": "Neden önceki mesleğinizden veya teknik alandan bu alana geçmek istiyorsunuz?",
+      "cevap": "Ich arbeite zurzeit nicht. Mein Integrationskurs ist gerade zu Ende, und in Deutschland hatte ich noch keine Gelegenheit zu arbeiten. Früher habe ich viele Jahre technisch gearbeitet, aber jetzt möchte ich gern mehr mit Menschen arbeiten.",
+      "anlami": "Şu anda çalışmıyorum. Entegrasyon kursum yeni bitti ve Almanya'da henüz çalışma fırsatım olmadı. Daha önce uzun yıllar teknik alanda çalıştım ama şimdi insanlarla daha fazla çalışmak istiyorum."
+    },
+    "soru_10": {
+      "cevap": "Ich arbeite professionell und nehme die Wut des Fahrgasts nicht persönlich. Ich bleibe ruhig und halte Abstand. Wenn es gefährlich wird, rufe ich Hilfe.",
+      "anlami": "Profesyonel çalışırım ve yolcunun kızgınlığını kişisel algılamam. Sakin kalır ve mesafemi korurum. Tehlikeli olursa yardım çağırırım."
     },
     "soru_35": {
       "cevap": "Ja. Arbeitet ein neuer Mitarbeiter zuerst mit einem erfahrenen Kollegen? Auf welchen Strecken werde ich hauptsächlich arbeiten?",
