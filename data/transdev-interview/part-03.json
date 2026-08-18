@@ -1,0 +1,283 @@
+[
+  {
+    "id": "soru_40",
+    "keywords": [
+      "was haben sie seit ihrer ankunft in deutschland gemacht",
+      "haben sie seit ihrer ankunft in deutschland gemacht",
+      "seit ihrer ankunft deutschland gemacht",
+      "ihrer ankunft deutschland gemacht"
+    ],
+    "ceviri": "Almanya'ya geldiğinizden beri ne yaptınız?",
+    "cevap": "Ich habe den Integrationskurs gemacht und B1 bestanden. Danach habe ich weiter Deutsch gelernt.",
+    "anlami": "Entegrasyon kursuna gittim ve B1’i geçtim. Sonra Almanca öğrenmeye devam ettim."
+  },
+  {
+    "id": "soru_41",
+    "keywords": [
+      "warum haben sie mutlu akustik beendet",
+      "haben sie mutlu akustik beendet",
+      "mutlu akustik beendet"
+    ],
+    "ceviri": "Mutlu Akustik'i neden kapattınız?",
+    "cevap": "Wir wollten nach Deutschland ziehen. Deshalb habe ich meine Firma geschlossen.",
+    "anlami": "Almanya’ya taşınmak istedik. Bu yüzden şirketimi kapattım."
+  },
+  {
+    "id": "soru_42",
+    "keywords": [
+      "ist diese stelle für sie nur ein vorübergehender einstieg",
+      "diese stelle nur vorübergehender einstieg",
+      "stelle nur vorübergehender einstieg"
+    ],
+    "ceviri": "Bu pozisyon sizin için yalnızca geçici bir başlangıç mı?",
+    "cevap": "Nein. Ich suche eine feste Arbeit und möchte lange bleiben.",
+    "anlami": "Hayır. Kalıcı bir iş arıyorum ve uzun süre çalışmak istiyorum."
+  },
+  {
+    "id": "soru_43",
+    "keywords": [
+      "was tun sie, wenn sie später ein besseres technisches angebot bekommen",
+      "tun sie, wenn sie später ein besseres technisches angebot bekommen",
+      "wenn später besseres technisches angebot",
+      "besseres technisches angebot bekommen"
+    ],
+    "ceviri": "Daha sonra daha iyi bir teknik iş teklifi alırsanız ne yaparsınız?",
+    "cevap": "Wenn ich bei Transdev zufrieden bin, möchte ich bleiben. Ich suche eine Arbeit für viele Jahre.",
+    "anlami": "Transdev'de memnun olursam kalmak isterim. Uzun yıllar çalışabileceğim bir iş arıyorum."
+  },
+  {
+    "id": "soru_44",
+    "keywords": [
+      "sie haben teams geführt. können sie wieder anweisungen annehmen",
+      "teams geführt wieder anweisungen annehmen",
+      "geführt wieder anweisungen annehmen"
+    ],
+    "ceviri": "Ekip yönettiniz; yeniden talimat alabilir misiniz?",
+    "cevap": "Ja, natürlich. Klare Anweisungen sind für mich kein Problem.",
+    "anlami": "Evet, tabii. Açık talimatlar benim için sorun değil."
+  },
+  {
+    "id": "soru_45",
+    "keywords": [
+      "warum suchen sie keine stelle als technischer projektmanager",
+      "suchen sie keine stelle als technischer projektmanager",
+      "suchen keine stelle als technischer",
+      "stelle als technischer projektmanager"
+    ],
+    "ceviri": "Neden teknik proje yöneticisi pozisyonu aramıyorsunuz?",
+    "cevap": "Diese Arbeit passt jetzt gut zu mir. Ich arbeite gern mit Menschen.",
+    "anlami": "Bu iş şu anda bana çok uygun. İnsanlarla çalışmayı seviyorum."
+  },
+  {
+    "id": "soru_46",
+    "keywords": [
+      "was haben sie aus ihrer selbstständigkeit gelernt",
+      "haben sie aus ihrer selbstständigkeit gelernt",
+      "aus ihrer selbstständigkeit gelernt"
+    ],
+    "ceviri": "Kendi şirketlerinizi yönetmekten ne öğrendiniz?",
+    "cevap": "Ich habe gelernt, selbst zu entscheiden. Ich musste gut planen und Kunden helfen.",
+    "anlami": "Kendi kararlarımı vermeyi öğrendim. İyi planlama yapmam ve müşterilere yardımcı olmam gerekiyordu."
+  },
+  {
+    "id": "soru_47",
+    "keywords": [
+      "was sind ihre digitalen projekte",
+      "sind ihre digitalen projekte",
+      "digitalen projekte"
+    ],
+    "ceviri": "Dijital projeleriniz nelerdir?",
+    "cevap": "Früher habe ich Webseiten und Software gemacht. Heute mache ich kleine KI-Projekte für mich.",
+    "anlami": "Eskiden internet siteleri ve yazılımlar yaptım. Bugün kendim için küçük yapay zekâ projeleri yapıyorum."
+  },
+  {
+    "id": "soru_48",
+    "keywords": [
+      "wie lernen sie neue regeln und tarife",
+      "lernen sie neue regeln und tarife",
+      "lernen neue regeln tarife"
+    ],
+    "ceviri": "Yeni kuralları ve tarifeleri nasıl öğrenirsiniz?",
+    "cevap": "Ich höre gut zu und mache kurze Notizen. Wenn ich etwas nicht verstehe, frage ich.",
+    "anlami": "Dikkatle dinler ve kısa notlar alırım. Bir şeyi anlamazsam sorarım."
+  },
+  {
+    "id": "soru_49",
+    "keywords": [
+      "wie gehen sie mit kritik oder feedback um",
+      "gehen sie mit kritik oder feedback um",
+      "gehen kritik feedback um"
+    ],
+    "ceviri": "Eleştiri veya geri bildirimle nasıl başa çıkarsınız?",
+    "cevap": "Kritik ist für mich okay. Ich höre zu und verbessere meine Arbeit.",
+    "anlami": "Eleştiri benim için sorun değil. Dinler ve işimi geliştiririm."
+  },
+  {
+    "id": "soru_50",
+    "keywords": [
+      "erzählen sie von einem fehler und was sie daraus gelernt haben",
+      "von einem fehler und was sie daraus gelernt haben",
+      "erzählen fehler daraus gelernt"
+    ],
+    "ceviri": "Yaptığınız bir hatayı ve bundan ne öğrendiğinizi anlatın.",
+    "cevap": "Früher habe ich Kunden bei Geld zu schnell vertraut. Heute passe ich besser auf.",
+    "anlami": "Eskiden para konusunda müşterilere çok çabuk güveniyordum. Artık daha dikkatliyim."
+  },
+  {
+    "id": "soru_51",
+    "keywords": [
+      "was tun sie, wenn ein freund ohne gültigen fahrschein fährt",
+      "tun sie, wenn ein freund ohne gültigen fahrschein fährt",
+      "wenn freund ohne gültigen fahrschein",
+      "ohne gültigen fahrschein fährt"
+    ],
+    "ceviri": "Bir arkadaşınız geçerli bileti olmadan yolculuk ederse ne yaparsınız?",
+    "cevap": "Auch bei einem Freund gelten die Regeln. Ich mache keine Ausnahme.",
+    "anlami": "Bir arkadaşım için de kurallar geçerlidir. İstisna yapmam."
+  },
+  {
+    "id": "soru_52",
+    "keywords": [
+      "was tun sie, wenn ihnen ein fahrgast geld oder ein geschenk anbietet",
+      "tun sie, wenn ihnen ein fahrgast geld oder ein geschenk anbietet",
+      "wenn ihnen fahrgast geld geschenk",
+      "fahrgast geld geschenk anbietet"
+    ],
+    "ceviri": "Bir yolcu size para veya hediye teklif ederse ne yaparsınız?",
+    "cevap": "Ich nehme kein Geld und kein Geschenk an. Das ist für mich klar.",
+    "anlami": "Para veya hediye kabul etmem. Bu benim için nettir."
+  },
+  {
+    "id": "soru_53",
+    "keywords": [
+      "was tun sie, wenn ein kollege einen fehler macht",
+      "tun sie, wenn ein kollege einen fehler macht",
+      "wenn kollege fehler macht"
+    ],
+    "ceviri": "Bir çalışma arkadaşınız hata yaparsa ne yaparsınız?",
+    "cevap": "Ich spreche ruhig mit dem Kollegen. Bei einem wichtigen Fehler sage ich dem Chef Bescheid.",
+    "anlami": "Çalışma arkadaşımla sakin konuşurum. Önemli bir hatada yöneticime haber veririm."
+  },
+  {
+    "id": "soru_54",
+    "keywords": [
+      "ein fahrgast sagt, seine ticket-app habe nicht funktioniert. was tun sie",
+      "fahrgast sagt seine ticket app",
+      "app habe nicht funktioniert"
+    ],
+    "ceviri": "Yolcu bilet uygulamasının çalışmadığını söylerse ne yaparsınız?",
+    "cevap": "Ich prüfe zuerst das System. Dann arbeite ich nach den Regeln.",
+    "anlami": "Önce sistemi kontrol ederim. Sonra kurallara göre hareket ederim."
+  },
+  {
+    "id": "soru_55",
+    "keywords": [
+      "was tun sie bei einer möglicherweise gefälschten fahrkarte",
+      "tun sie bei einer möglicherweise gefälschten fahrkarte",
+      "möglicherweise gefälschten fahrkarte"
+    ],
+    "ceviri": "Sahte olabilecek bir biletle karşılaşırsanız ne yaparsınız?",
+    "cevap": "Ich prüfe die Fahrkarte genau. Wenn ich unsicher bin, hole ich Hilfe.",
+    "anlami": "Bileti dikkatle kontrol ederim. Emin değilsem yardım isterim."
+  },
+  {
+    "id": "soru_56",
+    "keywords": [
+      "wie reagieren sie auf eine aggressive gruppe von fahrgästen",
+      "reagieren sie auf eine aggressive gruppe von fahrgästen",
+      "reagieren aggressive gruppe fahrgästen"
+    ],
+    "ceviri": "Agresif bir yolcu grubuna nasıl davranırsınız?",
+    "cevap": "Ich halte Abstand und rufe früh Hilfe. Sicherheit ist wichtiger.",
+    "anlami": "Mesafemi korur ve erken yardım çağırırım. Güvenlik daha önemlidir."
+  },
+  {
+    "id": "soru_57",
+    "keywords": [
+      "was tun sie bei einem stark alkoholisierten fahrgast",
+      "tun sie bei einem stark alkoholisierten fahrgast",
+      "stark alkoholisierten fahrgast"
+    ],
+    "ceviri": "Aşırı alkollü bir yolcuya nasıl davranırsınız?",
+    "cevap": "Ich bleibe ruhig und halte Abstand. Wenn nötig, rufe ich Hilfe.",
+    "anlami": "Sakin kalır ve mesafemi korurum. Gerekirse yardım çağırırım."
+  },
+  {
+    "id": "soru_58",
+    "keywords": [
+      "ein fahrgast beleidigt sie persönlich. wie reagieren sie",
+      "fahrgast beleidigt persönlich reagieren"
+    ],
+    "ceviri": "Bir yolcu size kişisel olarak hakaret ederse nasıl davranırsınız?",
+    "cevap": "Ich bleibe ruhig und sage nichts zurück. Wenn nötig, rufe ich Hilfe.",
+    "anlami": "Sakin kalırım ve karşılık vermem. Gerekirse yardım çağırırım."
+  },
+  {
+    "id": "soru_59",
+    "keywords": [
+      "was tun sie, wenn ein fahrgast andere personen belästigt",
+      "tun sie, wenn ein fahrgast andere personen belästigt",
+      "wenn fahrgast andere personen belästigt",
+      "fahrgast andere personen belästigt"
+    ],
+    "ceviri": "Bir yolcu diğer kişileri rahatsız ederse ne yaparsınız?",
+    "cevap": "Ich spreche die Person ruhig an. Wenn nötig, hole ich Hilfe.",
+    "anlami": "Kişiyle sakin konuşurum. Gerekirse yardım isterim."
+  },
+  {
+    "id": "soru_60",
+    "keywords": [
+      "wie unterstützen sie ältere, behinderte oder hilfsbedürftige fahrgäste",
+      "unterstützen sie ältere, behinderte oder hilfsbedürftige fahrgäste",
+      "unterstützen ältere behinderte hilfsbedürftige fahrgäste",
+      "ältere behinderte hilfsbedürftige fahrgäste"
+    ],
+    "ceviri": "Yaşlı, engelli veya yardıma ihtiyacı olan yolculara nasıl destek olursunuz?",
+    "cevap": "Ich frage zuerst: Wie kann ich helfen? Dann helfe ich so gut ich kann.",
+    "anlami": "Önce 'Nasıl yardımcı olabilirim?' diye sorarım. Sonra elimden geldiğince yardım ederim."
+  },
+  {
+    "id": "soru_61",
+    "keywords": [
+      "was tun sie bei einem medizinischen notfall im zug",
+      "tun sie bei einem medizinischen notfall im zug",
+      "medizinischen notfall zug"
+    ],
+    "ceviri": "Trende tıbbi acil durum yaşanırsa ne yaparsınız?",
+    "cevap": "Ich bleibe ruhig und rufe sofort Hilfe. Danach folge ich den Anweisungen.",
+    "anlami": "Sakin kalır ve hemen yardım çağırırım. Sonra verilen talimatları uygularım."
+  },
+  {
+    "id": "soru_62",
+    "keywords": [
+      "was tun sie bei einem unbeaufsichtigten gepäckstück",
+      "tun sie bei einem unbeaufsichtigten gepäckstück",
+      "unbeaufsichtigten gepäckstück"
+    ],
+    "ceviri": "Sahipsiz bir bagaj görürseniz ne yaparsınız?",
+    "cevap": "Ich lasse das Gepäck liegen. Ich sage sofort Bescheid.",
+    "anlami": "Bagajı olduğu yerde bırakırım. Hemen haber veririm."
+  },
+  {
+    "id": "soru_63",
+    "keywords": [
+      "was tun sie bei rauch, feuer oder einem elektrischen risiko",
+      "tun sie bei rauch, feuer oder einem elektrischen risiko",
+      "rauch feuer elektrischen risiko"
+    ],
+    "ceviri": "Duman, yangın veya elektrik riski görürseniz ne yaparsınız?",
+    "cevap": "Ich melde das Problem sofort. Dann folge ich den Regeln.",
+    "anlami": "Sorunu hemen bildiririm. Sonra kurallara uyarım."
+  },
+  {
+    "id": "soru_64",
+    "keywords": [
+      "was ist wichtiger: fahrkartenkontrolle oder sicherheit",
+      "ist wichtiger: fahrkartenkontrolle oder sicherheit",
+      "wichtiger fahrkartenkontrolle sicherheit"
+    ],
+    "ceviri": "Bilet kontrolü mü, güvenlik mi daha önemlidir?",
+    "cevap": "Sicherheit ist immer wichtiger. Bei Gefahr stoppe ich die Kontrolle.",
+    "anlami": "Güvenlik her zaman daha önemlidir. Tehlike varsa kontrolü durdururum."
+  }
+]
