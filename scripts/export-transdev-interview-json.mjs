@@ -13,9 +13,31 @@ const chunks = await Promise.all(
 );
 const questions = chunks.flat();
 
+const additions = JSON.parse(
+  await readFile(path.join(sourceDir, 'legacy-studydeck-additions.json'), 'utf8')
+);
+
+for (const question of questions) {
+  const extraKeywords = additions.keywordAdditions?.[question.id] ?? [];
+  if (extraKeywords.length) {
+    question.keywords = [...new Set([...question.keywords, ...extraKeywords])];
+  }
+
+  const overrides = additions.fieldOverrides?.[question.id];
+  if (overrides) Object.assign(question, overrides);
+}
+
 if (questions.length !== 150) throw new Error(`Expected 150 questions, got ${questions.length}`);
 const ids = new Set(questions.map((q) => q.id));
 if (ids.size !== questions.length) throw new Error('Duplicate question ids found');
+
+for (const [id, keywords] of Object.entries(additions.keywordAdditions ?? {})) {
+  if (!ids.has(id)) throw new Error(`Unknown keyword addition id: ${id}`);
+  if (!Array.isArray(keywords) || keywords.length === 0) throw new Error(`Empty keyword addition for ${id}`);
+}
+for (const id of Object.keys(additions.fieldOverrides ?? {})) {
+  if (!ids.has(id)) throw new Error(`Unknown field override id: ${id}`);
+}
 
 for (const q of questions) {
   for (const field of ['id', 'keywords', 'ceviri', 'cevap', 'anlami']) {
