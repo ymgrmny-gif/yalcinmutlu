@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ek_154",
+    "keywords": ["wie würden sie reagieren wenn ein fahrgast plötzlich laut wird und hätten sie ein problem damit nachtschichten zu übernehmen", "fahrgast plötzlich laut wird nachtschichten übernehmen", "fahrgast laut wird und nachtschichten", "aggressiver fahrgast und nachtschicht", "aggressiv wird und nachtschichten übernehmen", "schwierige situation fahrgast nachtschicht", "laut werdender fahrgast nacht arbeiten", "konflikt mit fahrgast und nachts arbeiten"],
+    "ceviri": "Bir yolcu aniden yüksek sesle konuşursa nasıl tepki verirsiniz ve gece vardiyalarında çalışmak sizin için sorun olur mu?",
+    "cevap": "Ich bleibe ruhig und spreche leise mit dem Fahrgast. Wenn es schlimmer oder gefährlich wird, halte ich Abstand und hole Hilfe. Nachtschichten sind für mich kein Problem. Ich bin flexibel und kann auch nachts und am Wochenende arbeiten.",
+    "anlami": "Sakin kalır ve yolcuyla alçak sesle konuşurum. Durum kötüleşir veya tehlikeli olursa mesafemi korur ve yardım çağırırım. Gece vardiyaları benim için sorun değil. Esneğim; gece ve hafta sonu da çalışabilirim.",
+    "intent_concepts": ["aggressive_passenger", "difficult_passenger", "night_shift"],
+    "intent_synonyms": ["aggressiver fahrgast", "fahrgast aggressiv", "fahrgast wird laut", "fahrgast laut", "beleidigt", "bedroht", "aggressiv werden", "schwieriger fahrgast", "verärgerter fahrgast", "unzufriedener fahrgast", "schwierige situation mit fahrgast", "nachtschicht", "nachts arbeiten", "spätabends arbeiten", "nachtarbeit"]
+  },
+  {
+    "id": "ek_155",
+    "keywords": ["fahrgast wird laut nachtschicht müde", "fahrgast laut müde nachtschicht", "nachtschicht kurz vor dem ende müde", "professionell obwohl müde", "fahrgast laut und müde"],
+    "ceviri": "Gece vardiyasının sonunda yorgunken bir yolcu yüksek sesle konuşursa nasıl profesyonel kalırsınız?",
+    "cevap": "Auch wenn ich müde bin, bleibe ich ruhig und professionell. Ich nehme die Situation nicht persönlich und halte mich an die Regeln. Wenn nötig, hole ich Hilfe.",
+    "anlami": "Yorgun olsam da sakin ve profesyonel kalırım. Durumu kişisel algılamam ve kurallara uyarım. Gerekirse yardım çağırırım.",
+    "intent_concepts": ["aggressive_passenger", "night_shift"],
+    "intent_synonyms": ["aggressiver fahrgast", "fahrgast aggressiv", "fahrgast wird laut", "fahrgast laut", "beleidigt", "bedroht", "aggressiv werden", "nachtschicht", "nachts arbeiten", "spätabends arbeiten", "nachtarbeit"]
+  },
+  {
+    "id": "ek_156",
+    "keywords": ["keine direkte erfahrung im bahnverkehr trotzdem geeignet nachts wochenende", "noch nicht im bahnverkehr gearbeitet geeignet nachts wochenende", "bahnverkehr erfahrung geeignet nachts arbeiten", "keine bahnerfahrung trotzdem geeignet"],
+    "ceviri": "Demiryolu deneyiminiz olmamasına rağmen neden bu işe uygunsunuz ve gece/hafta sonu çalışabilir misiniz?",
+    "cevap": "Ich habe noch keine direkte Erfahrung im Bahnverkehr. Aber ich habe viele Jahre mit Kunden gearbeitet und Probleme ruhig gelöst. Ich lerne schnell. Nachts und am Wochenende zu arbeiten ist für mich kein Problem.",
+    "anlami": "Demiryolu alanında henüz doğrudan deneyimim yok. Ancak uzun yıllar müşterilerle çalıştım ve sorunları sakin şekilde çözdüm. Hızlı öğrenirim. Gece ve hafta sonu çalışmak benim için sorun değil.",
+    "intent_concepts": ["competencies", "night_shift", "weekend_work"],
+    "intent_synonyms": ["kompetenzen", "kernkompetenzen", "fähigkeiten", "qualifikationen", "stärken", "kenntnisse", "befähigen", "geeignet", "nachtschicht", "nachts arbeiten", "spätabends arbeiten", "nachtarbeit", "wochenende arbeiten", "am wochenende", "wochenendarbeit"]
+  }
+]
