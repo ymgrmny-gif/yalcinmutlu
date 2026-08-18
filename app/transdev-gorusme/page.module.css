@@ -45,10 +45,35 @@
   font-weight: 800;
 }
 
+.modeSwitch {
+  width: min(100%, 720px);
+  margin: 14px auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.modeSwitch button {
+  min-height: 38px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 12px;
+  background: rgba(255,255,255,.08);
+  color: #e5e7eb;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.modeSwitch .modeActive {
+  background: #fff;
+  color: #111827;
+}
+
 .progressTrack {
   width: min(100%, 720px);
   height: 5px;
-  margin: 16px auto 0;
+  margin: 12px auto 0;
   overflow: hidden;
   border-radius: 999px;
   background: rgba(255,255,255,.14);
@@ -224,7 +249,9 @@
 
 @media (max-height: 700px) {
   .page { padding-top: 10px; padding-bottom: 10px; }
-  .progressTrack { margin-top: 10px; }
+  .modeSwitch { margin-top: 8px; }
+  .modeSwitch button { min-height: 34px; }
+  .progressTrack { margin-top: 8px; }
   .stage { margin-top: 10px; }
   .studyCard { border-radius: 18px; padding: 14px; }
   .questionBlock { padding: 14px 0 10px; }
