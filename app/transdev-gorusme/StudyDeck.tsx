@@ -30,7 +30,8 @@ type VideoImportant = {
   importantIds: string[];
 };
 
-const importantIds = new Set((videoImportant as VideoImportant).importantIds);
+const importantOrder = (videoImportant as VideoImportant).importantIds;
+const importantIds = new Set(importantOrder);
 
 const sourceQuestions = [
   ...(part01 as Question[]),
@@ -54,6 +55,13 @@ const questions: Question[] = sourceQuestions.map((question) => {
   };
 });
 
+const orderedQuestions: Question[] = [
+  ...importantOrder
+    .map((id) => questions.find((question) => question.id === id))
+    .filter((question): question is Question => Boolean(question)),
+  ...questions.filter((question) => !importantIds.has(question.id)),
+];
+
 function displayQuestion(question: Question) {
   const raw = question.keywords[0]?.trim() || question.ceviri;
   const sentence = raw.charAt(0).toLocaleUpperCase('de-DE') + raw.slice(1);
@@ -76,7 +84,7 @@ export default function StudyDeck() {
   const startX = useRef<number | null>(null);
 
   const activeQuestions = useMemo(
-    () => importantOnly ? questions.filter((question) => importantIds.has(question.id)) : questions,
+    () => importantOnly ? orderedQuestions.filter((question) => importantIds.has(question.id)) : orderedQuestions,
     [importantOnly]
   );
 
@@ -109,7 +117,7 @@ export default function StudyDeck() {
     <main className={styles.page}>
       <header className={styles.topbar}>
         <div>
-          <p className={styles.eyebrow}>TRANSDEV • PRÜFPERSONAL • {questions.length} SORU</p>
+          <p className={styles.eyebrow}>TRANSDEV • PRÜFPERSONAL • {orderedQuestions.length} SORU</p>
           <h1>Görüşme Çalışması</h1>
         </div>
         <span className={styles.counter}>{index + 1}/{activeQuestions.length}</span>
@@ -120,7 +128,7 @@ export default function StudyDeck() {
           className={!importantOnly ? styles.modeActive : ''}
           onClick={() => setMode(false)}
         >
-          Tüm Sorular ({questions.length})
+          Tüm Sorular ({orderedQuestions.length})
         </button>
         <button
           className={importantOnly ? styles.modeActive : ''}
