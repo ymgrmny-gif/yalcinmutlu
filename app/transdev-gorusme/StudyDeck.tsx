@@ -7,6 +7,7 @@ import part03 from '@/data/transdev-interview/part-03.json';
 import part04 from '@/data/transdev-interview/part-04.json';
 import part05 from '@/data/transdev-interview/part-05.json';
 import part06 from '@/data/transdev-interview/part-06.json';
+import part07 from '@/data/transdev-interview/part-07.json';
 import legacyAdditions from '@/data/transdev-interview/legacy-studydeck-additions.json';
 import styles from './page.module.css';
 
@@ -23,6 +24,8 @@ type LegacyAdditions = {
   fieldOverrides: Record<string, Partial<Pick<Question, 'cevap' | 'anlami'>>>;
 };
 
+const importantIds = new Set(['ek_151', 'ek_152', 'ek_153']);
+
 const sourceQuestions = [
   ...(part01 as Question[]),
   ...(part02 as Question[]),
@@ -30,6 +33,7 @@ const sourceQuestions = [
   ...(part04 as Question[]),
   ...(part05 as Question[]),
   ...(part06 as Question[]),
+  ...(part07 as Question[]),
 ];
 
 const legacy = legacyAdditions as LegacyAdditions;
@@ -51,6 +55,7 @@ function displayQuestion(question: Question) {
 }
 
 function tagFor(question: Question) {
+  if (importantIds.has(question.id)) return '⭐ EN ÖNEMLİ';
   if (question.id.startsWith('ek_')) return 'EK SORU';
   if (question.id === 'soru_35' || question.id === 'soru_82') return 'SEN SOR';
   if (['soru_09', 'soru_10', 'soru_11', 'soru_13', 'soru_14', 'soru_15', 'soru_16'].includes(question.id)) return 'YOLCU';
@@ -61,22 +66,36 @@ function tagFor(question: Question) {
 
 export default function StudyDeck() {
   const [index, setIndex] = useState(0);
+  const [importantOnly, setImportantOnly] = useState(false);
   const startX = useRef<number | null>(null);
-  const current = questions[index];
 
-  const progress = useMemo(() => ((index + 1) / questions.length) * 100, [index]);
+  const activeQuestions = useMemo(
+    () => importantOnly ? questions.filter((question) => importantIds.has(question.id)) : questions,
+    [importantOnly]
+  );
 
-  const goNext = () => setIndex((i) => (i + 1) % questions.length);
-  const goPrev = () => setIndex((i) => (i - 1 + questions.length) % questions.length);
+  const current = activeQuestions[index];
+  const progress = useMemo(
+    () => activeQuestions.length ? ((index + 1) / activeQuestions.length) * 100 : 0,
+    [index, activeQuestions.length]
+  );
+
+  const setMode = (important: boolean) => {
+    setImportantOnly(important);
+    setIndex(0);
+  };
+
+  const goNext = () => setIndex((i) => (i + 1) % activeQuestions.length);
+  const goPrev = () => setIndex((i) => (i - 1 + activeQuestions.length) % activeQuestions.length);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowRight') setIndex((i) => (i + 1) % questions.length);
-      if (event.key === 'ArrowLeft') setIndex((i) => (i - 1 + questions.length) % questions.length);
+      if (event.key === 'ArrowRight') setIndex((i) => (i + 1) % activeQuestions.length);
+      if (event.key === 'ArrowLeft') setIndex((i) => (i - 1 + activeQuestions.length) % activeQuestions.length);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [activeQuestions.length]);
 
   if (!current) return null;
 
@@ -84,11 +103,26 @@ export default function StudyDeck() {
     <main className={styles.page}>
       <header className={styles.topbar}>
         <div>
-          <p className={styles.eyebrow}>TRANSDEV • PRÜFPERSONAL • 150 SORU</p>
+          <p className={styles.eyebrow}>TRANSDEV • PRÜFPERSONAL • {questions.length} SORU</p>
           <h1>Görüşme Çalışması</h1>
         </div>
-        <span className={styles.counter}>{index + 1}/{questions.length}</span>
+        <span className={styles.counter}>{index + 1}/{activeQuestions.length}</span>
       </header>
+
+      <div className={styles.modeSwitch} aria-label="Çalışma modu">
+        <button
+          className={!importantOnly ? styles.modeActive : ''}
+          onClick={() => setMode(false)}
+        >
+          Tüm Sorular ({questions.length})
+        </button>
+        <button
+          className={importantOnly ? styles.modeActive : ''}
+          onClick={() => setMode(true)}
+        >
+          ⭐ En Önemli ({importantIds.size})
+        </button>
+      </div>
 
       <div className={styles.progressTrack} aria-hidden="true">
         <div className={styles.progressBar} style={{ width: `${progress}%` }} />
