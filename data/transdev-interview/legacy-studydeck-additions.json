@@ -1,0 +1,65 @@
+{
+  "keywordAdditions": {
+    "soru_01": [
+      "erzählen sie bitte etwas über sich"
+    ],
+    "soru_02": [
+      "warum ausgerechnet transdev vertrieb",
+      "warum ausgerechnet transdev"
+    ],
+    "soru_03": [
+      "welche erfahrungen haben sie gesammelt"
+    ],
+    "soru_04": [
+      "warum möchten sie als prüfpersonal arbeiten"
+    ],
+    "soru_09": [
+      "was machen sie, wenn ein fahrgast kein gültiges ticket hat",
+      "fahrgast kein gültiges ticket"
+    ],
+    "soru_10": [
+      "was machen sie bei einem aggressiven fahrgast",
+      "aggressiver fahrgast"
+    ],
+    "soru_15": [
+      "ein fahrgast fragt nach einer verbindung. was machen sie",
+      "fahrgast fragt nach einer verbindung"
+    ],
+    "soru_20": [
+      "wie gehen sie mit stress um"
+    ],
+    "soru_23": [
+      "was sind ihre stärken"
+    ],
+    "soru_24": [
+      "was ist ihre schwäche"
+    ],
+    "soru_25": [
+      "wie sind ihre deutschkenntnisse"
+    ],
+    "soru_28": [
+      "warum sollten wir sie einstellen"
+    ],
+    "soru_34": [
+      "wo sehen sie sich in einigen jahren"
+    ],
+    "soru_58": [
+      "was machen sie, wenn ein fahrgast sie beleidigt",
+      "fahrgast beleidigt sie"
+    ],
+    "soru_76": [
+      "wenn sie eine frage nicht verstehen",
+      "frage nicht verstehen"
+    ]
+  },
+  "fieldOverrides": {
+    "soru_35": {
+      "cevap": "Ja. Arbeitet ein neuer Mitarbeiter zuerst mit einem erfahrenen Kollegen? Auf welchen Strecken werde ich hauptsächlich arbeiten?",
+      "anlami": "Evet. Yeni bir çalışan önce deneyimli bir çalışma arkadaşıyla mı çalışıyor? Ağırlıklı olarak hangi hatlarda çalışacağım?"
+    },
+    "soru_82": {
+      "cevap": "Ja. Wie läuft die Einarbeitung am Anfang? Auf welchen Strecken werde ich hauptsächlich arbeiten?",
+      "anlami": "Evet. Başlangıçtaki işe uyum süreci nasıl ilerliyor? Ağırlıklı olarak hangi hatlarda çalışacağım?"
+    }
+  }
+}
