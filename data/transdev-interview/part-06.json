@@ -1,0 +1,282 @@
+[
+  {
+    "id": "ek_126",
+    "keywords": [
+      "was tun sie, damit sie pünktlich zur arbeit kommen",
+      "tun sie, damit sie pünktlich zur arbeit kommen",
+      "damit pünktlich zur arbeit kommen",
+      "pünktlich zur arbeit kommen"
+    ],
+    "ceviri": "İşe zamanında gelmek için ne yaparsınız?",
+    "cevap": "Ich plane meine Fahrt früh genug. Ich fahre lieber etwas früher los.",
+    "anlami": "Yolculuğumu yeterince erken planlarım. Biraz daha erken çıkmayı tercih ederim."
+  },
+  {
+    "id": "ek_127",
+    "keywords": [
+      "können sie kurzfristig eine andere schicht übernehmen",
+      "kurzfristig eine andere schicht übernehmen",
+      "kurzfristig andere schicht übernehmen"
+    ],
+    "ceviri": "Kısa süre içinde başka bir vardiyayı alabilir misiniz?",
+    "cevap": "Wenn es organisatorisch möglich ist, ja. Ich bin grundsätzlich flexibel.",
+    "anlami": "Organizasyon açısından mümkünse evet. Genel olarak esneğim."
+  },
+  {
+    "id": "ek_128",
+    "keywords": [
+      "wie gehen sie mit wechselnden arbeitszeiten um",
+      "gehen sie mit wechselnden arbeitszeiten um",
+      "gehen wechselnden arbeitszeiten um"
+    ],
+    "ceviri": "Değişen çalışma saatleriyle nasıl başa çıkarsınız?",
+    "cevap": "Ich plane meinen Alltag entsprechend. Schichtarbeit ist für mich in Ordnung.",
+    "anlami": "Günlük hayatımı buna göre planlarım. Vardiyalı çalışma benim için uygundur."
+  },
+  {
+    "id": "ek_129",
+    "keywords": [
+      "was tun sie, wenn sie krank sind und arbeiten müssen",
+      "tun sie, wenn sie krank sind und arbeiten müssen",
+      "wenn krank arbeiten müssen"
+    ],
+    "ceviri": "Hastaysanız ve vardiyanız varsa ne yaparsınız?",
+    "cevap": "Ich informiere meinen Arbeitgeber so früh wie möglich. Dann folge ich den Regeln der Firma.",
+    "anlami": "İşverenime mümkün olduğunca erken haber veririm. Sonra şirket kurallarına uyarım."
+  },
+  {
+    "id": "ek_130",
+    "keywords": [
+      "ist arbeit an feiertagen für sie möglich",
+      "arbeit feiertagen möglich"
+    ],
+    "ceviri": "Resmî tatillerde çalışabilir misiniz?",
+    "cevap": "Ja. Wenn es zum Schichtplan gehört, ist das möglich.",
+    "anlami": "Evet. Vardiya planının parçasıysa mümkündür."
+  },
+  {
+    "id": "ek_131",
+    "keywords": [
+      "wie verbessern sie ihr deutsch im alltag",
+      "verbessern sie ihr deutsch im alltag",
+      "verbessern deutsch alltag"
+    ],
+    "ceviri": "Günlük hayatta Almancanızı nasıl geliştiriyorsunuz?",
+    "cevap": "Ich spreche jeden Tag Deutsch und lerne neue Wörter. Ich höre auch viel zu.",
+    "anlami": "Her gün Almanca konuşuyor ve yeni kelimeler öğreniyorum. Ayrıca çok dinliyorum."
+  },
+  {
+    "id": "ek_132",
+    "keywords": [
+      "was tun sie, wenn ein fahrgast sehr schnell deutsch spricht",
+      "tun sie, wenn ein fahrgast sehr schnell deutsch spricht",
+      "wenn fahrgast sehr schnell deutsch",
+      "sehr schnell deutsch spricht"
+    ],
+    "ceviri": "Bir yolcu çok hızlı Almanca konuşursa ne yaparsınız?",
+    "cevap": "Ich bitte freundlich um eine langsamere Wiederholung. Das ist für mich kein Problem.",
+    "anlami": "Dostça daha yavaş tekrar etmesini rica ederim. Bu benim için sorun değildir."
+  },
+  {
+    "id": "ek_133",
+    "keywords": [
+      "was tun sie, wenn sie einen dialekt nicht verstehen",
+      "tun sie, wenn sie einen dialekt nicht verstehen",
+      "wenn dialekt nicht verstehen"
+    ],
+    "ceviri": "Bir lehçeyi anlamazsanız ne yaparsınız?",
+    "cevap": "Ich frage freundlich noch einmal nach. Wichtig ist, dass ich die Information richtig verstehe.",
+    "anlami": "Dostça tekrar sorarım. Önemli olan bilgiyi doğru anlamamdır."
+  },
+  {
+    "id": "ek_134",
+    "keywords": [
+      "haben sie angst, auf deutsch mit fahrgästen zu sprechen",
+      "angst, auf deutsch mit fahrgästen zu sprechen",
+      "angst deutsch fahrgästen sprechen"
+    ],
+    "ceviri": "Yolcularla Almanca konuşmaktan çekiniyor musunuz?",
+    "cevap": "Nein. Ich spreche jeden Tag Deutsch. Bei schwierigen Fragen frage ich ruhig nach.",
+    "anlami": "Hayır. Her gün Almanca konuşuyorum. Zor sorularda sakin şekilde tekrar sorarım."
+  },
+  {
+    "id": "ek_135",
+    "keywords": [
+      "wie lernen sie neue fachwörter",
+      "lernen sie neue fachwörter",
+      "lernen neue fachwörter"
+    ],
+    "ceviri": "Yeni mesleki kelimeleri nasıl öğrenirsiniz?",
+    "cevap": "Ich schreibe wichtige Wörter auf und wiederhole sie. Bei der Arbeit lerne ich sie schneller.",
+    "anlami": "Önemli kelimeleri yazar ve tekrar ederim. İşte kullanınca daha hızlı öğrenirim."
+  },
+  {
+    "id": "ek_136",
+    "keywords": [
+      "was tun sie bei einer meinungsverschiedenheit mit einem kollegen",
+      "tun sie bei einer meinungsverschiedenheit mit einem kollegen",
+      "meinungsverschiedenheit kollegen"
+    ],
+    "ceviri": "Bir çalışma arkadaşıyla fikir ayrılığı yaşarsanız ne yaparsınız?",
+    "cevap": "Ich spreche ruhig mit dem Kollegen. Wir suchen zusammen eine Lösung.",
+    "anlami": "Çalışma arkadaşımla sakin şekilde konuşurum. Birlikte çözüm ararız."
+  },
+  {
+    "id": "ek_137",
+    "keywords": [
+      "was erwarten sie von einem guten team",
+      "erwarten sie von einem guten team",
+      "erwarten guten team"
+    ],
+    "ceviri": "İyi bir ekipten ne beklersiniz?",
+    "cevap": "Wir helfen uns und geben wichtige Informationen weiter. Respekt ist auch sehr wichtig.",
+    "anlami": "Birbirimize yardım eder ve önemli bilgileri paylaşırız. Saygı da çok önemlidir."
+  },
+  {
+    "id": "ek_138",
+    "keywords": [
+      "können sie hilfe annehmen",
+      "hilfe annehmen"
+    ],
+    "ceviri": "Yardım kabul edebilir misiniz?",
+    "cevap": "Ja, natürlich. Wenn ich etwas nicht weiß, frage ich lieber nach.",
+    "anlami": "Evet, elbette. Bir şeyi bilmiyorsam sormayı tercih ederim."
+  },
+  {
+    "id": "ek_139",
+    "keywords": [
+      "was motiviert sie bei der arbeit",
+      "motiviert sie bei der arbeit",
+      "motiviert arbeit"
+    ],
+    "ceviri": "İş hayatında sizi ne motive eder?",
+    "cevap": "Ich möchte gute Arbeit machen und Menschen helfen. Ein gutes Team motiviert mich auch.",
+    "anlami": "İşimi iyi yapmak ve insanlara yardımcı olmak isterim. İyi bir ekip de beni motive eder."
+  },
+  {
+    "id": "ek_140",
+    "keywords": [
+      "was bedeutet zuverlässigkeit für sie",
+      "bedeutet zuverlässigkeit für sie",
+      "bedeutet zuverlässigkeit"
+    ],
+    "ceviri": "Güvenilirlik sizin için ne demektir?",
+    "cevap": "Ich komme pünktlich und halte Absprachen ein. Auf mich soll man sich verlassen können.",
+    "anlami": "Zamanında gelirim ve söz verdiğim şeylere uyarım. İnsanlar bana güvenebilmelidir."
+  },
+  {
+    "id": "ek_141",
+    "keywords": [
+      "wie reagieren sie, wenn sie eine neue aufgabe bekommen",
+      "reagieren sie, wenn sie eine neue aufgabe bekommen",
+      "reagieren wenn neue aufgabe bekommen",
+      "wenn neue aufgabe bekommen"
+    ],
+    "ceviri": "Yeni bir görev aldığınızda nasıl tepki verirsiniz?",
+    "cevap": "Ich höre zuerst gut zu. Dann frage ich, wenn etwas unklar ist.",
+    "anlami": "Önce dikkatle dinlerim. Bir şey net değilse sorarım."
+  },
+  {
+    "id": "ek_142",
+    "keywords": [
+      "was machen sie, wenn sie unter zeitdruck arbeiten müssen",
+      "machen sie, wenn sie unter zeitdruck arbeiten müssen",
+      "wenn unter zeitdruck arbeiten müssen",
+      "unter zeitdruck arbeiten müssen"
+    ],
+    "ceviri": "Zaman baskısı altında çalışmanız gerekirse ne yaparsınız?",
+    "cevap": "Ich bleibe ruhig und setze Prioritäten. Dann arbeite ich Schritt für Schritt.",
+    "anlami": "Sakin kalır ve öncelikleri belirlerim. Sonra adım adım çalışırım."
+  },
+  {
+    "id": "ek_143",
+    "keywords": [
+      "was ist ihnen bei einem arbeitgeber wichtig",
+      "ist ihnen bei einem arbeitgeber wichtig",
+      "ihnen arbeitgeber wichtig"
+    ],
+    "ceviri": "Bir işverende sizin için ne önemlidir?",
+    "cevap": "Ein sicherer Arbeitsplatz und ein gutes Team. Ich möchte auch Neues lernen.",
+    "anlami": "Güvenli bir iş ve iyi bir ekip. Ayrıca yeni şeyler öğrenmek isterim."
+  },
+  {
+    "id": "ek_144",
+    "keywords": [
+      "warum glauben sie, dass sie diese arbeit lernen können",
+      "glauben sie, dass sie diese arbeit lernen können",
+      "glauben dass diese arbeit lernen",
+      "dass diese arbeit lernen"
+    ],
+    "ceviri": "Bu işi öğrenebileceğinize neden inanıyorsunuz?",
+    "cevap": "Ich lerne technische Dinge schnell. Außerdem habe ich viel Erfahrung mit Kunden.",
+    "anlami": "Teknik şeyleri hızlı öğrenirim. Ayrıca müşterilerle çok deneyimim var."
+  },
+  {
+    "id": "ek_145",
+    "keywords": [
+      "wie würden ihre früheren kunden sie beschreiben",
+      "würden ihre früheren kunden sie beschreiben",
+      "früheren kunden beschreiben"
+    ],
+    "ceviri": "Eski müşterileriniz sizi nasıl tarif ederdi?",
+    "cevap": "Ich glaube: hilfsbereit, ruhig und lösungsorientiert. Viele Kunden waren lange bei uns.",
+    "anlami": "Bence yardımsever, sakin ve çözüm odaklı derlerdi. Birçok müşteri uzun süre bizimle çalıştı."
+  },
+  {
+    "id": "ek_146",
+    "keywords": [
+      "was machen sie, wenn die arbeit einmal langweilig wird",
+      "machen sie, wenn die arbeit einmal langweilig wird",
+      "wenn arbeit einmal langweilig wird",
+      "arbeit einmal langweilig wird"
+    ],
+    "ceviri": "İş bazen monoton olursa ne yaparsınız?",
+    "cevap": "Ich bleibe konzentriert und mache meine Arbeit sauber. Auch Routine muss gut gemacht werden.",
+    "anlami": "Dikkatimi korur ve işimi düzgün yaparım. Rutin işler de iyi yapılmalıdır."
+  },
+  {
+    "id": "ek_147",
+    "keywords": [
+      "was möchten sie nach der probezeit erreicht haben",
+      "möchten sie nach der probezeit erreicht haben",
+      "möchten nach probezeit erreicht"
+    ],
+    "ceviri": "Deneme süresi sonunda neyi başarmış olmak istersiniz?",
+    "cevap": "Ich möchte die Regeln und Geräte sicher kennen. Ich möchte selbstständig arbeiten können.",
+    "anlami": "Kuralları ve cihazları güvenli şekilde öğrenmiş olmak isterim. Bağımsız çalışabilmek isterim."
+  },
+  {
+    "id": "ek_148",
+    "keywords": [
+      "warum ist pünktlichkeit in diesem beruf wichtig",
+      "ist pünktlichkeit in diesem beruf wichtig",
+      "pünktlichkeit diesem beruf wichtig"
+    ],
+    "ceviri": "Bu meslekte dakiklik neden önemlidir?",
+    "cevap": "Der Betrieb muss zuverlässig funktionieren. Deshalb muss jeder pünktlich sein.",
+    "anlami": "İşleyişin güvenilir olması gerekir. Bu yüzden herkes zamanında olmalıdır."
+  },
+  {
+    "id": "ek_149",
+    "keywords": [
+      "wie gehen sie mit verantwortung um",
+      "gehen sie mit verantwortung um",
+      "gehen verantwortung um"
+    ],
+    "ceviri": "Sorumlulukla nasıl başa çıkarsınız?",
+    "cevap": "Ich nehme meine Aufgaben ernst. Wenn ich unsicher bin, frage ich rechtzeitig nach.",
+    "anlami": "Görevlerimi ciddiye alırım. Emin değilsem zamanında sorarım."
+  },
+  {
+    "id": "ek_150",
+    "keywords": [
+      "was würden sie in den ersten wochen bei transdev besonders beachten",
+      "würden sie in den ersten wochen bei transdev besonders beachten",
+      "ersten wochen transdev besonders beachten",
+      "wochen transdev besonders beachten"
+    ],
+    "ceviri": "Transdev’de ilk haftalarda özellikle neye dikkat edersiniz?",
+    "cevap": "Ich höre gut zu und lerne die Regeln. Ich frage lieber einmal mehr als zu wenig.",
+    "anlami": "Dikkatle dinler ve kuralları öğrenirim. Az sormaktansa bir kez fazla sormayı tercih ederim."
+  }
+]
