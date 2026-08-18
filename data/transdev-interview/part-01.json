@@ -1,0 +1,282 @@
+[
+  {
+    "id": "soru_01",
+    "keywords": [
+      "über sich erzählen",
+      "sich kurz vorstellen",
+      "stellen sie sich vor",
+      "etwas über sich"
+    ],
+    "ceviri": "Bize biraz kendinizden bahseder misiniz?",
+    "cevap": "Ich heiße Yalçın Mutlu. Ich bin 41, verheiratet und habe zwei Kinder. In der Türkei hatte ich zwei Firmen. Dort habe ich 17 Jahre gearbeitet. Seit eineinhalb Jahren lebe ich in Deutschland. Ich habe B1 bestanden.",
+    "anlami": "Benim adım Yalçın Mutlu. 41 yaşındayım, evliyim ve iki çocuğum var. Türkiye’de iki şirketim vardı. Orada 17 yıl çalıştım. Bir buçuk yıldır Almanya’da yaşıyorum. B1’i geçtim."
+  },
+  {
+    "id": "soru_83",
+    "keywords": [
+      "wie alt sind sie und wie ist ihre familiäre situation",
+      "alt sind sie und wie ist ihre familiäre situation",
+      "alt familiäre situation"
+    ],
+    "ceviri": "Kaç yaşındasınız ve aile durumunuz nedir?",
+    "cevap": "Ich bin 41 Jahre alt. Ich bin verheiratet und habe zwei Kinder.",
+    "anlami": "41 yaşındayım. Evliyim ve iki çocuğum var."
+  },
+  {
+    "id": "soru_84",
+    "keywords": [
+      "wie heißen ihre kinder und wie alt sind sie",
+      "heißen ihre kinder und wie alt sind sie",
+      "heißen kinder alt"
+    ],
+    "ceviri": "Çocuklarınızın adları nedir ve kaç yaşındalar?",
+    "cevap": "Meine Kinder heißen Alisa und Ali. Alisa ist sieben, Ali ist drei.",
+    "anlami": "Çocuklarımın adları Alisa ve Ali. Alisa yedi, Ali üç yaşında."
+  },
+  {
+    "id": "soru_02",
+    "keywords": [
+      "warum möchten sie gerade bei transdev arbeiten",
+      "möchten sie gerade bei transdev arbeiten",
+      "möchten gerade transdev arbeiten"
+    ],
+    "ceviri": "Neden özellikle Transdev Vertrieb?",
+    "cevap": "Transdev ist eine große und sichere Firma. Die Arbeit mit Fahrgästen passt gut zu mir.",
+    "anlami": "Transdev büyük ve güvenli bir şirkettir. Yolcularla çalışmak bana uygundur."
+  },
+  {
+    "id": "soru_03",
+    "keywords": [
+      "welche beruflichen erfahrungen bringen sie mit",
+      "beruflichen erfahrungen bringen sie mit",
+      "beruflichen erfahrungen bringen"
+    ],
+    "ceviri": "Şimdiye kadar hangi deneyimleri kazandınız?",
+    "cevap": "Ich hatte in der Türkei zwei Firmen. Dort habe ich ungefähr 17 Jahre gearbeitet.",
+    "anlami": "Türkiye’de iki şirketim vardı. Orada yaklaşık 17 yıl çalıştım."
+  },
+  {
+    "id": "soru_04",
+    "keywords": [
+      "warum möchten sie als fahrkartenkontrolleur arbeiten",
+      "möchten sie als fahrkartenkontrolleur arbeiten",
+      "möchten als fahrkartenkontrolleur arbeiten"
+    ],
+    "ceviri": "Neden bilet kontrol görevlisi olarak çalışmak istiyorsunuz?",
+    "cevap": "Ich arbeite gern mit Menschen. Deshalb passt diese Arbeit gut zu mir.",
+    "anlami": "İnsanlarla çalışmayı seviyorum. Bu nedenle bu iş bana uygun."
+  },
+  {
+    "id": "soru_05",
+    "keywords": [
+      "warum möchten sie ihren beruf wechseln",
+      "möchten sie ihren beruf wechseln",
+      "möchten beruf wechseln"
+    ],
+    "ceviri": "Neden proje yöneticiliğinden bu alana geçmek istiyorsunuz?",
+    "cevap": "Diese Arbeit passt jetzt gut zu mir. Ich arbeite gern mit Menschen.",
+    "anlami": "Bu iş şu anda bana çok uygun. İnsanlarla çalışmayı seviyorum."
+  },
+  {
+    "id": "soru_06",
+    "keywords": [
+      "was wissen sie über die aufgaben dieser stelle",
+      "wissen sie über die aufgaben dieser stelle",
+      "wissen aufgaben dieser stelle"
+    ],
+    "ceviri": "Bu pozisyondaki görevler hakkında ne biliyorsunuz?",
+    "cevap": "Ich kontrolliere Fahrkarten und helfe Fahrgästen. Ich gebe Informationen und achte auf Sicherheit.",
+    "anlami": "Biletleri kontrol eder ve yolculara yardımcı olurum. Bilgi verir ve güvenliğe dikkat ederim."
+  },
+  {
+    "id": "soru_07",
+    "keywords": [
+      "welche erfahrung haben sie im kundenservice",
+      "erfahrung haben sie im kundenservice",
+      "erfahrung kundenservice"
+    ],
+    "ceviri": "Müşteri hizmetleri konusunda deneyiminiz var mı?",
+    "cevap": "Ich habe viele Jahre mit Kunden gearbeitet. Bei Webrano hatte ich etwa 400 bis 500 Kunden.",
+    "anlami": "Uzun yıllar müşterilerle çalıştım. Webrano’da yaklaşık 400-500 müşterim vardı."
+  },
+  {
+    "id": "soru_08",
+    "keywords": [
+      "wie gehen sie mit einem schwierigen oder verärgerten fahrgast um",
+      "gehen sie mit einem schwierigen oder verärgerten fahrgast um",
+      "gehen schwierigen verärgerten fahrgast um",
+      "schwierigen verärgerten fahrgast um"
+    ],
+    "ceviri": "Zor veya kızgın bir yolcuyla nasıl ilgilenirsiniz?",
+    "cevap": "Ich bleibe ruhig und höre zuerst zu. Wenn nötig, hole ich Hilfe.",
+    "anlami": "Sakin kalır ve önce dinlerim. Gerekirse yardım isterim."
+  },
+  {
+    "id": "soru_09",
+    "keywords": [
+      "was tun sie, wenn ein fahrgast keinen gültigen fahrschein hat",
+      "tun sie, wenn ein fahrgast keinen gültigen fahrschein hat",
+      "wenn fahrgast keinen gültigen fahrschein",
+      "fahrgast keinen gültigen fahrschein"
+    ],
+    "ceviri": "Bir yolcunun geçerli bileti yoksa ne yaparsınız?",
+    "cevap": "Ich prüfe die Fahrkarte und erkläre die Situation. Dann arbeite ich nach den Regeln.",
+    "anlami": "Bileti kontrol eder ve durumu açıklarım. Sonra kurallara göre hareket ederim."
+  },
+  {
+    "id": "soru_10",
+    "keywords": [
+      "was tun sie, wenn ein fahrgast aggressiv wird oder sie beleidigt",
+      "tun sie, wenn ein fahrgast aggressiv wird oder sie beleidigt",
+      "wenn fahrgast aggressiv wird beleidigt",
+      "fahrgast aggressiv wird beleidigt"
+    ],
+    "ceviri": "Bir yolcu agresifleşirse veya size hakaret ederse ne yaparsınız?",
+    "cevap": "Ich bleibe ruhig und halte Abstand. Wenn es gefährlich wird, rufe ich Hilfe.",
+    "anlami": "Sakin kalır ve mesafemi korurum. Tehlikeli olursa yardım çağırırım."
+  },
+  {
+    "id": "soru_11",
+    "keywords": [
+      "wie reagieren sie, wenn ein fahrgast nicht kooperiert",
+      "reagieren sie, wenn ein fahrgast nicht kooperiert",
+      "reagieren wenn fahrgast nicht kooperiert",
+      "wenn fahrgast nicht kooperiert"
+    ],
+    "ceviri": "Yolcu işbirliği yapmayı reddederse ne yaparsınız?",
+    "cevap": "Ich erkläre ruhig, was nötig ist. Wenn nötig, hole ich Hilfe.",
+    "anlami": "Sakin şekilde ne gerektiğini açıklarım. Gerekirse yardım isterim."
+  },
+  {
+    "id": "soru_12",
+    "keywords": [
+      "wie lösen sie konflikte",
+      "lösen sie konflikte",
+      "lösen konflikte"
+    ],
+    "ceviri": "Çatışmaları nasıl çözersiniz?",
+    "cevap": "Ich höre zuerst zu. Dann suche ich eine einfache Lösung.",
+    "anlami": "Önce dinlerim. Sonra basit bir çözüm ararım."
+  },
+  {
+    "id": "soru_13",
+    "keywords": [
+      "was tun sie bei einer gefährlichen situation im zug",
+      "tun sie bei einer gefährlichen situation im zug",
+      "gefährlichen situation zug"
+    ],
+    "ceviri": "Trende tehlikeli bir durum görürseniz ne yaparsınız?",
+    "cevap": "Ich stoppe die Kontrolle und rufe Hilfe. Sicherheit ist dann am wichtigsten.",
+    "anlami": "Kontrolü durdurur ve yardım çağırırım. O anda en önemli şey güvenliktir."
+  },
+  {
+    "id": "soru_14",
+    "keywords": [
+      "wie gehen sie bei verspätungen oder zugausfällen mit verärgerten fahrgästen um",
+      "gehen sie bei verspätungen oder zugausfällen mit verärgerten fahrgästen um",
+      "gehen verspätungen zugausfällen verärgerten fahrgästen",
+      "zugausfällen verärgerten fahrgästen um"
+    ],
+    "ceviri": "Gecikme veya tren iptalinde kızgın yolcularla nasıl ilgilenirsiniz?",
+    "cevap": "Ich bleibe ruhig und gebe die Informationen weiter. Wenn möglich, zeige ich eine andere Verbindung.",
+    "anlami": "Sakin kalırım ve bilgileri aktarırım. Mümkünse başka bir bağlantı gösteririm."
+  },
+  {
+    "id": "soru_15",
+    "keywords": [
+      "wie helfen sie bei fragen zu fahrplänen und anschlussverbindungen",
+      "helfen sie bei fragen zu fahrplänen und anschlussverbindungen",
+      "helfen fragen fahrplänen anschlussverbindungen"
+    ],
+    "ceviri": "Bir yolcu bağlantı veya tarife hakkında soru sorarsa ne yaparsınız?",
+    "cevap": "Ich prüfe die Informationen. Dann erkläre ich die Verbindung einfach.",
+    "anlami": "Bilgileri kontrol ederim. Sonra bağlantıyı basit şekilde anlatırım."
+  },
+  {
+    "id": "soru_16",
+    "keywords": [
+      "was tun sie, wenn sie eine antwort nicht wissen",
+      "tun sie, wenn sie eine antwort nicht wissen",
+      "wenn antwort nicht wissen"
+    ],
+    "ceviri": "Bir yolcunun sorusunun cevabını bilmiyorsanız ne yaparsınız?",
+    "cevap": "Ich gebe keine falsche Antwort. Ich prüfe kurz oder frage einen Kollegen.",
+    "anlami": "Yanlış cevap vermem. Kısaca kontrol eder veya bir çalışma arkadaşıma sorarım."
+  },
+  {
+    "id": "soru_17",
+    "keywords": [
+      "was tun sie bei einem problem mit der sauberkeit im zug",
+      "tun sie bei einem problem mit der sauberkeit im zug",
+      "problem sauberkeit zug"
+    ],
+    "ceviri": "Trende temizlikle ilgili bir sorun görürseniz ne yaparsınız?",
+    "cevap": "Ich prüfe zuerst die Situation. Dann melde ich das Problem.",
+    "anlami": "Önce durumu kontrol ederim. Sonra sorunu bildiririm."
+  },
+  {
+    "id": "soru_18",
+    "keywords": [
+      "können sie sich den verkauf von fahrscheinen vorstellen",
+      "sich den verkauf von fahrscheinen vorstellen",
+      "verkauf fahrscheinen vorstellen"
+    ],
+    "ceviri": "Bilet satışı konusunda rahat mısınız?",
+    "cevap": "Ja, das kann ich. Neue Geräte und Tarife lerne ich schnell.",
+    "anlami": "Evet, bunu yapabilirim. Yeni cihazları ve tarifeleri hızlı öğrenirim."
+  },
+  {
+    "id": "soru_19",
+    "keywords": [
+      "können sie im schichtdienst, nachts und am wochenende arbeiten",
+      "im schichtdienst, nachts und am wochenende arbeiten",
+      "schichtdienst nachts wochenende arbeiten"
+    ],
+    "ceviri": "Vardiyalı, hafta sonu ve gece çalışabilir misiniz?",
+    "cevap": "Ja, das ist kein Problem. Ich kann auch nachts und am Wochenende arbeiten.",
+    "anlami": "Evet, sorun değil. Gece ve hafta sonu da çalışabilirim."
+  },
+  {
+    "id": "soru_20",
+    "keywords": [
+      "wie arbeiten sie unter stress",
+      "arbeiten sie unter stress",
+      "arbeiten unter stress"
+    ],
+    "ceviri": "Stres altında nasıl çalışırsınız?",
+    "cevap": "Bei Stress bleibe ich ruhig. Ich arbeite Schritt für Schritt.",
+    "anlami": "Stres altında sakin kalırım. Adım adım çalışırım."
+  },
+  {
+    "id": "soru_21",
+    "keywords": [
+      "was bedeutet teamarbeit für sie",
+      "bedeutet teamarbeit für sie",
+      "bedeutet teamarbeit"
+    ],
+    "ceviri": "Takım çalışması sizin için ne ifade ediyor?",
+    "cevap": "Wir helfen uns gegenseitig. Das ist für mich Teamarbeit.",
+    "anlami": "Birbirimize yardım ederiz. Takım çalışması benim için budur."
+  },
+  {
+    "id": "soru_22",
+    "keywords": [
+      "können sie selbstständig arbeiten",
+      "selbstständig arbeiten"
+    ],
+    "ceviri": "Bağımsız çalışabilir misiniz?",
+    "cevap": "Ja, ich kann gut allein arbeiten. Bei wichtigen Fragen spreche ich mit meinem Chef.",
+    "anlami": "Evet, tek başıma iyi çalışabilirim. Önemli konularda yöneticimle konuşurum."
+  },
+  {
+    "id": "soru_23",
+    "keywords": [
+      "was sind ihre stärken",
+      "sind ihre stärken",
+      "stärken"
+    ],
+    "ceviri": "Güçlü yönleriniz nelerdir?",
+    "cevap": "Ich bleibe ruhig und löse Probleme gern. Ich arbeite auch gern mit Menschen.",
+    "anlami": "Sakin kalırım ve sorun çözmeyi severim. İnsanlarla çalışmayı da severim."
+  }
+]
