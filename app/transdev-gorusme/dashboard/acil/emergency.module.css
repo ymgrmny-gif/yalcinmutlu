@@ -1,0 +1,128 @@
+.page {
+  min-height: 100dvh;
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 20px;
+}
+
+.header,
+.list {
+  width: min(100%, 960px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid #0f172a;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  color: #64748b;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+.header p:last-child {
+  margin: 8px 0 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.header a {
+  flex: 0 0 auto;
+  text-decoration: none;
+  background: #0f172a;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.number {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.question {
+  margin: 0;
+  font-size: clamp(20px, 3vw, 26px);
+  line-height: 1.25;
+  font-weight: 900;
+}
+
+.questionTr {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.label {
+  margin: 16px 0 5px;
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.answer {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 750;
+}
+
+.answerTr {
+  margin: 8px 0 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .page { padding: 12px; }
+  .header { flex-direction: column; }
+  .card { grid-template-columns: 36px 1fr; padding: 14px; }
+  .number { width: 32px; height: 32px; }
+}
+
+@media print {
+  .page { background: #fff; padding: 0; }
+  .header a { display: none; }
+  .card { break-inside: avoid; box-shadow: none; }
+}
