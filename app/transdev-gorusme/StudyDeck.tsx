@@ -9,6 +9,7 @@ import part05 from '@/data/transdev-interview/part-05.json';
 import part06 from '@/data/transdev-interview/part-06.json';
 import part07 from '@/data/transdev-interview/part-07.json';
 import legacyAdditions from '@/data/transdev-interview/legacy-studydeck-additions.json';
+import videoImportant from '@/data/transdev-interview/video-important-questions.json';
 import styles from './page.module.css';
 
 type Question = {
@@ -24,7 +25,12 @@ type LegacyAdditions = {
   fieldOverrides: Record<string, Partial<Pick<Question, 'cevap' | 'anlami'>>>;
 };
 
-const importantIds = new Set(['ek_151', 'ek_152', 'ek_153']);
+type VideoImportant = {
+  source: string;
+  importantIds: string[];
+};
+
+const importantIds = new Set((videoImportant as VideoImportant).importantIds);
 
 const sourceQuestions = [
   ...(part01 as Question[]),
