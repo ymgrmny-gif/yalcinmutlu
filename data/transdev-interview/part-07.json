@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ek_151",
+    "keywords": [
+      "waren sie schon einmal in deutschland",
+      "sind sie schon einmal in deutschland gewesen",
+      "waren sie bereits in deutschland",
+      "schon einmal deutschland"
+    ],
+    "ceviri": "Daha önce Almanya'da bulundunuz mu?",
+    "cevap": "Ja. Ich lebe seit ungefähr eineinhalb Jahren in Deutschland. Ich wohne mit meiner Familie in Ammerbuch.",
+    "anlami": "Evet. Yaklaşık bir buçuk yıldır Almanya'da yaşıyorum. Ailemle Ammerbuch'ta oturuyorum."
+  },
+  {
+    "id": "ek_152",
+    "keywords": [
+      "haben sie verwandte oder bekannte in deutschland",
+      "haben sie familie oder bekannte in deutschland",
+      "verwandte oder bekannte in deutschland",
+      "verwandte bekannte deutschland"
+    ],
+    "ceviri": "Almanya'da akrabanız veya tanıdığınız var mı?",
+    "cevap": "Ja. Ich lebe hier mit meiner Familie. Außerdem kenne ich Erhan Dursun. Er arbeitet bei Transdev.",
+    "anlami": "Evet. Burada ailemle yaşıyorum. Ayrıca Erhan Dursun'u tanıyorum. Kendisi Transdev'de çalışıyor."
+  },
+  {
+    "id": "ek_153",
+    "keywords": [
+      "in welcher stadt möchten sie gerne arbeiten",
+      "wo möchten sie gerne arbeiten",
+      "in welcher stadt möchten sie arbeiten",
+      "wo gerne arbeiten"
+    ],
+    "ceviri": "Hangi şehirde çalışmak istersiniz?",
+    "cevap": "Ich möchte gern in Tübingen arbeiten. Wenn Transdev mich woanders braucht, bin ich auch flexibel.",
+    "anlami": "Tübingen'de çalışmak isterim. Transdev'in başka bir yerde bana ihtiyacı olursa esnek de olabilirim."
+  }
+]
