@@ -53,13 +53,25 @@
     ]
   },
   "fieldOverrides": {
+    "soru_01": {
+      "cevap": "Ich heiße Yalçın Mutlu. Ich habe viele Jahre mit Kunden, Technik und Teams gearbeitet. In der Türkei hatte ich zwei Firmen. Jetzt möchte ich langfristig bei Transdev arbeiten.",
+      "anlami": "Benim adım Yalçın Mutlu. Uzun yıllar müşteriler, teknik işler ve ekiplerle çalıştım. Türkiye'de iki şirketim vardı. Şimdi Transdev'de uzun vadeli çalışmak istiyorum."
+    },
+    "soru_02": {
+      "cevap": "Transdev ist ein großes Unternehmen. Ich habe viel Erfahrung mit Kunden und bleibe auch bei Problemen ruhig. Deshalb passt diese Stelle gut zu mir.",
+      "anlami": "Transdev büyük bir şirkettir. Müşterilerle çok deneyimim var ve sorunlarda da sakin kalırım. Bu nedenle bu pozisyon bana uygundur."
+    },
     "soru_35": {
       "cevap": "Ja. Arbeitet ein neuer Mitarbeiter zuerst mit einem erfahrenen Kollegen? Auf welchen Strecken werde ich hauptsächlich arbeiten?",
       "anlami": "Evet. Yeni bir çalışan önce deneyimli bir çalışma arkadaşıyla mı çalışıyor? Ağırlıklı olarak hangi hatlarda çalışacağım?"
     },
+    "soru_37": {
+      "cevap": "Im technischen Service hatten mehrere Kunden gleichzeitig Probleme. Ich habe die wichtigsten Probleme zuerst gelöst und das Team organisiert. So konnten wir allen Kunden helfen.",
+      "anlami": "Teknik serviste aynı anda birkaç müşterinin sorunu vardı. Önce en önemli sorunları çözdüm ve ekibi organize ettim. Böylece tüm müşterilere yardımcı olabildik."
+    },
     "soru_82": {
-      "cevap": "Ja. Wie läuft die Einarbeitung am Anfang? Auf welchen Strecken werde ich hauptsächlich arbeiten?",
-      "anlami": "Evet. Başlangıçtaki işe uyum süreci nasıl ilerliyor? Ağırlıklı olarak hangi hatlarda çalışacağım?"
+      "cevap": "Ja. Wie läuft die Einarbeitung am Anfang? Auf welchen Strecken werde ich hauptsächlich arbeiten? Woran sehen Sie, dass ein Mitarbeiter gute Arbeit macht?",
+      "anlami": "Evet. Başlangıçtaki işe uyum süreci nasıl ilerliyor? Ağırlıklı olarak hangi hatlarda çalışacağım? Bir çalışanın iyi iş yaptığını neye göre değerlendiriyorsunuz?"
     }
   }
 }
