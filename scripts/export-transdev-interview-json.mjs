@@ -7,7 +7,7 @@ const root = path.resolve(here, '..');
 const sourceDir = path.join(root, 'data', 'transdev-interview');
 const output = path.join(root, 'data', 'transdevInterviewQuestions.json');
 
-const files = Array.from({ length: 6 }, (_, i) => `part-${String(i + 1).padStart(2, '0')}.json`);
+const files = Array.from({ length: 7 }, (_, i) => `part-${String(i + 1).padStart(2, '0')}.json`);
 const chunks = await Promise.all(
   files.map(async (name) => JSON.parse(await readFile(path.join(sourceDir, name), 'utf8')))
 );
@@ -27,7 +27,7 @@ for (const question of questions) {
   if (overrides) Object.assign(question, overrides);
 }
 
-if (questions.length !== 150) throw new Error(`Expected 150 questions, got ${questions.length}`);
+if (questions.length !== 153) throw new Error(`Expected 153 questions, got ${questions.length}`);
 const ids = new Set(questions.map((q) => q.id));
 if (ids.size !== questions.length) throw new Error('Duplicate question ids found');
 
