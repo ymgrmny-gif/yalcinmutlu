@@ -37,6 +37,17 @@ const quickSearches = [
   { label: '👤 Vorstellung', value: 'über sich' },
 ];
 
+const criticalShortcuts = [
+  { id: 'soru_01', icon: '👤', label: 'Kendini tanıt' },
+  { id: 'soru_02', icon: '🏢', label: 'Neden Transdev?' },
+  { id: 'soru_03', icon: '💼', label: 'Deneyim' },
+  { id: 'soru_19', icon: '🌙', label: 'Vardiya / Gece' },
+  { id: 'soru_20', icon: '🔥', label: 'Stres' },
+  { id: 'soru_23', icon: '💪', label: 'Güçlü yönler' },
+  { id: 'soru_24', icon: '🎯', label: 'Zayıf yönler' },
+  { id: 'soru_28', icon: '✅', label: 'Neden sizi?' },
+];
+
 export default function DashboardClient() {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<FilterKey>('important');
@@ -47,6 +58,15 @@ export default function DashboardClient() {
 
   const normalizedQuery = query.trim().toLocaleLowerCase('de-DE');
 
+  const quickCounts = useMemo(() => {
+    return Object.fromEntries(
+      quickSearches.map((item) => [
+        item.value,
+        orderedQuestions.filter((question) => searchText(question).includes(item.value.toLocaleLowerCase('de-DE'))).length,
+      ])
+    ) as Record<string, number>;
+  }, []);
+
   const visibleQuestions = useMemo(() => {
     if (normalizedQuery) {
       return orderedQuestions.filter((question) => searchText(question).includes(normalizedQuery));
@@ -56,23 +76,30 @@ export default function DashboardClient() {
 
   const selected = useMemo(() => {
     return visibleQuestions.find((question) => question.id === selectedId)
+      ?? orderedQuestions.find((question) => question.id === selectedId)
       ?? visibleQuestions[0]
       ?? orderedQuestions[0];
   }, [selectedId, visibleQuestions]);
 
   useEffect(() => {
     if (!visibleQuestions.length) return;
-    if (!visibleQuestions.some((question) => question.id === selectedId)) {
+    if (!visibleQuestions.some((question) => question.id === selectedId) && normalizedQuery) {
       setSelectedId(visibleQuestions[0].id);
       setCursor(0);
     }
-  }, [visibleQuestions, selectedId]);
+  }, [visibleQuestions, selectedId, normalizedQuery]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === '/') {
+        event.preventDefault();
         searchRef.current?.focus();
         searchRef.current?.select();
+        return;
+      }
+      if (event.key === 'Escape') {
+        setQuery('');
+        searchRef.current?.focus();
         return;
       }
       if (!visibleQuestions.length) return;
@@ -107,6 +134,8 @@ export default function DashboardClient() {
     setFilter(next);
     setQuery('');
     setCursor(0);
+    const first = orderedQuestions.find((question) => matchesFilter(question, next));
+    if (first) setSelectedId(first.id);
   };
 
   const runQuickSearch = (value: string) => {
@@ -115,22 +144,53 @@ export default function DashboardClient() {
     requestAnimationFrame(() => searchRef.current?.focus());
   };
 
+  const openCritical = (id: string) => {
+    setQuery('');
+    setFilter('important');
+    setSelectedId(id);
+    const index = orderedQuestions.filter((question) => importantIds.has(question.id)).findIndex((question) => question.id === id);
+    setCursor(Math.max(0, index));
+  };
+
   return (
     <main className={styles.page}>
       <header className={styles.header}>
         <div>
-          <p className={styles.eyebrow}>TRANSDEV • MÜLAKAT DASHBOARD</p>
-          <h1>Hızlı Soru Erişimi</h1>
+          <p className={styles.eyebrow}>TRANSDEV • MÜLAKAT KOKPİTİ • {orderedQuestions.length} SORU</p>
+          <h1>Bir bakışta bul, tek dokunuşla aç</h1>
         </div>
         <div className={styles.headerActions}>
           <Link className={styles.emergencyLink} href="/transdev-gorusme/dashboard/acil/">🧯 Acil 15</Link>
-          <Link className={styles.studyLink} href="/transdev-gorusme/">Çalışma modu</Link>
+          <Link className={styles.studyLink} href="/transdev-gorusme/">📚 Çalışma modu</Link>
         </div>
       </header>
 
+      <section className={styles.criticalPanel}>
+        <div className={styles.panelHead}>
+          <div>
+            <span className={styles.panelKicker}>⭐ KRİTİK KISAYOLLAR</span>
+            <strong>En çok gelmesi muhtemel sorular</strong>
+          </div>
+          <span className={styles.keyboardHint}>/ ara • ↑ ↓ seç • Enter aç</span>
+        </div>
+        <div className={styles.criticalGrid}>
+          {criticalShortcuts.map((item) => (
+            <button
+              key={item.id}
+              className={selectedId === item.id && !query ? styles.criticalActive : styles.criticalButton}
+              onClick={() => openCritical(item.id)}
+            >
+              <span className={styles.criticalIcon}>{item.icon}</span>
+              <span>{item.label}</span>
+              <small>{item.id}</small>
+            </button>
+          ))}
+        </div>
+      </section>
+
       <section className={styles.searchPanel}>
         <div className={styles.searchHead}>
-          <label className={styles.searchLabel} htmlFor="dashboard-search">Duyduğun kelimeyi veya soruyu yaz</label>
+          <label className={styles.searchLabel} htmlFor="dashboard-search">🔎 Duyduğun kelimeyi yaz — tüm {orderedQuestions.length} soruda anında ara</label>
           {query && <button className={styles.clearSearch} onClick={() => setQuery('')}>Temizle ×</button>}
         </div>
         <input
@@ -139,13 +199,13 @@ export default function DashboardClient() {
           className={styles.search}
           value={query}
           onChange={(event) => { setQuery(event.target.value); setCursor(0); }}
-          placeholder="Örn: stress, gehalt, fahrgast, transdev, deutsch…"
+          placeholder="stress, fahrgast, ticket, schicht, deutsch, gehalt…"
           autoComplete="off"
           autoFocus
         />
 
         <div className={styles.quickArea}>
-          <span className={styles.quickLabel}>⚡ Hızlı ara</span>
+          <span className={styles.quickLabel}>⚡ TEK DOKUNUŞ ARAMA</span>
           <div className={styles.quickRow}>
             {quickSearches.map((item) => (
               <button
@@ -153,14 +213,15 @@ export default function DashboardClient() {
                 className={normalizedQuery === item.value.toLocaleLowerCase('de-DE') ? styles.quickActive : styles.quickButton}
                 onClick={() => runQuickSearch(item.value)}
               >
-                {item.label}
+                <span>{item.label}</span>
+                <b>{quickCounts[item.value] ?? 0}</b>
               </button>
             ))}
           </div>
         </div>
 
         <div className={styles.filterArea}>
-          <span className={styles.quickLabel}>📂 Görünüm</span>
+          <span className={styles.quickLabel}>📂 HAZIR LİSTELER</span>
           <div className={styles.filterRow}>
             {filters.map((item) => (
               <button
@@ -180,7 +241,7 @@ export default function DashboardClient() {
         <aside className={styles.sidebar}>
           <div className={styles.sidebarHead}>
             <strong>{visibleQuestions.length} sonuç</strong>
-            <span>{query ? `Arama: “${query}”` : '↑ ↓ Enter • ESC ara'}</span>
+            <span>{query ? `“${query}”` : filter === 'important' ? '⭐ önemli sorular önce' : 'hazır liste'}</span>
           </div>
           <div className={styles.questionList}>
             {visibleQuestions.length ? visibleQuestions.map((question, index) => (
@@ -196,7 +257,7 @@ export default function DashboardClient() {
                 <span className={styles.questionTurkish}>{question.ceviri}</span>
               </button>
             )) : (
-              <div className={styles.empty}>Bu aramayla eşleşen soru yok.</div>
+              <div className={styles.empty}>Bu aramayla eşleşen soru yok. Daha kısa bir kelime dene.</div>
             )}
           </div>
         </aside>
@@ -209,7 +270,7 @@ export default function DashboardClient() {
                   {importantIds.has(selected.id) ? '⭐ EN ÖNEMLİ' : selected.id}
                 </span>
                 <button className={styles.languageToggle} onClick={() => setTurkishVisible((value) => !value)}>
-                  {turkishVisible ? 'Türkçeyi gizle' : 'Türkçeyi göster'}
+                  {turkishVisible ? 'TR açık' : 'TR kapalı'}
                 </button>
               </div>
 
@@ -218,7 +279,7 @@ export default function DashboardClient() {
               {turkishVisible && <p className={styles.questionTranslation}>{selected.ceviri}</p>}
 
               <div className={styles.answerBlock}>
-                <p className={styles.sectionLabel}>KISA B1 CEVAP</p>
+                <p className={styles.sectionLabel}>B1 ALMANCA CEVAP</p>
                 <p className={styles.answerGerman}>{selected.cevap}</p>
               </div>
 
@@ -230,7 +291,7 @@ export default function DashboardClient() {
               )}
 
               <details className={styles.keywords}>
-                <summary>Eşleşme kelimeleri</summary>
+                <summary>🔑 Eşleşme kelimeleri</summary>
                 <div>{selected.keywords.join(' • ')}</div>
               </details>
             </>
@@ -239,8 +300,8 @@ export default function DashboardClient() {
       </section>
 
       <footer className={styles.footer}>
-        <span>⭐ önemli • ⚡ hızlı ara • tüm 156 soru tek aramada</span>
-        <span>Görüşmede: kelimeyi yaz veya kısayola dokun → sonucu seç → cevabı oku</span>
+        <span>⭐ kritik soru → ⚡ konu kısayolu → 🔎 serbest arama</span>
+        <span>Amaç: görüşmede en fazla 1–2 dokunuşla doğru cevaba ulaşmak</span>
       </footer>
     </main>
   );
