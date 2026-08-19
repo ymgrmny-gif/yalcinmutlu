@@ -1,61 +1,25 @@
 {
   "keywordAdditions": {
-    "soru_01": [
-      "erzählen sie bitte etwas über sich"
-    ],
-    "soru_02": [
-      "warum ausgerechnet transdev vertrieb",
-      "warum ausgerechnet transdev"
-    ],
-    "soru_03": [
-      "welche erfahrungen haben sie gesammelt"
-    ],
-    "soru_04": [
-      "warum möchten sie als prüfpersonal arbeiten"
-    ],
-    "soru_09": [
-      "was machen sie, wenn ein fahrgast kein gültiges ticket hat",
-      "fahrgast kein gültiges ticket"
-    ],
-    "soru_10": [
-      "was machen sie bei einem aggressiven fahrgast",
-      "aggressiver fahrgast"
-    ],
-    "soru_15": [
-      "ein fahrgast fragt nach einer verbindung. was machen sie",
-      "fahrgast fragt nach einer verbindung"
-    ],
-    "soru_20": [
-      "wie gehen sie mit stress um"
-    ],
-    "soru_23": [
-      "was sind ihre stärken"
-    ],
-    "soru_24": [
-      "was ist ihre schwäche"
-    ],
-    "soru_25": [
-      "wie sind ihre deutschkenntnisse"
-    ],
-    "soru_28": [
-      "warum sollten wir sie einstellen"
-    ],
-    "soru_34": [
-      "wo sehen sie sich in einigen jahren"
-    ],
-    "soru_58": [
-      "was machen sie, wenn ein fahrgast sie beleidigt",
-      "fahrgast beleidigt sie"
-    ],
-    "soru_76": [
-      "wenn sie eine frage nicht verstehen",
-      "frage nicht verstehen"
-    ]
+    "soru_01": ["erzählen sie bitte etwas über sich"],
+    "soru_02": ["warum ausgerechnet transdev vertrieb", "warum ausgerechnet transdev"],
+    "soru_03": ["welche erfahrungen haben sie gesammelt"],
+    "soru_04": ["warum möchten sie als prüfpersonal arbeiten"],
+    "soru_09": ["was machen sie, wenn ein fahrgast kein gültiges ticket hat", "fahrgast kein gültiges ticket"],
+    "soru_10": ["was machen sie bei einem aggressiven fahrgast", "aggressiver fahrgast"],
+    "soru_15": ["ein fahrgast fragt nach einer verbindung. was machen sie", "fahrgast fragt nach einer verbindung"],
+    "soru_20": ["wie gehen sie mit stress um"],
+    "soru_23": ["was sind ihre stärken"],
+    "soru_24": ["was ist ihre schwäche"],
+    "soru_25": ["wie sind ihre deutschkenntnisse"],
+    "soru_28": ["warum sollten wir sie einstellen"],
+    "soru_34": ["wo sehen sie sich in einigen jahren"],
+    "soru_58": ["was machen sie, wenn ein fahrgast sie beleidigt", "fahrgast beleidigt sie"],
+    "soru_76": ["wenn sie eine frage nicht verstehen", "frage nicht verstehen"]
   },
   "fieldOverrides": {
     "soru_01": {
-      "cevap": "Ich heiße Yalçın Mutlu. Ich habe viele Jahre mit Kunden, Technik und Teams gearbeitet. In der Türkei hatte ich zwei Firmen. Jetzt möchte ich langfristig bei Transdev arbeiten.",
-      "anlami": "Benim adım Yalçın Mutlu. Uzun yıllar müşteriler, teknik işler ve ekiplerle çalıştım. Türkiye'de iki şirketim vardı. Şimdi Transdev'de uzun vadeli çalışmak istiyorum."
+      "cevap": "Ich heiße Yalçın Mutlu. Ich habe ungefähr 17 Jahre Berufserfahrung und in der Türkei zwei eigene Firmen geführt.\n\nIn meiner Arbeit habe ich mich viel mit Technik, Software und digitalen Lösungen beschäftigt. Gleichzeitig hatte ich direkten Kontakt mit vielen Kunden. Bei Webrano waren es etwa 400 bis 500 Kunden. Dadurch habe ich gelernt, technische Probleme verständlich zu erklären, Lösungen zu finden und auch in schwierigen Situationen ruhig zu bleiben.\n\nIch habe außerdem Projekte und Teams organisiert und Verantwortung übernommen. Für mich waren dabei Zuverlässigkeit, gute Kommunikation und ein professioneller Umgang mit Menschen immer besonders wichtig.\n\nJetzt möchte ich in Deutschland beruflich neu anfangen und meine Erfahrung in einem großen und stabilen Unternehmen einbringen. Ich arbeite gern mit Menschen, lerne schnell und möchte mich langfristig bei Transdev weiterentwickeln.",
+      "anlami": "Benim adım Yalçın Mutlu. Yaklaşık 17 yıllık iş deneyimim var ve Türkiye'de iki kendi şirketimi yönettim.\n\nİşimde teknik konular, yazılım ve dijital çözümlerle yoğun olarak ilgilendim. Aynı zamanda çok sayıda müşteriyle doğrudan iletişim kurdum. Webrano'da yaklaşık 400-500 müşterim vardı. Bu sayede teknik sorunları anlaşılır şekilde açıklamayı, çözüm bulmayı ve zor durumlarda sakin kalmayı öğrendim.\n\nAyrıca projeleri ve ekipleri organize ettim ve sorumluluk üstlendim. Güvenilirlik, iyi iletişim ve insanlarla profesyonel şekilde çalışmak benim için her zaman özellikle önemliydi.\n\nŞimdi Almanya'da mesleki olarak yeni bir başlangıç yapmak ve deneyimimi büyük ve istikrarlı bir şirkette kullanmak istiyorum. İnsanlarla çalışmayı seviyorum, hızlı öğreniyorum ve Transdev'de uzun vadeli olarak kendimi geliştirmek istiyorum."
     },
     "soru_02": {
       "cevap": "Transdev ist ein großes Unternehmen. Ich habe viel Erfahrung mit Kunden und bleibe auch bei Problemen ruhig. Deshalb passt diese Stelle gut zu mir.",
