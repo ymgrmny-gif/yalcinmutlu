@@ -22,6 +22,21 @@ const filters: Array<{ key: FilterKey; label: string }> = [
   { key: 'candidate', label: 'Sen Sor' },
 ];
 
+const quickSearches = [
+  { label: '🔥 Stress', value: 'stress' },
+  { label: '🚆 Fahrgast', value: 'fahrgast' },
+  { label: '🎫 Ticket', value: 'ticket' },
+  { label: '🧯 Konflikt', value: 'konflikt' },
+  { label: '🌙 Schicht', value: 'schicht' },
+  { label: '🗣 Deutsch', value: 'deutsch' },
+  { label: '💶 Gehalt', value: 'gehalt' },
+  { label: '🏢 Transdev', value: 'transdev' },
+  { label: '💼 Erfahrung', value: 'erfahrung' },
+  { label: '💪 Stärken', value: 'stärken' },
+  { label: '🎯 Schwächen', value: 'schwäche' },
+  { label: '👤 Vorstellung', value: 'über sich' },
+];
+
 export default function DashboardClient() {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<FilterKey>('important');
@@ -30,18 +45,14 @@ export default function DashboardClient() {
   const [turkishVisible, setTurkishVisible] = useState(true);
   const searchRef = useRef<HTMLInputElement>(null);
 
+  const normalizedQuery = query.trim().toLocaleLowerCase('de-DE');
+
   const visibleQuestions = useMemo(() => {
-    const normalized = query.trim().toLocaleLowerCase('de-DE');
-
-    // Search is intentionally global. The filter chips control the idle/list view,
-    // but once the user types a query we search all interview questions so terms
-    // like "stress" can find matching questions even when "En Önemli" is active.
-    if (normalized) {
-      return orderedQuestions.filter((question) => searchText(question).includes(normalized));
+    if (normalizedQuery) {
+      return orderedQuestions.filter((question) => searchText(question).includes(normalizedQuery));
     }
-
     return orderedQuestions.filter((question) => matchesFilter(question, filter));
-  }, [query, filter]);
+  }, [normalizedQuery, filter]);
 
   const selected = useMemo(() => {
     return visibleQuestions.find((question) => question.id === selectedId)
@@ -98,6 +109,12 @@ export default function DashboardClient() {
     setCursor(0);
   };
 
+  const runQuickSearch = (value: string) => {
+    setQuery(value);
+    setCursor(0);
+    requestAnimationFrame(() => searchRef.current?.focus());
+  };
+
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -112,7 +129,10 @@ export default function DashboardClient() {
       </header>
 
       <section className={styles.searchPanel}>
-        <label className={styles.searchLabel} htmlFor="dashboard-search">Duyduğun kelimeyi veya soruyu yaz</label>
+        <div className={styles.searchHead}>
+          <label className={styles.searchLabel} htmlFor="dashboard-search">Duyduğun kelimeyi veya soruyu yaz</label>
+          {query && <button className={styles.clearSearch} onClick={() => setQuery('')}>Temizle ×</button>}
+        </div>
         <input
           ref={searchRef}
           id="dashboard-search"
@@ -123,17 +143,36 @@ export default function DashboardClient() {
           autoComplete="off"
           autoFocus
         />
-        <div className={styles.filterRow}>
-          {filters.map((item) => (
-            <button
-              key={item.key}
-              className={filter === item.key ? styles.filterActive : styles.filterButton}
-              onClick={() => changeFilter(item.key)}
-            >
-              {item.label}
-              {item.key === 'important' ? ` (${importantIds.size})` : ''}
-            </button>
-          ))}
+
+        <div className={styles.quickArea}>
+          <span className={styles.quickLabel}>⚡ Hızlı ara</span>
+          <div className={styles.quickRow}>
+            {quickSearches.map((item) => (
+              <button
+                key={item.value}
+                className={normalizedQuery === item.value.toLocaleLowerCase('de-DE') ? styles.quickActive : styles.quickButton}
+                onClick={() => runQuickSearch(item.value)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.filterArea}>
+          <span className={styles.quickLabel}>📂 Görünüm</span>
+          <div className={styles.filterRow}>
+            {filters.map((item) => (
+              <button
+                key={item.key}
+                className={!query && filter === item.key ? styles.filterActive : styles.filterButton}
+                onClick={() => changeFilter(item.key)}
+              >
+                {item.label}
+                {item.key === 'important' ? ` (${importantIds.size})` : ''}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -141,7 +180,7 @@ export default function DashboardClient() {
         <aside className={styles.sidebar}>
           <div className={styles.sidebarHead}>
             <strong>{visibleQuestions.length} sonuç</strong>
-            <span>↑ ↓ Enter • ESC ara</span>
+            <span>{query ? `Arama: “${query}”` : '↑ ↓ Enter • ESC ara'}</span>
           </div>
           <div className={styles.questionList}>
             {visibleQuestions.length ? visibleQuestions.map((question, index) => (
@@ -200,8 +239,8 @@ export default function DashboardClient() {
       </section>
 
       <footer className={styles.footer}>
-        <span>API yok • tüm soru verisi sayfanın içinde</span>
-        <span>Görüşmede: kelimeyi yaz → sonucu seç → cevabı oku</span>
+        <span>⭐ önemli • ⚡ hızlı ara • tüm 156 soru tek aramada</span>
+        <span>Görüşmede: kelimeyi yaz veya kısayola dokun → sonucu seç → cevabı oku</span>
       </footer>
     </main>
   );
