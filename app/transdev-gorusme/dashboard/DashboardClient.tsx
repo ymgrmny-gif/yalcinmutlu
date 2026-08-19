@@ -32,11 +32,15 @@ export default function DashboardClient() {
 
   const visibleQuestions = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase('de-DE');
-    return orderedQuestions.filter((question) => {
-      if (!matchesFilter(question, filter)) return false;
-      if (!normalized) return true;
-      return searchText(question).includes(normalized);
-    });
+
+    // Search is intentionally global. The filter chips control the idle/list view,
+    // but once the user types a query we search all interview questions so terms
+    // like "stress" can find matching questions even when "En Önemli" is active.
+    if (normalized) {
+      return orderedQuestions.filter((question) => searchText(question).includes(normalized));
+    }
+
+    return orderedQuestions.filter((question) => matchesFilter(question, filter));
   }, [query, filter]);
 
   const selected = useMemo(() => {
