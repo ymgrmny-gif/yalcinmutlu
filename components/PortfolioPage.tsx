@@ -14,6 +14,7 @@ import {
   faLocationDot,
   faLock,
   faPaperPlane,
+  faPhone,
   faShieldHalved,
   faUser,
   faXmark,
@@ -24,6 +25,7 @@ import { Language, LocalizedText, navItems, SectionId, siteData } from '@/data/s
 const iconMap = {
   user: faUser,
   location: faLocationDot,
+  phone: faPhone,
   briefcase: faBriefcase,
 };
 
