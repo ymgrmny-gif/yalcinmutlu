@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import {
   faArrowRight,
   faBars,
@@ -297,12 +298,33 @@ export default function PortfolioPage() {
 
           <Section id="profile" title={text(navItems[0].label, language)} icon={sectionIcons.profile} index={0} progressIndex={progressIndex}>
             <div className="profile-details">
-              {siteData.details.map((detail) => (
-                <div key={text(detail.value, language)} className="detail-item profile-detail-item">
-                  <FontAwesomeIcon icon={iconMap[detail.icon as keyof typeof iconMap]} />
-                  <p>{text(detail.value, language)}</p>
-                </div>
-              ))}
+              {siteData.details.map((detail) => {
+                const value = text(detail.value, language);
+                const isPhone = detail.icon === 'phone';
+
+                return (
+                  <div key={value} className="detail-item profile-detail-item">
+                    <FontAwesomeIcon icon={iconMap[detail.icon as keyof typeof iconMap]} />
+                    {isPhone ? (
+                      <p>
+                        <a href={`tel:${siteData.contact.phone}`}>{value}</a>
+                        <a
+                          href={`https://wa.me/${siteData.contact.phone.replace(/\D/g, '')}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label="WhatsApp"
+                          title="WhatsApp"
+                          style={{ marginLeft: '0.65rem', color: '#25D366' }}
+                        >
+                          <FontAwesomeIcon icon={faWhatsapp} />
+                        </a>
+                      </p>
+                    ) : (
+                      <p>{value}</p>
+                    )}
+                  </div>
+                );
+              })}
             </div>
             <div className="profile-actions">
               <button className="profile-access-button" type="button" onClick={() => scrollToSection('contact')}>
