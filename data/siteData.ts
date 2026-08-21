@@ -27,6 +27,7 @@ export const siteData = {
   details: [
     { value: l('Yalçın Mutlu', 'Yalçın Mutlu', 'Yalçın Mutlu'), icon: 'user' },
     { value: l('Almanya', 'Germany', 'Deutschland'), icon: 'location' },
+    { value: l('+4915228245042', '+4915228245042', '+4915228245042'), icon: 'phone' },
   ],
   education: [
     {
@@ -244,7 +245,7 @@ export const siteData = {
   ],
   contact: {
     email: 'email@alanadi.com',
-    phone: 'Bilgi eklenecek',
+    phone: '+4915228245042',
     location: 'Almanya',
     website: 'alanadi.com',
   },
